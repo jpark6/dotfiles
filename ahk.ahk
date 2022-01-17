@@ -17,19 +17,36 @@ return
 ^!Left::Send {Media_Prev}        ; ctrl + alt + <- : 이전
 ^!Right::Send {Media_Next}       ; ctrl + alt + -> : 다음
 
-; ESC 입력시 영문으로 강제 변환(vim)
+; Mute/Unmute, Volume Down, Volume Up
+^!F5::SoundSet, +1, , mute       ; ctrl + alt + F5 : Mute 
+^!F6::SoundSet, -5,              ; ctrl + alt + F6 : Volume Down 
+^!F7::SoundSet, +5,              ; ctrl + alt + F7 : Volume Up
+
+; ESC, ctrl + [ 입력시 영문으로 강제 변환(vim)
+^[::
+  ret := IME_CHECK("A")
+  if %ret% <> 0           ; 1 means IME is in Hangul(Korean) mode now.
+  {
+    Send, {Esc}
+    Send, {vk15}    ;한글인 경우 Esc키를 입력하고 한영키를 입력해 준다.
+  }
+  else if %ret% = 0       ; 0 means IME is in English mode now.
+  {
+    Send, {Esc}     ;영문인 경우 Esc키만 입력한다.
+  }
+  return
 $Esc::
-    ret := IME_CHECK("A")
-    if %ret% <> 0           ; 1 means IME is in Hangul(Korean) mode now.
-        {
-	          Send, {Esc}
-            Send, {vk15}    ;한글인 경우 Esc키를 입력하고 한영키를 입력해 준다.
-        }
-    else if %ret% = 0       ; 0 means IME is in English mode now.
-        {
-	          Send, {Esc}     ;영문인 경우 Esc키만 입력한다.
-        }
-    return
+  ret := IME_CHECK("A")
+  if %ret% <> 0           ; 1 means IME is in Hangul(Korean) mode now.
+  {
+    Send, {Esc}
+    Send, {vk15}    ;한글인 경우 Esc키를 입력하고 한영키를 입력해 준다.
+  }
+  else if %ret% = 0       ; 0 means IME is in English mode now.
+  {
+    Send, {Esc}     ;영문인 경우 Esc키만 입력한다.
+  }
+  return
 
 /*
   IME check 
