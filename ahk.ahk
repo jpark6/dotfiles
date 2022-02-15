@@ -1,4 +1,6 @@
 ; autohotkey settings
+mousePntInit()
+return
 
 ; capslock 입력시 한글
 capslock::
@@ -21,6 +23,39 @@ return
 ^!F5::SoundSet, +1, , mute       ; ctrl + alt + F5 : Mute 
 ^!F6::SoundSet, -5,              ; ctrl + alt + F6 : Volume Down 
 ^!F7::SoundSet, +5,              ; ctrl + alt + F7 : Volume Up
+
+; Mouse Move
+mousePntInit() {
+  global pmp := 10
+  global mmp := -10
+}
+
++^!u::MouseMove, %mmp%, %mmp%, 1, R
++^!i::MouseMove, 0, %mmp%, 1, R
++^!o::MouseMove, %pmp%, %mmp%, 1, R
++^!j::MouseMove, %mmp%, 0, 1, R
++^!l::MouseMove, %pmp%, 0, 1, R
++^!m::MouseMove, %mmp%, %pmp%, 1, R
++^!,::MouseMove, 0, %pmp%, 1, R
++^!.::MouseMove, %pmp%, %pmp%, 1, R
+
+; Mouse Click, RClick
++^!k::MouseClick, left
++^!;::MouseClick, right
++^![::MsgBox, pmp=10
++^!]::MsgBox, %pmp%, %mmp%
++^!'::
+  if pmp = 10
+  {
+    global pmp := 100
+    global mmp := -100
+  }
+  else
+  {
+    global pmp := 10
+    global mmp := -10
+  }
+  return
 
 ; ESC, ctrl + [ 입력시 영문으로 강제 변환(vim)
 ^[::
@@ -66,3 +101,4 @@ Send_ImeControl(DefaultIMEWnd, wParam, lParam) {
 ImmGetDefaultIMEWnd(hWnd) {
   return DllCall("imm32\ImmGetDefaultIMEWnd", Uint,hWnd, Uint)
 }
+
