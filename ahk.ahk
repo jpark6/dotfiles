@@ -42,8 +42,20 @@ mousePntInit() {
 ; Mouse Click, RClick
 +^!k::MouseClick, left
 +^!;::MouseClick, right
-+^![::MsgBox, pmp=10
-+^!]::MsgBox, %pmp%, %mmp%
++^![::
+  if pmp > 0
+  {
+    pmp--
+    mmp++
+  }
+  return
++^!]::
+  if pmp < 500
+  {
+    pmp++
+    mmp--
+  }
+  return
 +^!'::
   if pmp = 10
   {
