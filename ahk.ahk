@@ -2,7 +2,7 @@
 mousePntInit()
 return
 
-; capslock ì…ë ¥ì‹œ í•œê¸€
+; capslock ÀÔ·Â½Ã ÇÑ±Û
 capslock::
 KeyWait, capslock
 if A_TimeSinceThisHotkey >= 250 ; in milliseconds.
@@ -15,15 +15,17 @@ return
 !v::Send, ^v ; alt + v => ctrl + v
 !x::Send, ^x ; alt + x => ctrl + x
 
-^!Space::Send {Media_Play_Pause} ; ctrl + alt + space : ì¬ìƒ/ì •ì§€
-^!Left::Send {Media_Prev}        ; ctrl + alt + <- : ì´ì „
-^!Right::Send {Media_Next}       ; ctrl + alt + -> : ë‹¤ìŒ
+^!Space::Send {Media_Play_Pause} ; ctrl + alt + space : Àç»ı/Á¤Áö
+^!Left::Send {Media_Prev}        ; ctrl + alt + <- : ÀÌÀü
+^!Right::Send {Media_Next}       ; ctrl + alt + -> : ´ÙÀ½
 
 ; Mute/Unmute, Volume Down, Volume Up
 ^!F5::SoundSet, +1, , mute       ; ctrl + alt + F5 : Mute 
 ^!F6::SoundSet, -5,              ; ctrl + alt + F6 : Volume Down 
 ^!F7::SoundSet, +5,              ; ctrl + alt + F7 : Volume Up
 
++^!d::Send, ¾È³çÇÏ¼¼¿ä ¶ó¿Â½ÃÅ¥¾î ¹Ú¹İ¼®ÀÔ´Ï´Ù.{Enter}
++^!r::Send, °¨»çÇÕ´Ï´Ù.{Enter}
 ; run applications
 #e::Send, #3 ; 
 
@@ -33,33 +35,33 @@ mousePntInit() {
   global mmp := -10
 }
 
-+^!u::MouseMove, %mmp%, %mmp%, 1, R ; shift + ctrl + alt + u : ì»¤ì„œ ì´ë™ ì¢Œìƒ
-+^!i::MouseMove, 0, %mmp%, 1, R ; shift + ctrl + alt + i     : ì»¤ì„œ ì´ë™ ìƒ
-+^!o::MouseMove, %pmp%, %mmp%, 1, R ; shift + ctrl + alt + o : ì»¤ì„œ ì´ë™ ìš°ìƒ
-+^!j::MouseMove, %mmp%, 0, 1, R ; shift + ctrl + alt + j     : ì»¤ì„œ ì´ë™ ì¢Œ
-+^!l::MouseMove, %pmp%, 0, 1, R ; shift + ctrl + alt + l     : ì»¤ì„œ ì´ë™ ìš°
-+^!m::MouseMove, %mmp%, %pmp%, 1, R ; shift + ctrl + alt + m : ì»¤ì„œ ì´ë™ ì¢Œí•˜
-+^!,::MouseMove, 0, %pmp%, 1, R ; shift + ctrl + alt + ,     : ì»¤ì„œ ì´ë™ ì¢Œí•˜
-+^!.::MouseMove, %pmp%, %pmp%, 1, R ; shift + ctrl + alt + . : ì»¤ì„œ ì´ë™ í•˜
++^!u::MouseMove, %mmp%, %mmp%, 1, R ; shift + ctrl + alt + u : Ä¿¼­ ÀÌµ¿ ÁÂ»ó
++^!i::MouseMove, 0, %mmp%, 1, R ; shift + ctrl + alt + i     : Ä¿¼­ ÀÌµ¿ »ó
++^!o::MouseMove, %pmp%, %mmp%, 1, R ; shift + ctrl + alt + o : Ä¿¼­ ÀÌµ¿ ¿ì»ó
++^!j::MouseMove, %mmp%, 0, 1, R ; shift + ctrl + alt + j     : Ä¿¼­ ÀÌµ¿ ÁÂ
++^!l::MouseMove, %pmp%, 0, 1, R ; shift + ctrl + alt + l     : Ä¿¼­ ÀÌµ¿ ¿ì
++^!m::MouseMove, %mmp%, %pmp%, 1, R ; shift + ctrl + alt + m : Ä¿¼­ ÀÌµ¿ ÁÂÇÏ
++^!,::MouseMove, 0, %pmp%, 1, R ; shift + ctrl + alt + ,     : Ä¿¼­ ÀÌµ¿ ÁÂÇÏ
++^!.::MouseMove, %pmp%, %pmp%, 1, R ; shift + ctrl + alt + . : Ä¿¼­ ÀÌµ¿ ÇÏ
 
 ; Mouse Click, RClick
-+^!k::MouseClick, left ; shift + ctrl + alt + k  : ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ í´ë¦­
-+^!;::MouseClick, right ; shift + ctrl + alt + ; : ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ í´
-+^![:: ; shift + ctrl + alt + [ : ì»¤ì„œ ì´ë™ í”½ì…€ ê°ì†Œ
++^!k::MouseClick, left ; shift + ctrl + alt + k  : ¸¶¿ì½º ¿ŞÂÊ ¹öÆ° Å¬¸¯
++^!;::MouseClick, right ; shift + ctrl + alt + ; : ¸¶¿ì½º ¿ŞÂÊ ¹öÆ° Å¬
++^![:: ; shift + ctrl + alt + [ : Ä¿¼­ ÀÌµ¿ ÇÈ¼¿ °¨¼Ò
   if pmp > 0
   {
     pmp--
     mmp++
   }
   return
-+^!]:: ; shift + ctrl + alt + ] : ì»¤ì„œ ì´ë™ í”½ì…€ ê°
++^!]:: ; shift + ctrl + alt + ] : Ä¿¼­ ÀÌµ¿ ÇÈ¼¿ °¨
   if pmp < 500
   {
     pmp++
     mmp--
   }
   return
-+^!':: ; shift + ctrl + alt + ' : ì»¤ì„œ ì´ë™ í”½ì…€ í† ê¸€ 10 â†” 100
++^!':: ; shift + ctrl + alt + ' : Ä¿¼­ ÀÌµ¿ ÇÈ¼¿ Åä±Û 10 ¡ê 100
   if pmp = 10
   {
     global pmp := 100
@@ -72,17 +74,17 @@ mousePntInit() {
   }
   return
 
-; ESC, ctrl + [ ì…ë ¥ì‹œ ì˜ë¬¸ìœ¼ë¡œ ê°•ì œ ë³€í™˜(vim)
+; ESC, ctrl + [ ÀÔ·Â½Ã ¿µ¹®À¸·Î °­Á¦ º¯È¯(vim)
 ^[::
   ret := IME_CHECK("A")
   if %ret% <> 0           ; 1 means IME is in Hangul(Korean) mode now.
   {
     Send, {Esc}
-    Send, {vk15}    ;í•œê¸€ì¸ ê²½ìš° Escí‚¤ë¥¼ ì…ë ¥í•˜ê³  í•œì˜í‚¤ë¥¼ ì…ë ¥í•´ ì¤€ë‹¤.
+    Send, {vk15}    ;ÇÑ±ÛÀÎ °æ¿ì EscÅ°¸¦ ÀÔ·ÂÇÏ°í ÇÑ¿µÅ°¸¦ ÀÔ·ÂÇØ ÁØ´Ù.
   }
   else if %ret% = 0       ; 0 means IME is in English mode now.
   {
-    Send, {Esc}     ;ì˜ë¬¸ì¸ ê²½ìš° Escí‚¤ë§Œ ì…ë ¥í•œë‹¤.
+    Send, {Esc}     ;¿µ¹®ÀÎ °æ¿ì EscÅ°¸¸ ÀÔ·ÂÇÑ´Ù.
   }
   return
 $Esc::
@@ -90,11 +92,11 @@ $Esc::
   if %ret% <> 0           ; 1 means IME is in Hangul(Korean) mode now.
   {
     Send, {Esc}
-    Send, {vk15}    ;í•œê¸€ì¸ ê²½ìš° Escí‚¤ë¥¼ ì…ë ¥í•˜ê³  í•œì˜í‚¤ë¥¼ ì…ë ¥í•´ ì¤€ë‹¤.
+    Send, {vk15}    ;ÇÑ±ÛÀÎ °æ¿ì EscÅ°¸¦ ÀÔ·ÂÇÏ°í ÇÑ¿µÅ°¸¦ ÀÔ·ÂÇØ ÁØ´Ù.
   }
   else if %ret% = 0       ; 0 means IME is in English mode now.
   {
-    Send, {Esc}     ;ì˜ë¬¸ì¸ ê²½ìš° Escí‚¤ë§Œ ì…ë ¥í•œë‹¤.
+    Send, {Esc}     ;¿µ¹®ÀÎ °æ¿ì EscÅ°¸¸ ÀÔ·ÂÇÑ´Ù.
   }
   return
 
