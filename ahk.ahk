@@ -24,39 +24,42 @@ return
 ^!F6::SoundSet, -5,              ; ctrl + alt + F6 : Volume Down 
 ^!F7::SoundSet, +5,              ; ctrl + alt + F7 : Volume Up
 
-; Mouse Move
+; run applications
+#e::Send, #3 ; 
+
+; Mouse Move Point Init
 mousePntInit() {
   global pmp := 10
   global mmp := -10
 }
 
-+^!u::MouseMove, %mmp%, %mmp%, 1, R
-+^!i::MouseMove, 0, %mmp%, 1, R
-+^!o::MouseMove, %pmp%, %mmp%, 1, R
-+^!j::MouseMove, %mmp%, 0, 1, R
-+^!l::MouseMove, %pmp%, 0, 1, R
-+^!m::MouseMove, %mmp%, %pmp%, 1, R
-+^!,::MouseMove, 0, %pmp%, 1, R
-+^!.::MouseMove, %pmp%, %pmp%, 1, R
++^!u::MouseMove, %mmp%, %mmp%, 1, R ; shift + ctrl + alt + u : 커서 이동 좌상
++^!i::MouseMove, 0, %mmp%, 1, R ; shift + ctrl + alt + i     : 커서 이동 상
++^!o::MouseMove, %pmp%, %mmp%, 1, R ; shift + ctrl + alt + o : 커서 이동 우상
++^!j::MouseMove, %mmp%, 0, 1, R ; shift + ctrl + alt + j     : 커서 이동 좌
++^!l::MouseMove, %pmp%, 0, 1, R ; shift + ctrl + alt + l     : 커서 이동 우
++^!m::MouseMove, %mmp%, %pmp%, 1, R ; shift + ctrl + alt + m : 커서 이동 좌하
++^!,::MouseMove, 0, %pmp%, 1, R ; shift + ctrl + alt + ,     : 커서 이동 좌하
++^!.::MouseMove, %pmp%, %pmp%, 1, R ; shift + ctrl + alt + . : 커서 이동 하
 
 ; Mouse Click, RClick
-+^!k::MouseClick, left
-+^!;::MouseClick, right
-+^![::
++^!k::MouseClick, left ; shift + ctrl + alt + k  : 마우스 왼쪽 버튼 클릭
++^!;::MouseClick, right ; shift + ctrl + alt + ; : 마우스 왼쪽 버튼 클
++^![:: ; shift + ctrl + alt + [ : 커서 이동 픽셀 감소
   if pmp > 0
   {
     pmp--
     mmp++
   }
   return
-+^!]::
++^!]:: ; shift + ctrl + alt + ] : 커서 이동 픽셀 감
   if pmp < 500
   {
     pmp++
     mmp--
   }
   return
-+^!'::
++^!':: ; shift + ctrl + alt + ' : 커서 이동 픽셀 토글 10 ↔ 100
   if pmp = 10
   {
     global pmp := 100
