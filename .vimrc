@@ -6,16 +6,21 @@ endif
 set hls " hlsearch : hightlighting search keyword
 set ai " autoindent
 set ci " cindent
-set si
+set si " smartindent
 set ts=2 " tabspace
 set sw=2 " shiftwidth
 set autowrite " auto save when move another file
 set autoread " read file when file changed 
 set bs=eol,start,indent
 set showmatch " hightlighting matched brakets, braces, parentheses
-set ruler
+set ruler " statusbar
 set incsearch
+set ls=2 " laststatus " show statusbar always
+set nu "number: show line number
 
+" show whitespaces
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set list
 
 " locate cursor which last modified 
 au BufReadPost * 
@@ -23,5 +28,3 @@ au BufReadPost *
 \ exe "norm g`\"" |
 \ endif
 
-set ls=2 " laststatus " show statusbar always
-set statusline=\
