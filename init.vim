@@ -1,3 +1,13 @@
+call plug#begin('~/.vim/plugged')
+Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vim-airline/vim-airline'
+Plug 'frazrepo/vim-rainbow'
+Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+call plug#end()
+
 " Syntax Hightlighting
 if has("syntax")
   syntax on
@@ -32,4 +42,5 @@ au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \ exe "norm g`\"" |
 \ endif
+
 
