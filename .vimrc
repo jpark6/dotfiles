@@ -1,3 +1,14 @@
+" Set Plugins
+call plug#begin('~/.vim/plugged')
+
+Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vim-airline/vim-airline'
+Plug 'frazrepo/vim-rainbow'
+
+call plug#end()
+
 " Syntax Hightlighting
 if has("syntax")
   syntax on
@@ -9,7 +20,7 @@ set ci " cindent
 set si " smartindent
 set ts=2 " tabspace
 set sw=2 " shiftwidth
-set expandtab " insert 2spaces replace tab
+set et " expandtab : insert spaces replace tab
 set autowrite " auto save when move another file
 set autoread " read file when file changed 
 set bs=eol,start,indent
@@ -18,8 +29,7 @@ set ruler " statusbar
 set incsearch
 set ls=2 " laststatus " show statusbar always
 set nu "number: show line number
-set termguicolors " set vim true colors
-
+set clipboard=unnamed
 " show whitespaces
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " set list
