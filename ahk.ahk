@@ -26,8 +26,6 @@ return
 
 +^!d::Send, 안녕하세요 라온시큐어 박반석입니다.{Enter}
 +^!r::Send, 감사합니다.{Enter}
-; run applications
-#e::Send, #3 ; 
 
 ; Mouse Move Point Init
 mousePntInit() {
@@ -74,6 +72,7 @@ mousePntInit() {
   }
   return
 
+/*
 ; ESC, ctrl + [ 입력시 영문으로 강제 변환(vim)
 ^[::
   ret := IME_CHECK("A")
@@ -99,7 +98,7 @@ $Esc::
     Send, {Esc}     ;영문인 경우 Esc키만 입력한다.
   }
   return
-
+*/
 /*
   IME check 
 */
