@@ -1,10 +1,11 @@
 ; autohotkey settings
+
 mousePntInit()
 return
 
 ; capslock 입력시 한글
-capslock::
-KeyWait, capslock
+CapsLock::
+KeyWait, CapsLock
 if A_TimeSinceThisHotkey >= 250 ; in milliseconds.
 SetCapsLockState % !GetKeyState("CapsLock", "T")
 else
@@ -25,6 +26,7 @@ return
 ^!F7::SoundSet, +5,              ; ctrl + alt + F7 : Volume Up
 
 +^!d::Send, 안녕하세요 라온시큐어 박반석입니다.{Enter}
++^!f::Send, 안녕하세요 계정관리기술팀 박반석입니다.{Enter}
 +^!r::Send, 감사합니다.{Enter}
 
 ; Mouse Move Point Init
@@ -43,8 +45,8 @@ mousePntInit() {
 +^!.::MouseMove, %pmp%, %pmp%, 1, R ; shift + ctrl + alt + . : 커서 이동 하
 
 ; Mouse Click, RClick
-+^!k::MouseClick, left ; shift + ctrl + alt + k  : 마우스 왼쪽 버튼 클릭
-+^!;::MouseClick, right ; shift + ctrl + alt + ; : 마우스 왼쪽 버튼 클
++^!k::MouseClick(left) ; shift + ctrl + alt + k  : 마우스 왼쪽 버튼 클릭
++^!;::MouseClick(right) ; shift + ctrl + alt + ; : 마우스 왼쪽 버튼 클
 +^![:: ; shift + ctrl + alt + [ : 커서 이동 픽셀 감소
   if pmp > 0
   {
@@ -118,3 +120,40 @@ ImmGetDefaultIMEWnd(hWnd) {
   return DllCall("imm32\ImmGetDefaultIMEWnd", Uint,hWnd, Uint)
 }
 
+/*
+  Open Application(is opend: active / not opend: open app)
+*/
+OPEN_APP(exeName, pathName) {
+  IfWinExist ahk_exe %exeName%
+    winactivate ahk_exe %exeName%
+  else
+    Run %pathName%\%exeName%
+  WinWait ahk_exe %exeName%
+  WinActivate ahk_exe %exeName%
+  WinWaitActive ahk_exe %exeName%
+  return
+}
+
+^!r::
+  OPEN_APP("raonsecureMessenger.exe", "C:\Program Files\raonsecureMessenger\")
+  return
+
+^!c::
+  OPEN_APP("chrome.exe", "C:\Users\qkstj\scoop\apps\googlechrome\current")
+  return
+
+^!d::
+  OPEN_APP("dbeaver.exe", "C:\Users\qkstj\scoop\apps\dbeaver\current")
+  return
+
+^!f::
+  OPEN_APP("firefox.exe", "C:\Users\qkstj\scoop\apps\firefox\current")
+  return
+
+^!t::
+  OPEN_APP("WindowsTerminal.exe", "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.18.3181.0_x64__8wekyb3d8bbwe")
+  return
+
+^!k::
+  OPEN_APP("KakaoTalk.exe", "C:\Users\qkstj\scoop\apps\kakaotalk\current")
+  return

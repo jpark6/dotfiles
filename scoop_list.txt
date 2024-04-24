@@ -1,4 +1,3 @@
-
 7zip
 aria2
 bandizip
@@ -6,7 +5,6 @@ bat
 dark
 dbeaver
 everything
-gawk
 git
 gitkraken
 googlechrome

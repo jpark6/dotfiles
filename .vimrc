@@ -29,7 +29,6 @@ set ruler " statusbar
 set incsearch
 set ls=2 " laststatus " show statusbar always
 set nu "number: show line number
-set clipboard=unnamed
 " show whitespaces
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " set list
