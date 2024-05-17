@@ -34,6 +34,36 @@ CapsLock::
 ^!F6::Send "{Volume_Down}" ; ctrl + alt + F6 : Volume Down 
 ^!F7::Send "{Volume_Up}"   ; ctrl + alt + F7 : Volume Up
 
+/**
+ * 현재 창 크기 조정
+ * @param xpos 가로 위치 
+ * @param ypos 세로 위치
+ * @param width 가로 길이
+ * @param height 세로 길이
+ */
+resizeWindow(xpos, ypos, width, height) {
+  WinGetPos(&X,&Y,&W,&H,"A")
+  if(W == 1936 and H == 1048 and Mod(X+1920, 1920) == 1912 and Y == -8) {
+    WinRestore("A")
+  }
+  if(H > 1032) {
+    H := 1032
+  }
+  MoniterNum := Floor((X+W/2)/1920)
+  ; MsgBox("MoniterNum: " MoniterNum, ", " X ":" Y ", " W ":" H)
+  WinMove(MoniterNum*1920 + xpos, ypos, width, height, "A")
+
+}
+; window resize
+; +!8::MsgBox("The active window is '" WinGetTitle("A") "'.") ; WinMove(0, 0, A_ScreenWidth/2, A_ScreenHeight, WinGetTitle("A"), WinGetText("A"),"","")
++!j::resizeWindow(0, 0, A_ScreenWidth/2, A_ScreenHeight)
++!k::resizeWindow(0, 0, A_ScreenWidth, A_ScreenHeight)
++!l::resizeWindow(A_ScreenWidth/2, 0, A_ScreenWidth/2, A_ScreenHeight)
++!8::resizeWindow(0, 0, A_ScreenWidth/3, A_ScreenHeight)
++!9::resizeWindow(A_ScreenWidth/3, 0, A_ScreenWidth/3, A_ScreenHeight)
++!0::resizeWindow(A_ScreenWidth*2/3, 0, A_ScreenWidth/3, A_ScreenHeight)
++!7:: WinGetPos(&X,&Y,&W,&H,"A"), MsgBox("x: " X ", y: " Y ", w: " W ", h:" H)
+
 ; set Mouse Position Center in Moniter 1,2,3
 ^!1::MouseMove(A_ScreenWidth/2, A_ScreenHeight/2, 0)
 ^!2::Try MonitorGet(2, &L2, &T2, &R2, &B2), MouseMove((L2+R2)/2, (T2+B2)/2, 0)

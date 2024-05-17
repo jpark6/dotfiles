@@ -1,12 +1,12 @@
 " Set Plugins
 call plug#begin('~/.vim/plugged')
-
 Plug 'preservim/nerdtree'
 Plug 'preservim/tagbar'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'frazrepo/vim-rainbow'
-
+Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 call plug#end()
 
 " Syntax Hightlighting
@@ -28,17 +28,33 @@ set showmatch " hightlighting matched brakets, braces, parentheses
 set ruler " statusbar
 set incsearch
 set ls=2 " laststatus " show statusbar always
+set rnu
 set nu "number: show line number
+set termguicolors " set vim true colors
+
 " show whitespaces
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 " set list
 
 " copy to os clipboard
-set clipboard=unnamed
+set clipboard+=unnamedplus
+" -------------------------------------------------------------
+" WSL 2 yank to system's clipboard
+" -------------------------------------------------------------
+let s:clip = '/mnt/c/Windows/System32/clip.exe'
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * call system('echo '.
+		\shellescape(
+			\join(v:event.regcontents, "\<CR>")
+		\).' | '.s:clip
+	\)
+    augroup END
+end
 
 " locate cursor which last modified 
 au BufReadPost * 
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \ exe "norm g`\"" |
 \ endif
-

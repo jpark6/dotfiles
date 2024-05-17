@@ -18,6 +18,7 @@ Function CD...... { cd ../../../../.. }
 Function DOWN { cd d:\WinDirs\Downloads }
 
 # Custom Alias
+if ( Test-Path Alias:ls ) { Remove-Item Alias:/ls}
 Set-Alias ls lsd
 Set-Alias l LSD_AL
 Set-Alias ll LSD_AL
@@ -27,6 +28,7 @@ Set-Alias .... CD....
 Set-Alias ..... CD.....
 Set-Alias ...... CD......
 Set-Alias open ii
+if ( Test-Path Alias:cat ) { Remove-Item Alias:/cat}
 Set-Alias cat bat
 Set-Alias down DOWN
 

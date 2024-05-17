@@ -1,26 +1,42 @@
-7zip
-aria2
-bandizip
-bat
-dark
-dbeaver
-everything
-git
-gitkraken
-googlechrome
-grep
-kakaotalk
-lsd
-meld
-notion
-oh-my-posh
-openjdk8-redhat
-posh-git
-powertoys
-telnet
-Terminal-Icons
-unzip
-vim
-wox
-
+7zip             23.01                 main   2023-12-23 17:55:57 
+aria2            1.37.0-1              main   2023-12-23 17:55:52 
+autohotkey       2.0.11                extras 2023-12-26 09:07:03 
+bandizip         7.32                  extras 2023-12-23 18:00:14 
+bat              0.24.0                main   2023-12-23 18:00:16 
+ccleaner         6.23.11010            extras 2024-05-02 10:37:39 
+dark             3.11.2                main   2023-12-23 18:00:17 
+dbeaver          23.3.4                extras 2024-02-15 09:22:32 
+everything       1.4.1.1024            extras 2023-12-23 18:00:26 
+fiddler          5.0.20211.51073       extras 2024-01-11 21:47:58 
+findutils        4.4.2                 main   2024-05-10 17:12:48 
+firefox          125.0.1               extras 2024-04-19 11:26:14 
+gawk             5.3.0-2               main   2024-01-04 15:59:05 
+git              2.43.0                main   2023-12-23 17:56:07 
+gitkraken        9.12.0                extras 2024-02-15 09:23:14 
+googlechrome     124.0.6367.156        extras 2024-05-10 09:06:16 
+grep             3.11                  main   2023-12-23 18:02:41 
+idea             2023.3.4-233.14475.28 extras 2024-02-15 09:24:36 
+kakaotalk        3.7.0.3716            extras 2023-12-23 18:02:53 
+lsd              1.0.0                 main   2023-12-23 18:02:55 
+meld             3.22.0                extras 2023-12-23 18:03:56 
+mingw            13.2.0-rt_v11-rev1    main   2024-03-26 14:14:10 
+notion           3.1.1                 extras 2024-02-01 13:52:45 
+nvm              1.1.12                main   2024-03-19 15:52:49 
+obsidian         1.5.11                extras 2024-03-21 10:26:40 
+oh-my-posh       19.11.0               main   2024-02-15 09:24:46 
+openjdk8-redhat  8u342-b07             java   2023-12-23 18:04:15 
+picpick          7.2.8                 extras 2024-04-24 11:06:12 
+posh-git         1.1.0                 extras 2023-12-23 18:04:15 
+powertoys        0.80.1                extras 2024-05-10 09:37:07 
+scoop-search     1.4.1                 main   2024-03-21 10:24:52 
+slack            4.36.140              extras 2024-02-01 13:54:50 
+sumatrapdf       3.5.2                 extras 2024-03-05 09:55:53 
+tabby            1.0.207               extras 2024-04-12 17:13:12 
+telnet           msys-inetutils-1.7-1  main   2023-12-23 18:05:04 
+Terminal-Icons   0.11.0                extras 2023-12-23 18:05:04 
+tldr             0.6.1                 main   2024-03-21 10:34:19 
+unzip            6.00                  main   2023-12-23 18:05:05 
+vim              9.0                   main   2023-12-23 18:05:25 
+windows-terminal 1.19.10821.0          extras 2024-04-22 15:21:42 
+wox              1.3.524               extras 2023-12-23 18:05:27 
 
