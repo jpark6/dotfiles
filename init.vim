@@ -31,6 +31,9 @@ set ls=2 " laststatus " show statusbar always
 set rnu
 set nu "number: show line number
 set termguicolors " set vim true colors
+set ic " ignore case
+set encoding=utf-8
+set ff=unix
 
 " show whitespaces
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
@@ -41,20 +44,20 @@ set clipboard+=unnamedplus
 " -------------------------------------------------------------
 " WSL 2 yank to system's clipboard
 " -------------------------------------------------------------
-let s:clip = '/mnt/c/Windows/System32/clip.exe'
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * call system('echo '.
-		\shellescape(
-			\join(v:event.regcontents, "\<CR>")
-		\).' | '.s:clip
-	\)
-    augroup END
-end
-
-" locate cursor which last modified 
-au BufReadPost * 
-\ if line("'\"") > 0 && line("'\"") <= line("$") |
-\ exe "norm g`\"" |
-\ endif
+" let s:clip = '/mnt/c/Windows/System32/clip.exe'
+" if executable(s:clip)
+"     augroup WSLYank
+"         autocmd!
+"         autocmd TextYankPost * call system('echo '.
+" 		\shellescape(
+" 			\join(v:event.regcontents, "\<CR>\<LF>")
+" 		\).' | '.s:clip
+" 	\)
+"     augroup END
+" end
+" 
+" " locate cursor which last modified 
+" au BufReadPost * 
+" \ if line("'\"") > 0 && line("'\"") <= line("$") |
+" \ exe "norm g`\"" |
+" \ endif
