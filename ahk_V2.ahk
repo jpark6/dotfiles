@@ -14,7 +14,8 @@ CapsLock::
         return
     }
 }
-
+; Mac Lock short cut
+^!q::DllCall("user32.dll\LockWorkStation") ; ctrl + alt + q => win + l
 ; 
 !c::Send "^c" ; alt + c => ctrl + c
 !v::Send "^v" ; alt + v => ctrl + v
@@ -144,10 +145,15 @@ RUN_APP(exeName, pathName) {
 
 ^!r:: RUN_APP("raonMessenger.exe", "D:\Program Files\RaonsecureMessenger")
 ^!c:: ACTIVE_OR_OPEN_APP("chrome.exe", "C:\Users\banseok\scoop\apps\googlechrome\current")
+^!s:: ACTIVE_OR_OPEN_APP("slack.exe", "C:\Users\banseok\scoop\apps\slack\current")
+^!d:: ACTIVE_OR_OPEN_APP("dbeaver.exe", "C:\Users\banseok\scoop\apps\dbeaver\current")
 ^!v:: ACTIVE_OR_OPEN_APP("Code.exe", "C:\Users\banseok\AppData\Local\Programs\Microsoft VS Code")
 ^!f:: ACTIVE_OR_OPEN_APP("firefox.exe", "C:\Users\banseok\scoop\apps\firefox\current")
 ^!t:: ACTIVE_OR_OPEN_APP("WindowsTerminal.exe", "C:\Users\banseok\scoop\apps\windows-terminal\current")
 ^!k:: ACTIVE_OR_OPEN_APP("KakaoTalk.exe", "C:\Users\banseok\scoop\apps\kakaotalk\current")
 ^!n:: ACTIVE_OR_OPEN_APP("Notion.exe", "C:\Users\banseok\scoop\apps\notion\current")
+^!o:: ACTIVE_OR_OPEN_APP("Obsidian.exe", "C:\Users\banseok\scoop\apps\obsidian\current")
 ^!j:: RUN_APP("idea64.exe", "C:\Users\banseok\scoop\apps\idea\current\IDE\bin")
+^!]:: Run "C:\Users\banseok\AppData\Local\Microsoft\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\WsaClient.exe /launch wsa://io.fooding.customerapp"
+^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")
 ^!p:: RUN_APP("sumatrapdf.exe", "C:\Users\banseok\scoop\apps\sumatrapdf\current")
