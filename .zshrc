@@ -1,3 +1,17 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +22,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="ys"
+# ZSH_THEME="ys"
+# ZSH_THEME="headline"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -108,20 +124,28 @@ set -o vi
 alias so=source
 alias ls=lsd
 alias sl=lsd
+alias ㅣㄴ=lsd
 alias tree='lsd --tree'
 alias vi=nvim
+alias 퍄=nvim
 alias view="nvim -R"
 alias vim=nvim
 alias dc=cd
+alias ㅊㅇ=cd
 alias down="cd /mnt/d/WinDirs/Downloads"
 alias doc="cd /mnt/d/WinDirs/Documents"
+alias desk="cd /mnt/d/WinDirs/Desktop"
 alias c:="cd /mnt/c"
 alias d:="cd /mnt/d"
 alias work="cd /mnt/d/Works"
 alias site="cd /mnt/d/Works/Site"
 alias money="cd /mnt/d/Works/money"
 alias open="explorer.exe"
-alias psh=" /mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
+alias psh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
+alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
+alias pandoc=pandoc.exe
+
+alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
 alias dco="docker-compose"
 alias k="kubectl"
@@ -144,3 +168,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
