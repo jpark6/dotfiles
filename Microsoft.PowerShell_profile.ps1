@@ -5,7 +5,8 @@ Import-Module -Name PSReadLine
 oh-my-posh init pwsh | Invoke-Expression
 # Set-PoshPrompt -Theme mt
 
-oh-my-posh init pwsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json | Invoke-Expression
+# oh-my-posh init pwsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/night-owl.omp.json | Invoke-Expression
 
 
 # Custom Function
@@ -31,6 +32,7 @@ Set-Alias open ii
 if ( Test-Path Alias:cat ) { Remove-Item Alias:/cat}
 Set-Alias cat bat
 Set-Alias down DOWN
+Set-Alias j autojump
 
 Set-Alias dco docker-compose
 
