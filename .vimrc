@@ -36,7 +36,7 @@ set encoding=utf-8
 set ff=unix
 
 " show whitespaces
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
 " set list
 
 " copy to os clipboard

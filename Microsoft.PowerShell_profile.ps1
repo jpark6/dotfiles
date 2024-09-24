@@ -17,6 +17,7 @@ Function CD.... { cd ../../.. }
 Function CD..... { cd ../../../.. }
 Function CD...... { cd ../../../../.. }
 Function DOWN { cd d:\WinDirs\Downloads }
+Function OPEN_RAONIN_AUTO_RELOAD { D:\Util\raonin_login_auto_reload.ps1 }
 
 # Custom Alias
 if ( Test-Path Alias:ls ) { Remove-Item Alias:/ls}
@@ -33,6 +34,7 @@ if ( Test-Path Alias:cat ) { Remove-Item Alias:/cat}
 Set-Alias cat bat
 Set-Alias down DOWN
 Set-Alias j autojump
+Set-Alias or OPEN_RAONIN_AUTO_RELOAD
 
 Set-Alias dco docker-compose
 
@@ -44,3 +46,4 @@ Import-Module -Name Terminal-Icons
 Set-PSReadLineOption -EditMode vi
 # replace built-in scoop search to scoop-search
 Invoke-Expression (&scoop-search --hook)
+

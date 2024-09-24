@@ -1,5 +1,30 @@
 mousePointInit()
 
+; Function to get the taskbar height
+GetTaskbarHeight() {
+    taskbar_hwnd := DllCall("FindWindow", "Str", "Shell_TrayWnd", "Ptr", 0, "Ptr")
+    if (taskbar_hwnd = 0) {
+        MsgBox "Taskbar not found."
+        return 0
+    }
+    
+    rect := Buffer(16)
+    DllCall("GetWindowRect", "Ptr", taskbar_hwnd, "Ptr", rect)
+
+    top := NumGet(rect, 4, "Int")
+    bottom := NumGet(rect, 12, "Int")
+    
+    height := bottom - top
+    return height
+}
+
+/*
+keyboard shortcut key
+^ : ctrl
++ : shift
+! : alt
+*/
+
 ; capslock 입력시 한글
 CapsLock::
 {
@@ -18,6 +43,8 @@ CapsLock::
 ^!q::DllCall("user32.dll\LockWorkStation") ; ctrl + alt + q => win + l
 ; 
 !c::Send "^c" ; alt + c => ctrl + c
+!s::Send "^s" ; alt + c => ctrl + c
+!r::Send "^r" ; alt + c => ctrl + c
 !v::Send "^v" ; alt + v => ctrl + v
 !x::Send "^x" ; alt + x => ctrl + x
 !w::Send "^w" ; alt + w => ctrl + w
@@ -52,7 +79,7 @@ resizeWindow(xpos, ypos, width, height) {
   }
   MoniterNum := Floor((X+W/2)/1920)
   ; MsgBox("MoniterNum: " MoniterNum, ", " X ":" Y ", " W ":" H)
-  WinMove(MoniterNum*1920 + xpos, ypos, width, height, "A")
+  WinMove(MoniterNum*1920 + xpos, ypos, width, height - GetTaskbarHeight(), "A")
 
 }
 ; window resize
@@ -143,17 +170,18 @@ RUN_APP(exeName, pathName) {
   return
 }
 
-^!r:: RUN_APP("raonMessenger.exe", "D:\Program Files\RaonsecureMessenger")
-^!c:: ACTIVE_OR_OPEN_APP("chrome.exe", "C:\Users\banseok\scoop\apps\googlechrome\current")
-^!s:: ACTIVE_OR_OPEN_APP("slack.exe", "C:\Users\banseok\scoop\apps\slack\current")
+^!]:: Run "C:\Users\banseok\AppData\Local\Microsoft\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\WsaClient.exe /launch wsa://io.fooding.customerapp"
+^!c:: ACTIVE_OR_OPEN_APP("chrome.exe", "C:\Program Files\Google\Chrome\Application")
 ^!d:: ACTIVE_OR_OPEN_APP("dbeaver.exe", "C:\Users\banseok\scoop\apps\dbeaver\current")
-^!v:: ACTIVE_OR_OPEN_APP("Code.exe", "C:\Users\banseok\AppData\Local\Programs\Microsoft VS Code")
 ^!f:: ACTIVE_OR_OPEN_APP("firefox.exe", "C:\Users\banseok\scoop\apps\firefox\current")
-^!t:: ACTIVE_OR_OPEN_APP("WindowsTerminal.exe", "C:\Users\banseok\scoop\apps\windows-terminal\current")
+^!j:: RUN_APP("idea64.exe", "C:\Users\banseok\scoop\apps\idea\current\IDE\bin")
 ^!k:: ACTIVE_OR_OPEN_APP("KakaoTalk.exe", "C:\Users\banseok\scoop\apps\kakaotalk\current")
+^!m:: ACTIVE_OR_OPEN_APP("OUTLOOK.EXE", "C:\Program Files\Microsoft Office\Office16")
 ^!n:: ACTIVE_OR_OPEN_APP("Notion.exe", "C:\Users\banseok\scoop\apps\notion\current")
 ^!o:: ACTIVE_OR_OPEN_APP("Obsidian.exe", "C:\Users\banseok\scoop\apps\obsidian\current")
-^!j:: RUN_APP("idea64.exe", "C:\Users\banseok\scoop\apps\idea\current\IDE\bin")
-^!]:: Run "C:\Users\banseok\AppData\Local\Microsoft\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\WsaClient.exe /launch wsa://io.fooding.customerapp"
-^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")
 ^!p:: RUN_APP("sumatrapdf.exe", "C:\Users\banseok\scoop\apps\sumatrapdf\current")
+^!r:: RUN_APP("raonMessenger.exe", "D:\Program Files\RaonsecureMessenger")
+^!s:: ACTIVE_OR_OPEN_APP("slack.exe", "C:\Users\banseok\AppData\Local\slack")
+^!t:: ACTIVE_OR_OPEN_APP("WindowsTerminal.exe", "C:\Users\banseok\scoop\apps\windows-terminal\current")
+^!v:: ACTIVE_OR_OPEN_APP("Code.exe", "C:\Users\banseok\AppData\Local\Programs\Microsoft VS Code")
+^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")

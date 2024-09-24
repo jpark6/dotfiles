@@ -122,6 +122,10 @@ set -o vi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias so=source
+alias vz='vi ~/.zshrc'
+alias sz='source ~/.zshrc'
+alias vv='vi ~/.vimrc'
+
 alias ls=lsd
 alias sl=lsd
 alias ㅣㄴ=lsd
@@ -144,6 +148,7 @@ alias open="explorer.exe"
 alias psh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
 alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
 alias pandoc=pandoc.exe
+alias cat=bat
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
@@ -170,3 +175,12 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# deno
+export DENO_INSTALL="/home/ubuntu/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+# run tmux when shell open
+# precmd() {
+#   ~/util/run_tmux_when_shell_open.sh > /dev/null 2>&1
+# }
