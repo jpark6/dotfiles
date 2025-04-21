@@ -125,6 +125,7 @@ alias so=source
 alias vz='vi ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias vv='vi ~/.vimrc'
+alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
 
 alias ls=lsd
 alias sl=lsd
@@ -148,7 +149,9 @@ alias open="explorer.exe"
 alias psh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
 alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
 alias pandoc=pandoc.exe
+alias py=py.exe
 alias cat=bat
+alias duhs="du -hs * | sort -h"
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
@@ -162,13 +165,16 @@ source <(kubectl completion zsh)
 alias tmb='tmux new-session -d && tmux split-window -h && tmux split-window -v && tmux select-pane -L && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 alias tms='tmux new-session -d && tmux split-window -v && tmux split-window -v && tmux select-pane -U && tmux select-pane -U && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 alias tm='tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d'
+alias tmh='tmux new-session -d && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 
 alias ssh110="ssh -p220 accounttech@192.168.0.110 -i ~/.ssh/110_rsa"
 alias ssh107="ssh -p220 accounttech@192.168.0.107 -i ~/.ssh/107_rsa"
 alias ssh100="ssh accounttech@192.168.0.100 -i ~/.ssh/100_rsa"
 alias ssh166="ssh -p220 accounttech@192.168.0.166 -i ~/.ssh/166_rsa"
 alias ssh176="ssh -p220 accounttech@192.168.0.176 -i ~/.ssh/176_rsa"
-
+function btail {
+  tail -f "$@" | bat --paging=never -l log
+}
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -182,5 +188,5 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 # run tmux when shell open
 # precmd() {
-#   ~/util/run_tmux_when_shell_open.sh > /dev/null 2>&1
+#   ~/util/runTmuxWhenShellOpen.sh > /dev/null 2>&1
 # }
