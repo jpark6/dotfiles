@@ -146,12 +146,13 @@ alias work="cd /mnt/d/Works"
 alias site="cd /mnt/d/Works/Site"
 alias money="cd /mnt/d/Works/money"
 alias open="explorer.exe"
-alias psh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
+alias cmd=cmd.exe
 alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
 alias pandoc=pandoc.exe
 alias py=py.exe
 alias cat=bat
 alias duhs="du -hs * | sort -h"
+alias kts=/home/ubuntu/util/killTmuxSession.sh
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
