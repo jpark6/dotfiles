@@ -125,7 +125,7 @@ set -o vi
 alias so=source
 alias sz='source ~/.zshrc'
 alias vz='vi ~/.zshrc'
-alias vv='vi ~/.vimrc'
+alias vv='vi ~/.config/nvim/init.vim'
 alias ls=lsd
 alias sl=lsd
 alias ㅣㄴ=lsd
@@ -139,25 +139,13 @@ alias ㅊㅇ=cd
 alias python=python3
 alias pip=pip3
 alias cat=bat
-# alias down="cd /mnt/d/WinDirs/Downloads"
-# alias doc="cd /mnt/d/WinDirs/Documents"
-# alias desk="cd /mnt/d/WinDirs/Desktop"
-# alias c:="cd /mnt/c"
-# alias d:="cd /mnt/d"
-# alias work="cd /mnt/d/Works"
-# alias site="cd /mnt/d/Works/Site"
-# alias money="cd /mnt/d/Works/money"
-# alias open="explorer.exe"
-# alias psh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
-# alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
-# alias pandoc=pandoc.exe
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
 alias dco="docker-compose"
 alias k="kubectl"
 alias mk="minikube"
-# 
+ 
 source <(kubectl completion zsh)
 
 
@@ -188,4 +176,3 @@ eval "$(pyenv virtualenv-init -)"
 export GIT_TRACE_PACKET=1
 export GIT_TRACE=1
 export GIT_CURL_VERBOSE=1
-
