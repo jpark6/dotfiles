@@ -125,6 +125,7 @@ alias so=source
 alias vz='vi ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias vv='vi ~/.vimrc'
+alias vt='vi ~/.tmux.conf'
 alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
 
 alias ls=lsd
@@ -153,6 +154,7 @@ alias py=py.exe
 alias cat=bat
 alias duhs="du -hs * | sort -h"
 alias kts=/home/ubuntu/util/killTmuxSession.sh
+alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 

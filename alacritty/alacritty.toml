@@ -2,7 +2,7 @@
 shell.program = "wsl.exe"
 
 [general]
-import = ["C:/Users/banseok/AppData/Roaming/alacritty/themes/rose_pine.toml"]
+import = ["C:/Users/banseok/AppData/Roaming/alacritty/themes/dark_pastels.toml"]
 
 [font]
 normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
@@ -34,4 +34,3 @@ action = "Copy"
 key = "V"
 mods = "Control|Shift"
 action = "Paste"
-

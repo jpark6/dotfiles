@@ -20,6 +20,7 @@ Function CD..... { Set-Location ../../../.. }
 Function CD...... { Set-Location ../../../../.. }
 Function CD_DOWNLOAD { Set-Location d:\WinDirs\Downloads }
 Function CD_SITE { Set-Location d:\Works\Site }
+Function s { py "D:\Workspaces\python\web\webSearchChrome.py" @args }
 Function FUNC_RAON_LOGIN { D:\Util\raon_login.ps1 }
 Function DIR_SUM($dir = ".") {
   Get-ChildItem . | 
