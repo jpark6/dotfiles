@@ -126,7 +126,7 @@ dcul() {
 
 # search web
 s() {
-  /Users/jakepark/
+ python3 /Users/jakepark/Workspaces/python/web/webSearch.py "$@"
 }
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -141,7 +141,8 @@ alias so=source
 alias vz='vi ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias vv='vi ~/.vimrc'
-alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
+alias vt='vi ~/.tmux.conf'
+alias va='vi /Users/jakepark/.config/alacritty/alacritty.toml'
 
 alias ls=lsd
 alias sl=lsd
@@ -156,6 +157,7 @@ alias ㅊㅇ=cd
 alias python=python3
 alias pip=pip3
 alias cat=bat
+alias crt="/Users/jakepark/Utils/change_alacritty_random_theme.sh"
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
@@ -192,7 +194,3 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-export GIT_TRACE_PACKET=1
-export GIT_TRACE=1
-export GIT_CURL_VERBOSE=1
