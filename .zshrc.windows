@@ -151,8 +151,11 @@ alias cmd=cmd.exe
 alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
 alias pandoc=pandoc.exe
 alias py=py.exe
+alias gitui=gitui.exe
 alias cat=bat
+alias brew=scoop
 alias duhs="du -hs * | sort -h"
+alias crt=/home/ubuntu/util/change_random_theme.sh
 alias kts=/home/ubuntu/util/killTmuxSession.sh
 alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
 
