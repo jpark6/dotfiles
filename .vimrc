@@ -1,16 +1,3 @@
-" Set Plugins
-call plug#begin('~/.vim/plugged')
-Plug 'preservim/nerdtree'
-Plug 'preservim/tagbar'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'vim-airline/vim-airline'
-Plug 'jiangmiao/auto-pairs'        " 괄호 자동완성
-Plug 'neoclide/coc.nvim', {'branch': 'release'}  " LSP + 자동완성
-Plug 'frazrepo/vim-rainbow'
-Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
-call plug#end()
-
 " Syntax Hightlighting
 if has("syntax")
   syntax on
@@ -36,7 +23,7 @@ set cursorline
 set incsearch
 set hlsearch
 set ls=2 " laststatus " show statusbar always
-set rnu
+" set rnu
 set nu "number: show line number
 set termguicolors " set vim true colors
 set ic " ignore case

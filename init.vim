@@ -39,6 +39,7 @@ set ls=2 " laststatus " show statusbar always
 set rnu
 set nu "number: show line number
 set termguicolors " set vim true colors
+hi Normal ctermbg=none guibg=none
 set ic " ignore case
 set encoding=utf-8
 set mouse=a

@@ -113,6 +113,21 @@ set -o vi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+# personal function
+# docker compose up && logs -f [Service1 ...]
+dcul() {
+  if [ $# -eq 0 ]; then
+    echo "🛠️ Usage: dcup Service1 [Service2 ...]"
+    return 1
+  fi
+
+  docker compose up -d "$@" && docker compose logs -f "$@"
+}
+
+# search web
+s() {
+ python3 /Users/jakepark/Workspaces/python/web/webSearch.py "$@"
+}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -123,9 +138,12 @@ set -o vi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias so=source
-alias sz='source ~/.zshrc'
 alias vz='vi ~/.zshrc'
-alias vv='vi ~/.config/nvim/init.vim'
+alias sz='source ~/.zshrc'
+alias vv='vi ~/.vimrc'
+alias vt='vi ~/.tmux.conf'
+alias va='vi /Users/jakepark/.config/alacritty/alacritty.toml'
+
 alias ls=lsd
 alias sl=lsd
 alias ㅣㄴ=lsd
@@ -139,6 +157,7 @@ alias ㅊㅇ=cd
 alias python=python3
 alias pip=pip3
 alias cat=bat
+alias crt="/Users/jakepark/Utils/change_alacritty_random_theme.sh"
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
@@ -152,13 +171,16 @@ source <(kubectl completion zsh)
 alias tmb='tmux new-session -d && tmux split-window -h && tmux split-window -v && tmux select-pane -L && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 alias tms='tmux new-session -d && tmux split-window -v && tmux split-window -v && tmux select-pane -U && tmux select-pane -U && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 alias tm='tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d'
+alias tmh='tmux new-session -d && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 
 alias ssh110="ssh -p220 accounttech@192.168.0.110 -i ~/.ssh/110_rsa"
 alias ssh107="ssh -p220 accounttech@192.168.0.107 -i ~/.ssh/107_rsa"
 alias ssh100="ssh accounttech@192.168.0.100 -i ~/.ssh/100_rsa"
 alias ssh166="ssh -p220 accounttech@192.168.0.166 -i ~/.ssh/166_rsa"
 alias ssh176="ssh -p220 accounttech@192.168.0.176 -i ~/.ssh/176_rsa"
-
+function btail {
+  tail -f "$@" | bat --paging=never -l log
+}
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -172,7 +194,3 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-export GIT_TRACE_PACKET=1
-export GIT_TRACE=1
-export GIT_CURL_VERBOSE=1

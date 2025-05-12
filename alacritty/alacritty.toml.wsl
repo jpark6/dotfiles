@@ -1,0 +1,37 @@
+[terminal]
+shell.program = "wsl.exe"
+
+[general]
+import = ["C:/Users/banseok/AppData/Roaming/alacritty/themes/rose_pine.toml"]
+
+[font]
+normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
+bold = { family = "CaskaydiaCove Nerd Font Mono", style = "Bold" }
+italic = { family = "CaskaydiaCove Nerd Font Mono", style = "Italic" }
+size = 13.0
+offset = { x = 0, y = 1 }
+
+[window]
+startup_mode = "Maximized"
+opacity = 1
+decorations = "none" # full | none | transparent
+
+[cursor]
+unfocused_hollow = true
+blink_interval = 500
+thickness = 0.2
+
+[cursor.style]
+shape = "Beam"          # Block, Underline, Beam
+blinking = "Always"     # Never, Off, On, Always
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+

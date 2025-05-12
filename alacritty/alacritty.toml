@@ -2,7 +2,7 @@
 shell.program = "wsl.exe"
 
 [general]
-import = ["C:/Users/banseok/AppData/Roaming/alacritty/themes/moonfly.toml"]
+import = ["C:/Users/banseok/AppData/Roaming/alacritty/themes/oxocarbon.toml"]
 
 [font]
 normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
