@@ -7,6 +7,7 @@ Import-Module -Name PSReadLine
 oh-my-posh init pwsh --config ~/.oh-my-posh/themes/cert.omp.json | Invoke-Expression
 # oh-my-posh init pwsh --config ~/.oh-my-posh/themes/tokyo.omp.json | Invoke-Expression
 
+
 # oh-my-posh init pwsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json | Invoke-Expression
 # oh-my-posh init pwsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/night-owl.omp.json | Invoke-Expression
 
@@ -49,10 +50,12 @@ if ( Test-Path Alias:cat ) { Remove-Item Alias:/cat }
 Set-Alias cat bat
 Set-Alias down CD_DOWNLOAD
 Set-Alias site CD_SITE
-Set-Alias j autojump
+Set-Alias j z
+Set-Alias ji zi
 Set-Alias rl FUNC_RAON_LOGIN
 Set-Alias raon_login FUNC_RAON_LOGIN
 Set-Alias du DIR_SUM
+Set-Alias brew scoop
 
 Set-Alias dco docker-compose
 
@@ -64,4 +67,6 @@ Import-Module -Name Terminal-Icons
 Set-PSReadLineOption -EditMode vi
 # replace built-in scoop search to scoop-search
 Invoke-Expression (&scoop-search --hook)
+Invoke-Expression ((&zoxide init powershell) -join "`n")
+
 
