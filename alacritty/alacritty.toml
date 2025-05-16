@@ -2,24 +2,25 @@
 shell.program = "wsl.exe"
 
 [general]
-import = ["C:/Users/banseok/AppData/Roaming/alacritty/themes/oxocarbon.toml"]
+import = ["./themes/blood_moon.toml"]
 
 [font]
-normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
-bold = { family = "CaskaydiaCove Nerd Font Mono", style = "Bold" }
-italic = { family = "CaskaydiaCove Nerd Font Mono", style = "Italic" }
+normal = { family = "CaskaydiaCove Nerd Font", style = "Regular" }
+bold = { family = "CaskaydiaCove Nerd Font", style = "Bold" }
+italic = { family = "CaskaydiaCove Nerd Font", style = "Italic" }
 size = 13.0
-offset = { x = 0, y = 1 }
+offset = { x = 0, y = 0 }
 
 [window]
+dynamic_title = true
 startup_mode = "Maximized"
 opacity = 1
 decorations = "none" # full | none | transparent
 
 [cursor]
 unfocused_hollow = true
-blink_interval = 500
-thickness = 0.2
+blink_interval = 700
+thickness = 1.0
 
 [cursor.style]
 shape = "Beam"          # Block, Underline, Beam
@@ -31,14 +32,14 @@ bindings = [
   { key = "V", mods = "Control|Shift", action = "Paste" }, 
   { key = "Tab", mods = "Control", chars = "\u0001n" }, # Ctrl + Tab → tmux next-window (prefix + n)
   { key = "Tab", mods = "Control|Shift", chars = "\u0001p" }, # Ctrl + Shift + Tab → tmux previous-window (prefix + p)
-  { key = "0", mods = "Control", chars = "\u00010" },  # Ctrl + 1 => tmux select-window -t 1
-  { key = "1", mods = "Control", chars = "\u00011" },  # Ctrl + 1 => tmux select-window -t 1
-  { key = "2", mods = "Control", chars = "\u00012" },  # Ctrl + 2 => tmux select-window -t 2
-  { key = "3", mods = "Control", chars = "\u00013" },  # Ctrl + 3 => tmux select-window -t 3
-  { key = "4", mods = "Control", chars = "\u00014" },  # Ctrl + 4 => tmux select-window -t 4
-  { key = "5", mods = "Control", chars = "\u00015" },  # Ctrl + 5 => tmux select-window -t 5
-  { key = "6", mods = "Control", chars = "\u00016" },  # Ctrl + 6 => tmux select-window -t 6
-  { key = "7", mods = "Control", chars = "\u00017" },  # Ctrl + 7 => tmux select-window -t 7
-  { key = "8", mods = "Control", chars = "\u00018" },  # Ctrl + 8 => tmux select-window -t 8
-  { key = "9", mods = "Control", chars = "\u00019" },  # Ctrl + 9 => tmux select-window -t 9
+  { key = "0", mods = "Option", chars = "\u00010" },  # Ctrl + 1 => tmux select-window -t 1
+  { key = "1", mods = "Option", chars = "\u00011" },  # Ctrl + 1 => tmux select-window -t 1
+  { key = "2", mods = "Option", chars = "\u00012" },  # Ctrl + 2 => tmux select-window -t 2
+  { key = "3", mods = "Option", chars = "\u00013" },  # Ctrl + 3 => tmux select-window -t 3
+  { key = "4", mods = "Option", chars = "\u00014" },  # Ctrl + 4 => tmux select-window -t 4
+  { key = "5", mods = "Option", chars = "\u00015" },  # Ctrl + 5 => tmux select-window -t 5
+  { key = "6", mods = "Option", chars = "\u00016" },  # Ctrl + 6 => tmux select-window -t 6
+  { key = "7", mods = "Option", chars = "\u00017" },  # Ctrl + 7 => tmux select-window -t 7
+  { key = "8", mods = "Option", chars = "\u00018" },  # Ctrl + 8 => tmux select-window -t 8
+  { key = "9", mods = "Option", chars = "\u00019" },  # Ctrl + 9 => tmux select-window -t 9
 ]
