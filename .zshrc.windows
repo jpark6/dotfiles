@@ -166,6 +166,7 @@ alias cat=bat
 alias brew=scoop
 alias duhs="du -hs * | sort -h"
 alias crt=/home/ubuntu/util/change_random_alacritty_theme.sh
+alias ct=/home/ubuntu/util/change_alacritty_theme.sh
 alias kts=/home/ubuntu/util/killTmuxSession.sh
 alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
 
