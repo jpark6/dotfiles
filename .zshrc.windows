@@ -121,6 +121,16 @@ dcul() {
 
   docker compose up -d "$@" && docker compose logs -f "$@"
 }
+
+zrank() {
+  zoxide query -l | grep "$(pwd)" | awk '{print $1}'
+}
+zjump() {
+
+  local dir
+  dir=$(zoxide query -l | fzf --tac) && cd "$dir"
+}
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -129,6 +139,7 @@ dcul() {
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias c=clear
 alias so=source
 alias vz='vi ~/.zshrc'
 alias sz='source ~/.zshrc'
@@ -136,10 +147,10 @@ alias vv='vi ~/.config/nvim/init.lua'
 alias vt='vi ~/.tmux.conf'
 alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
 
-alias ls=lsd
-alias sl=lsd
+alias ls="exa --icons"
+alias sl=ls
 alias ㅣㄴ=lsd
-alias tree='lsd --tree'
+alias tree='ls --tree'
 alias vi=nvim
 alias 퍄=nvim
 alias view="nvim -R"
@@ -169,6 +180,8 @@ alias crt=/home/ubuntu/util/change_random_alacritty_theme.sh
 alias ct=/home/ubuntu/util/change_alacritty_theme.sh
 alias kts=/home/ubuntu/util/killTmuxSession.sh
 alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
+alias j=z
+alias zz='zjump'
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
@@ -179,7 +192,7 @@ alias mk="minikube"
 source <(kubectl completion zsh)
 
 
-alias tmb='tmux new-session -d && tmux split-window -h && tmux split-window -v && tmux select-pane -L && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
+alias tmb='tmux new-session -d && tmux split-window -h && tmux split-window -v && tmux select-pane -L && tmux split-window -v && tmux select-pane -U && tmux attacDeh-session -d'
 alias tms='tmux new-session -d && tmux split-window -v && tmux split-window -v && tmux select-pane -U && tmux select-pane -U && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 alias tm='tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d'
 alias tmh='tmux new-session -d && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
@@ -198,10 +211,19 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# JAVA_HOME
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+export LD_LIBRARY_PATH=$JAVA_HOME/lib/server:$LD_LIBRARY_PATH
 
 # deno
 export DENO_INSTALL="/home/ubuntu/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# zoxide init
+eval "`zoxide init zsh`"
+
+# mcfly init
+eval "`mcfly init zsh`"
 
 # run tmux when shell open
 # precmd() {
