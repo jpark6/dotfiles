@@ -54,7 +54,6 @@ vim.g.airline_powerline_fonts = 1
 
 -- coc.nvim 설정
 vim.g.coc_global_extensions = {
-<<<<<<< HEAD
   "coc-pyright",       -- Python LSP 서버
   "coc-tsserver",      -- TypeScript LSP 서버
   "coc-json",          -- JSON LSP 서버
@@ -65,17 +64,6 @@ vim.g.coc_global_extensions = {
   "coc-yaml",          -- YAML LSP 서버
   "coc-toml",          -- TOML LSP 서버
   "coc-rust-analyzer", -- TOML LSP 서버
-=======
-  "coc-pyright",   -- Python LSP 서버
-  "coc-tsserver",  -- TypeScript LSP 서버
-  "coc-json",      -- JSON LSP 서버
-  "coc-html",      -- HTML LSP 서버
-  "coc-css",       -- CSS LSP 서버
-  "coc-java",       -- JAVA LSP 서버
-  "coc-yaml",       -- YAML LSP 서버
-  "coc-toml",       -- TOML LSP 서버
-  "coc-rust-analyzer",       -- TOML LSP 서버
->>>>>>> 8b35a9f (feat: Update 20250525)
 }
 -- coc 설정
 vim.g.coc_disable_startup_warning = 1

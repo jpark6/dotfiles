@@ -4,7 +4,7 @@ Import-Module -Name PSReadLine
 
 # oh-my-posh init pwsh | Invoke-Expression
 # Set-PoshPrompt -Theme mt
-oh-my-posh init pwsh --config ~/.oh-my-posh/themes/cert.omp.json | Invoke-Expression
+# oh-my-posh init pwsh --config ~/.oh-my-posh/themes/cert.omp.json | Invoke-Expression
 # oh-my-posh init pwsh --config ~/.oh-my-posh/themes/tokyo.omp.json | Invoke-Expression
 
 
@@ -13,7 +13,7 @@ oh-my-posh init pwsh --config ~/.oh-my-posh/themes/cert.omp.json | Invoke-Expres
 
 
 # Custom Function
-Function LSD_AL { lsd -al }
+Function EZA_AL { eza -al --icons --git }
 Function CD.. { Set-Location .. }
 Function CD... { Set-Location ../.. }
 Function CD.... { Set-Location ../../.. }
@@ -38,8 +38,8 @@ Function DIR_SUM($dir = ".") {
 # Custom Alias
 if ( Test-Path Alias:ls ) { Remove-Item Alias:/ls }
 Set-Alias ls lsd
-Set-Alias l LSD_AL
-Set-Alias ll LSD_AL
+Set-Alias l EZA_AL
+Set-Alias ll EZA_AL
 Set-Alias .. CD..
 Set-Alias ...  CD...
 Set-Alias .... CD....
@@ -67,6 +67,12 @@ Import-Module -Name Terminal-Icons
 Set-PSReadLineOption -EditMode vi
 # replace built-in scoop search to scoop-search
 Invoke-Expression (&scoop-search --hook)
+# set zoxide init
 Invoke-Expression ((&zoxide init powershell) -join "`n")
+# set starship init
+Invoke-Expression (& 'C:\Users\banseok\.cargo\bin\starship.exe' init powershell --print-full-init | Out-String)
 
-
+# Add Cargo bin to $PATH
+$env:Path += ";$HOME\.cargo\bin"
+# Cargo target dir
+$env:CARGO_TARGET_DIR = "$HOME\rust-target"

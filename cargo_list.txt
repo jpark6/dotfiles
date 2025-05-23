@@ -22,27 +22,3 @@ tokei v12.1.2:
     tokei
 zoxide v0.9.7:
     zoxide
-bottom v0.10.2:
-    btm
-cargo-edit v0.13.3:
-    cargo-add
-    cargo-rm
-    cargo-set-version
-    cargo-upgrade
-choose v1.3.6:
-    choose
-cross v0.2.5:
-    cross
-    cross-util
-exa v0.10.1:
-    exa
-fd-find v10.2.0:
-    fd
-mcfly v0.9.3:
-    mcfly
-ripgrep v14.1.1:
-    rg
-tokei v12.1.2:
-    tokei
-zoxide v0.9.7:
-    zoxide
