@@ -137,7 +137,7 @@ require("lazy").setup({
       "rcarriga/nvim-notify"
     },
     config = function()
-    require("notify").setup({
+    require("noice").setup({
       background_colour = "#000000",
     })
     end,
