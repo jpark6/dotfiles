@@ -1,5 +1,5 @@
 [general]
-import = ["./themes/monokai_charcoal.toml"]
+import = ["./themes/palenight.toml"]
 
 # CaskaydiaCove Nerd Font
 [font]
@@ -20,8 +20,8 @@ blink_interval = 700
 thickness = 1.0
 
 [cursor.style]
-shape = "Beam"          # Block, Underline, Beam
-blinking = "Always"     # Never, Off, On, Always
+shape = "Block"          # Block, Underline, Beam
+blinking = "On"     # Never, Off, On, Always
 
 [keyboard]
 bindings = [

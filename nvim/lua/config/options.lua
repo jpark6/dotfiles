@@ -63,3 +63,29 @@ end
 
 -- Shada 설정
 vim.o.shada = "'100,<50,s10,h"
+
+-- 커서 스타일 escape 시퀀스를 Vim에 넘김
+vim.opt.guicursor = ""
+
+if vim.fn.has("termguicolors") == 1 then
+  vim.api.nvim_set_option("termguicolors", true)
+end
+
+vim.api.nvim_exec([[
+    let &t_SI = "\e[6 q"  " Insert: bar
+    let &t_EI = "\e[2 q"  " Normal: block
+    let &t_SR = "\e[4 q"  " Replace: underline
+]], false)
+
+vim.api.nvim_set_keymap('n', '<leader>sv', ':luafile $MYVIMRC<CR>', { noremap = true, silent = true })
+
+-- lazyvim 설정 재로딩 함수
+
+local reload_lazy_config = function()
+  local rl = require("plenary.reload").reload_module
+  rl("lazy")  -- lazy.nvim 모듈 재로드
+end
+
+vim.api.nvim_create_user_command("ReloadConfig", reload_lazy_config, {})
+vim.keymap.set("n", "<leader>rl", "<cmd>ReloadConfig<cr>", { noremap = true, silent = true })
+

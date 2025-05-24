@@ -78,7 +78,6 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
-  zoxide
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -136,8 +135,11 @@ alias vv='vi ~/.config/nvim/init.lua'
 alias vt='vi ~/.tmux.conf'
 alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
 
-alias ls="exa --icons"
+alias ls='exa --icons'
 alias sl=ls
+alias ㅣㄴ=ls
+alias ll='exa -lh --icons --git'
+alias la='exa -a --icons --git'
 alias lstr="exa -la --sort=modified"
 alias ㅣㄴ=lsd
 alias tree='ls --tree'
@@ -181,7 +183,6 @@ alias mk="minikube"
 
 source <(kubectl completion zsh)
 
-
 alias tmb='tmux new-session -d && tmux split-window -h && tmux split-window -v && tmux select-pane -L && tmux split-window -v && tmux select-pane -U && tmux attacDeh-session -d'
 alias tms='tmux new-session -d && tmux split-window -v && tmux split-window -v && tmux select-pane -U && tmux select-pane -U && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 alias tm='tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d'
@@ -206,6 +207,8 @@ export LD_LIBRARY_PATH=$JAVA_HOME/lib/server:$LD_LIBRARY_PATH
    curl -s -S "https://registry.hub.docker.com/v2/repositories/library/$@/tags/" | jq '."results"[]["name"]' | sort
  }
 
+# zoxide init
+eval "`zoxide init zsh`"
 # mcfly settings
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_INTERFACE_VIEW=BOTTOM   # TOP | BOTTOM
