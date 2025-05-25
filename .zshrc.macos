@@ -139,12 +139,12 @@ alias vv='vi ~/.config/nvim/init.lua'
 alias vt='vi ~/.tmux.conf'
 alias va='vi /Users/jakepark/.config/alacritty/alacritty.toml'
 
-alias ls='exa --icons'
+alias ls='eza --icons --git'
 alias sl=ls
 alias ㅣㄴ=ls
-alias ll='exa -lh --icons --git'
-alias la='exa -a --icons --git'
-alias lstr="exa -la --sort=modified"
+alias ll='eza -lh --icons --git'
+alias la='eza -a --icons --git'
+alias lstr="eza -la --icons --git --sort=modified"
 alias ㅣㄴ=lsd
 alias tree='ls --tree'
 alias vi=nvim
@@ -156,10 +156,10 @@ alias ㅊㅇ=cd
 alias python=python3
 alias pip=pip3
 alias cat=bat
-alias cwrt="/Users/jakepark/Utils/change_wezterm_random_theme.sh"
-alias cwt="/Users/jakepark/Utils/change_wezterm_theme.sh"
-alias cart="/Users/jakepark/Utils/change_alacritty_random_theme.sh"
-alias cat="/Users/jakepark/Utils/change_alacritty_theme.sh"
+alias cwrt="/Users/jakepark/Repos/.settings/change_wezterm_random_theme.sh"
+alias cwt="/Users/jakepark/Repos/.settings/change_wezterm_theme.sh"
+alias cart="/Users/jakepark/Repos/.settings/change_alacritty_random_theme.sh"
+alias ct="/Users/jakepark/Repos/.settings/change_alacritty_theme.sh"
 alias j=z
 alias ji=zi
 alias zz='zjump'

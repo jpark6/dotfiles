@@ -45,10 +45,10 @@ require("lazy").setup({
     config = function()
       require("lualine").setup {
         options = {
-          theme = "PaperColor",
+          theme = "gruvbox_dark",
           icons_enabled = true,
-          -- section_separators = { left = "", right = "" },
-          -- component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          component_separators = { left = "", right = "" },
         }
       }
     end,
@@ -75,7 +75,7 @@ require("lazy").setup({
             }
           },
         },
-        highlights = require("catppuccin.groups.integrations.bufferline").get()
+        highlights = require("catppuccin.groups.integrations.bufferline").get(),
       }
     end,
   },
@@ -97,7 +97,7 @@ require("lazy").setup({
         },
       }
       vim.cmd.colorscheme("catppuccin")
-    end
+    end,
   },
 
   -- 🔍 검색 기능
@@ -137,9 +137,7 @@ require("lazy").setup({
       "rcarriga/nvim-notify"
     },
     config = function()
-    require("noice").setup({
-      background_colour = "#000000",
-    })
+      require("noice").setup()
     end,
   },
 
@@ -182,6 +180,7 @@ vim.g.coc_global_extensions = {
   "coc-toml",          -- TOML LSP 서버
   "coc-rust-analyzer", -- TOML LSP 서버
   "coc-tsserver",      -- TSSERVER
+  "coc-lua",           -- LUA SERVER
 }
 -- coc 설정
 vim.g.coc_disable_startup_warning = 1
@@ -212,3 +211,7 @@ vim.g.tagbar_type_rust = {
     trait = 't',
   },
 }
+
+require("notify").setup({
+  background_colour = "#000000",
+})
