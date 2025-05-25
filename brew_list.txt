@@ -24,7 +24,6 @@ gmp
 gnutls
 graphite2
 harfbuzz
-icu4c
 icu4c@77
 iproute2mac
 jadx
@@ -38,7 +37,6 @@ libarchive
 libb2
 libevent
 libgit2
-libgit2@1.7
 libidn2
 libnghttp2
 libpng
@@ -62,6 +60,7 @@ libzip
 little-cms2
 lpeg
 lsd
+lua-language-server
 luajit
 luv
 lz4
@@ -151,5 +150,6 @@ utm
 vagrant
 visual-studio-code
 vlc
+warp
 wezterm
 zed

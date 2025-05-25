@@ -28,6 +28,7 @@
 | :-: | :------------------------------- | :------------------------------------------------------------------------------- |
 | ✅  | .tmux.conf                       | tmux 설정 파일                                                                   |
 | ✅  | .vimrc                           | vim 설정 파일                                                                    |
+| ✅  | .wezterm.lua                     | wezterm 설정 파일                                                                |
 | ✅  | .zshrc.macos                     | macos zsh 설정 파일                                                              |
 | ✅  | .zshrc.windows                   | windows wsl zsh 설정 파일                                                        |
 | ❌  | ahk.ahk                          | autohotkey v1 설정 파일(사용 안함)                                               |
