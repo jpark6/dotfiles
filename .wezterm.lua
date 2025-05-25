@@ -18,9 +18,23 @@ config.initial_rows = 28
 -- or, changing the font size and color scheme.
 config.font =wezterm.font('CaskaydiaCove Nerd Font', { weight = 'Bold', italic = false})
 config.font_size = 14
-config.color_scheme = 'Ryuuko'
+config.color_scheme = 'Wez'
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
+config.keys = {
+  -- Ctrl-Tab -> send to tmux as Ctrl-b n (next-window)
+  {
+    key = "Tab",
+    mods = "CTRL",
+    action = wezterm.action.SendString("\x01n"), -- Ctrl-a (0x01) + n
+  },
+  -- Ctrl-Shift-Tab -> send to tmux as Ctrl-b p (previous-window)
+  {
+    key = "Tab",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SendString("\x01p"), -- Ctrl-a (0x01) + p
+  },
+}
 -- Finally, return the configuration to wezterm:
 return config
