@@ -18,4 +18,11 @@ RANDOM_THEME="${THEMES[RANDOM % $THEME_CNT + 1]}"
 echo "🔀 Change Random Theme 🎲"
 echo "🎰 Theme Name : $RANDOM_THEME ♣️"
 
-sed -i "" "s|powerline\/.*\'|$RANDOM_THEME\'|" $TMUX_FILE
+case "$OSTYPE" in
+  darwin*)
+    sed -i "" "s|powerline\/.*\'|$RANDOM_THEME\'|" $TMUX_FILE
+    ;;
+  *)
+    sed -i "s|powerline\/.*\'|$RANDOM_THEME\'|" $TMUX_FILE
+    ;;
+esac

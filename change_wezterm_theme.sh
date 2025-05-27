@@ -6,7 +6,7 @@ case "$OSTYPE" in
     SCHEMES_FILE="/Users/jakepark/Repos/.settings/wezterm_color_scheme_list.txt"
     ;;
   *)
-    WEZTERM_FILE="/mnt/d/Repos/.settings/.wezterm.lua"
+    WEZTERM_FILE="/mnt/c/Users/banseok/.wezterm.lua"
     SCHEMES_FILE="/mnt/d/Repos/.settings/wezterm_color_scheme_list.txt"
     ;;
 esac
@@ -23,7 +23,7 @@ fi
 
 # fzf 또는 select로 scheme 선택
 if command -v fzf > /dev/null; then
-  SELECTED=$(echo "$SCHEMES" | fzf --prompt="🌟 Select WezTerm Scheme: ")
+  SELECTED=$(echo "$SCHEMES" | sed "s|\r||" | fzf --prompt="🌟 Select WezTerm Scheme: ")
 else
   # 기본 select 메뉴
   echo "🌟 사용할 WezTerm Scheme을 선택하세요:"
@@ -42,4 +42,11 @@ fi
 # 적용
 echo "✅ '$SELECTED' 프리셋을 적용합니다."
 
-sed -i "" "s|config.color_scheme = '.*'|config.color_scheme = '$SELECTED'|" $WEZTERM_FILE
+case "$OSTYPE" in
+  darwin*)
+    sed -i "" "s|config.color_scheme = \".*\"|config.color_scheme = \"$SELECTED\"|" $WEZTERM_FILE
+    ;;
+  *)
+    sed -i "s|config.color_scheme = \".*\"|config.color_scheme = \"$SELECTED\"|" $WEZTERM_FILE
+    ;;
+esac

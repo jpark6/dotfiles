@@ -6,18 +6,11 @@ catppuccin.setup({
   flavour = "latte",
 })
 
+-- vim.o.background = "dark"
+-- vim.cmd("colorscheme onedark")
+
 bufferline.setup({
-  highlights = require("catppuccin.groups.integrations.bufferline").get(),
-  options = {
-    -- 기타 bufferline 옵션
-    diagnostics = "nvim_lsp",
-    hover = {
-      enabled = true,
-      delay = 200,
-      reveal = {'close'},
-    }
-  },
-  highlights = {
+  highlights = require("catppuccin.groups.integrations.bufferline").get({
     fill = {
       bg = {
         attribute = "fg",
@@ -47,8 +40,12 @@ bufferline.setup({
       bg = "#ffffff",
       sp = "#ffffff",
     },
-  },
-  options = {
+    -- 기타 bufferline 옵션
     diagnostics = "nvim_lsp",
-  },
+    hover = {
+      enabled = true,
+      delay = 200,
+      reveal = {'close'},
+    }
+  }),
 })

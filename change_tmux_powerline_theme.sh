@@ -42,4 +42,11 @@ fi
 # 적용
 echo "✅ '$SELECTED' 테마를 적용합니다."
 
-sed -i "" "s|powerline\/.*\'|$SELECTED\'|" $TMUX_FILE
+case "$OSTYPE" in
+  darwin*)
+    sed -i "" "s|powerline\/.*\'|$SELECTED\'|" $TMUX_FILE
+    ;;
+  *)
+    sed -i "s|powerline\/.*\'|$SELECTED\'|" $TMUX_FILE
+    ;;
+esac

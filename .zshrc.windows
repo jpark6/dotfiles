@@ -91,11 +91,11 @@ set -o vi
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -134,6 +134,8 @@ alias sz='source ~/.zshrc'
 alias vv='vi ~/.config/nvim/init.lua'
 alias vt='vi ~/.tmux.conf'
 alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
+alias vw='vi /mnt/c/Users/banseok/.wezterm.lua'
+alias vs='vi /mnt/c/Users/banseok/.config/starship.toml'
 
 alias ls='exa --icons'
 alias sl=ls
@@ -168,8 +170,15 @@ alias gitui=gitui.exe
 alias cat=bat
 alias brew=scoop
 alias duhs="du -hs * | sort -h"
-alias crt=/home/ubuntu/util/change_random_alacritty_theme.sh
-alias ct=/home/ubuntu/util/change_alacritty_theme.sh
+alias cwrt="/mnt/d/Repos/.settings/change_wezterm_random_theme.sh"
+alias cwt="/mnt/d/Repos/.settings/change_wezterm_theme.sh"
+alias cart="/mnt/d/Repos/.settings/change_alacritty_random_theme.sh"
+alias ct="/mnt/d/Repos/.settings/change_alacritty_theme.sh"
+alias ctt="/mnt/d/Repos/.settings/change_tmux_powerline_theme.sh"
+alias ctrt="/mnt/d/Repos/.settings/change_tmux_powerline_random_theme.sh"
+alias cst="/mnt/d/Repos/.settings/change_starship_theme.sh"
+alias clrt="/mnt/d/Repos/.settings/change_nvim_lualine_random_theme.sh"
+alias clt="/mnt/d/Repos/.settings/change_nvim_lualine_theme.sh"
 alias kts=/home/ubuntu/util/killTmuxSession.sh
 alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
 alias j=z

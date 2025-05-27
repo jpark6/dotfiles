@@ -14,6 +14,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- 플러그인 설정
 require("lazy").setup({
+  { "folke/tokyonight.nvim" },
+  { "navarasu/onedark.nvim" },
+  { "ellisonleao/gruvbox.nvim" },
+  { "luisiacc/gruvbox-baby" },
   { "preservim/tagbar" },
   { "neoclide/coc.nvim", branch = "release" },
   { "rust-lang/rust.vim" },
@@ -45,7 +49,7 @@ require("lazy").setup({
     config = function()
       require("lualine").setup {
         options = {
-          theme = "PaperColor",
+          theme = "nord",
           icons_enabled = true,
           section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
@@ -96,7 +100,6 @@ require("lazy").setup({
           cmp = true,
         },
       }
-      vim.cmd.colorscheme("catppuccin")
     end,
   },
 

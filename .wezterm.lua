@@ -18,7 +18,7 @@ config.initial_rows = 28
 -- or, changing the font size and color scheme.
 config.font = wezterm.font('CaskaydiaCove Nerd Font', { weight = 'Bold', italic = false})
 config.font_size = 14
-config.color_scheme = 'Wez'
+config.color_scheme = '3024 Day'
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false

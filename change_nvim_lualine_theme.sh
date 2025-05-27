@@ -7,7 +7,7 @@ case "$OSTYPE" in
     ;;
   *)
     LUA_FILE="/mnt/d/Repos/.settings/nvim/lua/config/plugins.lua"
-    THEME_DIR="/mnt/d/.local/share/nvim/lazy/lualine.nvim/lua/lualine/themes"
+    THEME_DIR="/home/ubuntu/.local/share/nvim/lazy/lualine.nvim/lua/lualine/themes"
     ;;
 esac
 
@@ -41,4 +41,11 @@ fi
 # 적용
 echo "✅ '$SELECTED' 프리셋을 적용합니다."
 
-sed -i "" "s|theme = \".*\"|theme = \"$SELECTED\"|" $LUA_FILE
+case "$OSTYPE" in
+  darwin*)
+    sed -i "" "s|theme = \".*\"|theme = \"$SELECTED\"|" $LUA_FILE
+    ;;
+  *)
+    sed -i "s|theme = \".*\"|theme = \"$SELECTED\"|" $LUA_FILE
+    ;;
+esac

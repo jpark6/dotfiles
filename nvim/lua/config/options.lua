@@ -89,3 +89,9 @@ end
 vim.api.nvim_create_user_command("ReloadConfig", reload_lazy_config, {})
 vim.keymap.set("n", "<leader>rl", "<cmd>ReloadConfig<cr>", { noremap = true, silent = true })
 
+-- init.lua
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+

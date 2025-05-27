@@ -28,3 +28,4 @@ end
 -- 다음 이전 버퍼
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })

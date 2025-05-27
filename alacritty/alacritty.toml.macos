@@ -1,5 +1,5 @@
 [general]
-import = ["./themes/deep_space.toml"]
+import = ["./themes/alacritty_0_12.toml"]
 
 # CaskaydiaCove Nerd Font
 [font]

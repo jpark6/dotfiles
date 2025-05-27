@@ -6,7 +6,7 @@ case "$OSTYPE" in
     THEME_DIR="/Users/jakepark/Repos/.settings/alacritty/themes"
     ;;
   *)
-    ALACRITTY_FILE="/mnt/d/Repos/.settings/alacritty/alacritty.toml.macos"
+    ALACRITTY_FILE="/mnt/d/Repos/.settings/alacritty/alacritty.toml.window"
     THEME_DIR="/mnt/d/Repos/.settings/alacritty/themes"
     ;;
 esac
@@ -40,4 +40,11 @@ fi
 # 적용
 echo "✅ '$SELECTED' 테마를 적용합니다."
 
-sed -i "" "s|themes\/.*\"|themes\/$SELECTED\"|" $ALACRITTY_FILE
+case "$OSTYPE" in
+  darwin*)
+    sed -i "" "s|themes\/.*\"|themes\/$SELECTED\"|" $ALACRITTY_FILE
+    ;;
+  *)
+    sed -i "s|themes\/.*\"|themes\/$SELECTED\"|" $ALACRITTY_FILE
+    ;;
+esac

@@ -25,4 +25,11 @@ RANDOM_THEME="${THEMES[RANDOM % $THEME_CNT + 1]}"
 echo "🔀 Change Alacritty Random Theme 🎲"
 echo "🎰 Theme Name : $RANDOM_THEME ♣️"
 
-sed -i "" "s|themes\/.*\"|themes\/$RANDOM_THEME\"|" $ALACRITTY_FILE
+case "$OSTYPE" in
+  darwin*)
+    sed -i "" "s|themes\/.*\"|themes\/$RANDOM_THEME\"|" $ALACRITTY_FILE
+    ;;
+  *)
+    sed -i "s|themes\/.*\"|themes\/$RANDOM_THEME\"|" $ALACRITTY_FILE
+    ;;
+esac
