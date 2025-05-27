@@ -1,5 +1,5 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm'
+local wezterm = require "wezterm"
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -16,9 +16,9 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 -- or, changing the font size and color scheme.
-config.font = wezterm.font('CaskaydiaCove Nerd Font', { weight = 'Bold', italic = false})
+config.font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Bold", italic = false})
 config.font_size = 14
-config.color_scheme = '3024 Day'
+config.color_scheme = "Galaxy"
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
