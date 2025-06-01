@@ -114,6 +114,7 @@ zsh-syntax-highlighting
 zstd
 alacritty
 alfred
+balenaetcher
 beekeeper-studio
 cheatsheet
 dbeaver-community

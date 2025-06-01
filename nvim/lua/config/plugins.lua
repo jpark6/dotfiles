@@ -49,10 +49,13 @@ require("lazy").setup({
     config = function()
       require("lualine").setup {
         options = {
-          theme = "powerline",
+          theme = "dracula",
           icons_enabled = true,
-          section_separators = { left = "", right = "" },
-          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          component_separators = { left = "", right = "" },
+        },
+        section = {
+          lualine_a = {'mode'}
         }
       }
     end,
@@ -217,4 +220,15 @@ vim.g.tagbar_type_rust = {
 
 require("notify").setup({
   background_colour = "#000000",
+})
+
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
 })
