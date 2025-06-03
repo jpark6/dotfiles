@@ -13,7 +13,7 @@ esac
 
 
 # 현재 사용 가능한 scheme 목록 가져오기
-SCHEMES=`cat $SCHEMES_FILE`
+SCHEMES=$(cat $SCHEMES_FILE)
 
 # 프리셋 목록이 비어있다면 종료
 if [ -z "$SCHEMES" ]; then

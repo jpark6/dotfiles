@@ -17,7 +17,7 @@ while IFS= read -r line; do
 done < <(cat $SCHEMES_FILE)
 THEME_CNT="${#THEMES[@]}"
 
-RANDOM_THEME="`echo "${THEMES[RANDOM % $THEME_CNT ]}" | sed "s|\r||"`"
+RANDOM_THEME="$(echo "${THEMES[RANDOM % $THEME_CNT ]}" | sed "s|\r||")"
 
 echo "🔀 Change WezTerm Random Theme 🎲"
 echo "🎰 Theme Name : $RANDOM_THEME ♣️"

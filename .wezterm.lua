@@ -16,9 +16,9 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 -- or, changing the font size and color scheme.
-config.font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Bold", italic = false})
-config.font_size = 14
-config.color_scheme = "CGA"
+config.font = wezterm.font("FantasqueSansM Nerd Font", {italic = false})
+config.font_size = 15
+config.color_scheme = "Ayu Mirage"
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false

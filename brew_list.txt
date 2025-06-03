@@ -33,6 +33,7 @@ jq
 kubernetes-cli
 lazygit
 leptonica
+lf
 libarchive
 libb2
 libevent
@@ -89,6 +90,7 @@ python@3.11
 python@3.12
 python@3.13
 qemu
+ranger
 readline
 rename
 snappy

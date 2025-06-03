@@ -12,7 +12,7 @@ case "$OSTYPE" in
 esac
 
 # 현재 사용 가능한 theme 목록 가져오기
-THEMES=`find "$THEME_DIR" -type f -name "*.lua" -exec basename {} .lua \; | sort`
+THEMES=$(find "$THEME_DIR" -type f -name "*.lua" -exec basename {} .lua \; | sort)
 
 # 프리셋 목록이 비어있다면 종료
 if [ -z "$THEMES" ]; then

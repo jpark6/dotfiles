@@ -11,7 +11,7 @@ case "$OSTYPE" in
     ;;
 esac
 
-THEME_CNT=`ls $THEME_DIR | wc -l`
+THEME_CNT=$(ls $THEME_DIR | wc -l)
 echo $THEME_CNT
 
 THEMES=()
@@ -19,7 +19,7 @@ while IFS= read -r line; do
   THEMES+=("$line")
 done < <(ls $THEME_DIR)
 
-RANDOM_THEME=`echo "${THEMES[RANDOM % $THEME_CNT + 1]}" | sed 's|\.lua$||'`
+RANDOM_THEME=$(echo "${THEMES[RANDOM % $THEME_CNT + 1]}" | sed 's|\.lua$||')
 
 echo "🔀 Change nvim lualine Random Theme 🎲"
 echo "🎰 Theme Name : $RANDOM_THEME ♣️"

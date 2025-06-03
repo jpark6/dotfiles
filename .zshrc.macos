@@ -77,8 +77,13 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-syntax-highlighting
+  # zsh-syntax-highlighting
+  fast-syntax-highlighting
   zsh-autosuggestions
+  zsh-interactive-cd
+  fzf-tab
+  alias-tips
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -127,44 +132,54 @@ zjump() {
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# For a full list of active aliases, run $(alias).
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias c=clear
 alias so=source
 alias vz='vi ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias vv='vi ~/.config/nvim/init.lua'
 alias vt='vi ~/.tmux.conf'
 alias va='vi /Users/jakepark/.config/alacritty/alacritty.toml'
+alias vw='vi /Users/jakepark/.wezterm.lua'
+alias vs='vi /Users/jakepark/.config/starship.toml'
 
 alias ls='eza --icons --git'
 alias sl=ls
-alias ㅣㄴ=ls
 alias ll='eza -lh --icons --git'
 alias la='eza -a --icons --git'
 alias lstr="eza -la --icons --git --sort=modified"
-alias ㅣㄴ=lsd
 alias tree='ls --tree'
 alias vi=nvim
-alias 퍄=nvim
 alias view="nvim -R"
 alias vim=nvim
 alias dc=cd
-alias ㅊㅇ=cd
 alias python=python3
 alias pip=pip3
 alias cat=bat
+alias duhs="du -hs * | sort -h"
 alias cwrt="/Users/jakepark/Repos/.settings/change_wezterm_random_theme.sh"
 alias cwt="/Users/jakepark/Repos/.settings/change_wezterm_theme.sh"
+alias cwp="/Users/jakepark/Repos/.settings/change_wezterm_font.sh"
 alias cart="/Users/jakepark/Repos/.settings/change_alacritty_random_theme.sh"
 alias ct="/Users/jakepark/Repos/.settings/change_alacritty_theme.sh"
-alias ctt="/Users/jakepark/Repos/.settings/change_tmux_powerline_theme.sh
-alias ctrt="/Users/jakepark/Repos/.settings/change_tmux_powerline_random_theme.sh
+alias ctt="/Users/jakepark/d/Repos/.settings/change_tmux_powerline_theme.sh"
+alias ctrt="/Users/jakepark/Repos/.settings/change_tmux_powerline_random_theme.sh"
+alias cst="/Users/jakepark/Repos/.settings/change_starship_theme.sh"
+alias clrt="/Users/jakepark/Repos/.settings/change_nvim_lualine_random_theme.sh"
+alias clt="/Users/jakepark/Repos/.settings/change_nvim_lualine_theme.sh"
+alias ctt="/Users/jakepark/Repos/.settings/change_tmux_powerline_theme.sh"
+alias ctrt="/Users/jakepark/Repos/.settings/change_tmux_powerline_random_theme.sh"
+
 alias j=z
 alias ji=zi
 alias zz='zjump'
+
+alias fk="fuck"
+alias y=yazi
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
@@ -179,11 +194,6 @@ alias tms='tmux new-session -d && tmux split-window -v && tmux split-window -v &
 alias tm='tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d'
 alias tmh='tmux new-session -d && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 
-alias ssh110="ssh -p220 accounttech@192.168.0.110 -i ~/.ssh/110_rsa"
-alias ssh107="ssh -p220 accounttech@192.168.0.107 -i ~/.ssh/107_rsa"
-alias ssh100="ssh accounttech@192.168.0.100 -i ~/.ssh/100_rsa"
-alias ssh166="ssh -p220 accounttech@192.168.0.166 -i ~/.ssh/166_rsa"
-alias ssh176="ssh -p220 accounttech@192.168.0.176 -i ~/.ssh/176_rsa"
 function btail {
   tail -f "$@" | bat --paging=never -l log
 }
@@ -191,27 +201,30 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export JAVA_HOME=$(/usr/libexec/java_home)
  function docker_remote_tag() {
    curl -s -S "https://registry.hub.docker.com/v2/repositories/library/$@/tags/" | jq '."results"[]["name"]' | sort
  }
 
 # zoxide init
-eval "`zoxide init zsh`"
+eval "$(zoxide init zsh)"
 # mcfly settings
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_INTERFACE_VIEW=BOTTOM   # TOP | BOTTOM
-# export MCFLY_RESULTS=30
-eval "`mcfly init zsh`"
+export MCFLY_RESULTS=30
+eval "$(mcfly init zsh)"
+# fuck
+eval "$(thefuck --alias)"
 
 # starship init
 export STARSHIP_CONFIG=~/.config/starship.toml
-eval "`starship init zsh`"
+eval "$(starship init zsh)"
 zle -N zle-keymap-select starship_zle-keymap-select
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-source ~/Works/venv/bin/activate
+# export PATH="$HOME/.pyenv/bin:$PATH"
+# eval "$(pyenv init --path)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+source ~/venv/bin/activate
 
-export JAVA_HOME=`/usr/libexec/java_home`
+

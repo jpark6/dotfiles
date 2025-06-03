@@ -13,7 +13,7 @@ esac
 
 
 # 현재 사용 가능한 theme 목록 가져오기
-THEMES=`find powerline -name '*.tmuxtheme' | sed 's|\.tmuxtheme$||'`
+THEMES=$(find powerline -name '*.tmuxtheme' | sed 's|^powerline\/||' | sed 's|\.tmuxtheme$||')
 
 # 테마 목록이 비어있다면 종료
 if [ -z "$THEMES" ]; then
@@ -44,9 +44,11 @@ echo "✅ '$SELECTED' 테마를 적용합니다."
 
 case "$OSTYPE" in
   darwin*)
-    sed -i "" "s|powerline\/.*\'|$SELECTED\'|" $TMUX_FILE
+    sed -i "" "s|powerline\/.*\'|powerline\/$SELECTED\'|" $TMUX_FILE
     ;;
   *)
-    sed -i "s|powerline\/.*\'|$SELECTED\'|" $TMUX_FILE
+    sed -i "s|powerline\/.*\'|powerline\/$SELECTED\'|" $TMUX_FILE
     ;;
 esac
+
+tmux source-file ~/.tmux.conf

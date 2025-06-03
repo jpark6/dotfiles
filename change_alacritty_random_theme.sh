@@ -11,7 +11,7 @@ case "$OSTYPE" in
     ;;
 esac
 
-THEME_CNT=`ls $THEME_DIR | wc -l`
+THEME_CNT=$(ls $THEME_DIR | wc -l)
 
 THEMES=()
 while IFS= read -r line; do

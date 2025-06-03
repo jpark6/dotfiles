@@ -29,3 +29,6 @@ end
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
+
+vim.keymap.set('n', '<C-l>', ':bnext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-h>', ':bprev<CR>', { noremap = true, silent = true })

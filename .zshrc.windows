@@ -77,7 +77,12 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 plugins=(
   git
   zsh-syntax-highlighting
+  fast-syntax-highlighting
   zsh-autosuggestions
+  zsh-interactive-cd
+  fzf-tab
+  alias-tips
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -110,6 +115,8 @@ dcul() {
   docker compose up -d "$@" && docker compose logs -f "$@"
 }
 
+# search web
+alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
 zrank() {
   zoxide query -l | grep "$(pwd)" | awk '{print $1}'
 }
@@ -122,7 +129,7 @@ zjump() {
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# For a full list of active aliases, run $(alias).
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -137,20 +144,16 @@ alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
 alias vw='vi /mnt/c/Users/banseok/.wezterm.lua'
 alias vs='vi /mnt/c/Users/banseok/.config/starship.toml'
 
-alias ls='exa --icons'
+alias ls='eza --icons --git'
 alias sl=ls
-alias ㅣㄴ=ls
-alias ll='exa -lh --icons --git'
-alias la='exa -a --icons --git'
-alias lstr="exa -la --sort=modified"
-alias ㅣㄴ=lsd
+alias ll='eza -lh --icons --git'
+alias la='eza -a --icons --git'
+alias lstr="eza -la --icons --git --sort=modified"
 alias tree='ls --tree'
 alias vi=nvim
-alias 퍄=nvim
 alias view="nvim -R"
 alias vim=nvim
 alias dc=cd
-alias ㅊㅇ=cd
 alias down="cd /mnt/d/WinDirs/Downloads"
 alias doc="cd /mnt/d/WinDirs/Documents"
 alias desk="cd /mnt/d/WinDirs/Desktop"
@@ -172,6 +175,7 @@ alias brew=scoop
 alias duhs="du -hs * | sort -h"
 alias cwrt="/mnt/d/Repos/.settings/change_wezterm_random_theme.sh"
 alias cwt="/mnt/d/Repos/.settings/change_wezterm_theme.sh"
+alias cwp="/mnt/d//Repos/.settings/change_wezterm_font.sh"
 alias cart="/mnt/d/Repos/.settings/change_alacritty_random_theme.sh"
 alias ct="/mnt/d/Repos/.settings/change_alacritty_theme.sh"
 alias ctt="/mnt/d/Repos/.settings/change_tmux_powerline_theme.sh"
@@ -179,10 +183,15 @@ alias ctrt="/mnt/d/Repos/.settings/change_tmux_powerline_random_theme.sh"
 alias cst="/mnt/d/Repos/.settings/change_starship_theme.sh"
 alias clrt="/mnt/d/Repos/.settings/change_nvim_lualine_random_theme.sh"
 alias clt="/mnt/d/Repos/.settings/change_nvim_lualine_theme.sh"
+alias ctt="/Users/jakepark/Repos/.settings/change_tmux_powerline_theme.sh"
+alias ctrt="/Users/jakepark/Repos/.settings/change_tmux_powerline_random_theme.sh"
 alias kts=/home/ubuntu/util/killTmuxSession.sh
-alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
 alias j=z
+alias ji=zi
 alias zz='zjump'
+
+alias fk="fuck"
+alias y=yazi
 
 alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
 
@@ -197,11 +206,6 @@ alias tms='tmux new-session -d && tmux split-window -v && tmux split-window -v &
 alias tm='tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d'
 alias tmh='tmux new-session -d && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 
-alias ssh110="ssh -p220 accounttech@192.168.0.110 -i ~/.ssh/110_rsa"
-alias ssh107="ssh -p220 accounttech@192.168.0.107 -i ~/.ssh/107_rsa"
-alias ssh100="ssh accounttech@192.168.0.100 -i ~/.ssh/100_rsa"
-alias ssh166="ssh -p220 accounttech@192.168.0.166 -i ~/.ssh/166_rsa"
-alias ssh176="ssh -p220 accounttech@192.168.0.176 -i ~/.ssh/176_rsa"
 function btail {
   tail -f "$@" | bat --paging=never -l log
 }
@@ -217,20 +221,18 @@ export LD_LIBRARY_PATH=$JAVA_HOME/lib/server:$LD_LIBRARY_PATH
  }
 
 # zoxide init
-eval "`zoxide init zsh`"
+eval "$(zoxide init zsh)"
 # mcfly settings
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_INTERFACE_VIEW=BOTTOM   # TOP | BOTTOM
 # export MCFLY_RESULTS=30
-eval "`mcfly init zsh`"
+eval "$(mcfly init zsh)"
+# fuck
+eval "$(thefuck --alias)"
 
 # starship init
 export STARSHIP_CONFIG=~/.config/starship.toml
-eval "`starship init zsh`"
+eval "$(starship init zsh)"
 zle -N zle-keymap-select starship_zle-keymap-select
 
-# run tmux when shell open
-# precmd() {
-#   ~/util/runTmuxWhenShellOpen.sh > /dev/null 2>&1
-# }
 

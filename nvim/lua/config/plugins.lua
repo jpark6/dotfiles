@@ -12,8 +12,13 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
+
 -- 플러그인 설정
 require("lazy").setup({
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+  },
   { "folke/tokyonight.nvim" },
   { "navarasu/onedark.nvim" },
   { "ellisonleao/gruvbox.nvim" },
@@ -49,10 +54,10 @@ require("lazy").setup({
     config = function()
       require("lualine").setup {
         options = {
-          theme = "dracula",
+          theme = "Tomorrow",
           icons_enabled = true,
-          section_separators = { left = "", right = "" },
-          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          component_separators = { left = "", right = "" },
         },
         section = {
           lualine_a = {'mode'}
@@ -69,10 +74,10 @@ require("lazy").setup({
       require("bufferline").setup {
         options = {
           mode = "buffers",
-          separator_style = "slant", -- "slant", "thick", "thin", "padded_slant", "slope"
+          separator_style = "padded_slant", -- "slant", "thick", "thin", "padded_slant", "slope"
           show_buffer_close_icons = true,
-          show_close_icon = false,
-          diagnostics = "mvin_lsp",
+          show_close_icon = true,
+          diagnostics = "nvim_lsp",
           offsets = {
             {
               filetype = "NvimTree",
@@ -121,8 +126,33 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup {
+        ensure_installed = "all",
         highlight = { enable = true },
         indent = { enable = true },
+      }
+    end,
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    config = function()
+      local rainbow_delimiters = require("rainbow-delimiters")
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [""] = rainbow_delimiters.strategy["global"],
+        },
+        query = {
+          [""] = "rainbow-delimiters",
+        },
+        highlight = {
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+          "RainbowDelimiterCyan",
+        },
       }
     end,
   },
@@ -150,6 +180,21 @@ require("lazy").setup({
   -- 💡 단축키 가이드
   {
     "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
     config = function()
       require("which-key").setup {}
     end,
@@ -175,7 +220,7 @@ require("lazy").setup({
 
 -- coc.nvim 설정
 vim.g.coc_global_extensions = {
-  "coc-pyright",       -- Python LSP 서버
+"coc-pyright",       -- Python LSP 서버
   "coc-tsserver",      -- TypeScript LSP 서버
   "coc-json",          -- JSON LSP 서버
   "coc-html",          -- HTML LSP 서버

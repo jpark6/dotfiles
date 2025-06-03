@@ -27,5 +27,11 @@ starship v1.23.0:
     starship
 tac v2.1.0:
     tac
+xplr v1.0.0:
+    xplr
+yazi-cli v25.5.31:
+    ya
+yazi-fm v25.5.31:
+    yazi
 zoxide v0.9.7:
     zoxide

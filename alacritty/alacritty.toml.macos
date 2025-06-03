@@ -1,5 +1,5 @@
 [general]
-import = ["./themes/alacritty_0_12.toml"]
+import = ["./themes/kanagawa_wave.toml"]
 
 # CaskaydiaCove Nerd Font
 [font]
@@ -11,7 +11,7 @@ offset = { x = 0, y = 0 }
 
 [window]
 startup_mode = "Maximized"
-opacity = 0.97
+opacity = 1
 decorations = "none" # full | none | transparent
 
 [cursor]
