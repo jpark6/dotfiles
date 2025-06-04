@@ -18,7 +18,7 @@ config.initial_rows = 28
 -- or, changing the font size and color scheme.
 config.font = wezterm.font("FantasqueSansM Nerd Font", {italic = false})
 config.font_size = 15
-config.color_scheme = "Ayu Mirage"
+config.color_scheme = "Atelierlakeside (dark) (terminal.sexy)"
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false

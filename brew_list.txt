@@ -97,6 +97,7 @@ snappy
 sqlite
 telnet
 tesseract
+thefuck
 tig
 tldr
 tmux
