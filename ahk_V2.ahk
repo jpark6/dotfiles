@@ -184,9 +184,9 @@ RUN_APP(exeName, pathName) {
 ^!p:: RUN_APP("sumatrapdf.exe", "C:\Users\banseok\scoop\apps\sumatrapdf\current")
 ^!r:: RUN_APP("raonMessenger.exe", "D:\Program Files\RaonsecureMessenger")
 ^!s:: ACTIVE_OR_OPEN_APP("slack.exe", "C:\Users\banseok\AppData\Local\slack")
-^!t:: ACTIVE_OR_OPEN_APP("WindowsTerminal.exe", "C:\Users\banseok\scoop\apps\windows-terminal\current")
+^!t:: ACTIVE_OR_OPEN_APP("wezterm-gui.exe", "C:\Users\banseok\scoop\apps\wezterm\current")
 ^!v:: ACTIVE_OR_OPEN_APP("Code.exe", "C:\Users\banseok\AppData\Local\Programs\Microsoft VS Code")
-^!w:: ACTIVE_OR_OPEN_APP("wezterm-gui.exe", "C:\Users\banseok\scoop\apps\wezterm\current")
+^!w:: ACTIVE_OR_OPEN_APP("warp.exe", "C:\Users\banseok\AppData\Local\Programs\Warp")
 ; ^!w:: RUN_APP("launcher.exe", "C:\Users\banseok\scoop\apps\opera-gx\current")
 ; ^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")
 #e:: ACTIVE_OR_OPEN_APP("XYplorerFree.exe","C:\Users\banseok\scoop\apps\xyplorer\current") ; Win + E 입력 시, xyplorer 실행 

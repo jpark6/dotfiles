@@ -15,6 +15,14 @@ end
 config.initial_cols = 120
 config.initial_rows = 28
 
+-- Set padding in pixels
+config.window_padding = {
+  left = 5,
+  right = 5,
+  top = 5,
+  bottom = 0,
+}
+
 -- or, changing the font size and color scheme.
 config.font = wezterm.font("FantasqueSansM Nerd Font", {italic = false})
 config.font_size = 15

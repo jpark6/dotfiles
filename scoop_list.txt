@@ -9,7 +9,8 @@ autohotkey       2.0.19                   extras       2025-02-11 11:49:41
 autojump         0.5.1                    extras       2025-03-18 09:26:10 
 bandizip         7.37                     extras       2025-02-17 11:51:36 
 bat              0.25.0                   main         2025-01-08 11:06:22 
-beekeeper-studio 5.2.9                    extras       2025-05-21 13:01:31 
+beekeeper-studio 5.2.10                   extras       2025-05-29 13:01:41 
+btop             1.0.4                    main         2025-06-02 17:01:06 
 cacert           2025-05-20               main         2025-05-21 13:01:33 
 cfr              0.152                    main         2025-04-30 10:36:28 
 coreutils        5.97.3                   main         2024-09-02 14:54:33 
@@ -43,16 +44,17 @@ lsd              1.1.5                    main         2024-09-02 14:59:36
 marktext         0.17.1                   extras       2025-05-12 17:08:18 
 meld             3.22.2                   extras       2024-09-02 15:00:01 
 mingw            15.1.0-rt_v12-rev0       main         2025-04-30 13:03:44 
+neohtop          1.1.3                    extras       2025-06-02 16:24:34 
+neovim           0.11.2                   main         2025-06-04 18:37:44 
 nvm              1.2.2                    main         2025-01-02 11:51:23 
 obsidian         1.8.10                   extras       2025-04-23 13:01:48 
 oh-my-posh       25.23.3                  main         2025-05-26 13:00:56 
 openjdk21        21.0.2-13                java         2025-04-30 10:32:02 
-opera            119.0.5497.40            extras       2025-05-21 13:08:05 
+opera            119.0.5497.56            extras       2025-05-29 13:02:25 
 opera-gx         119.0.5497.43            extras       2025-05-23 13:02:02 
 picpick          7.3.6                    extras       2025-05-21 13:25:03 
 pinta            3.0                      extras       2025-05-07 11:21:31 
 posh-git         1.1.0                    extras       2024-09-02 15:03:02 
-powertoys        0.90.1                   extras       2025-04-14 11:56:22 
 rust             1.87.0                   main         2025-05-22 15:54:48 
 scoop-search     2.0.0                    main         2025-01-17 12:22:59 
 sed              4.9                      main         2024-09-02 15:04:33 
@@ -65,12 +67,14 @@ Terminal-Icons   0.11.0                   extras       2024-09-02 15:05:58
 termius          9.20.0                   extras       2025-05-14 13:02:00 
 tldr             0.6.1                    main         2024-09-02 15:06:01 
 unzip            6.00                     main         2024-09-02 15:06:02 
-vcredist2022     14.44.35112.1            extras       2025-05-14 13:06:56 
+vcredist2022     14.44.35208.0            extras       2025-05-29 13:22:16 
 vim              9.1.0                    main         2024-09-02 15:06:17 
 vimtutor         0.2018.07.25             main         2024-09-09 13:07:13 
 wezterm          20240203-110809-5046fc22 extras       2025-04-25 09:03:19 
 windows-terminal 1.22.11141.0             extras       2025-04-28 13:04:45 
 xyplorer         17.40.0100               extras       2025-03-17 09:10:20 
+yazi             25.5.31                  main         2025-06-02 16:56:02 
+zed              0.188.6                  extras       2025-06-05 08:39:59 
 zip              3.0                      main         2024-09-09 12:53:19 
 zoxide           0.9.8                    main         2025-05-27 13:01:32 
 

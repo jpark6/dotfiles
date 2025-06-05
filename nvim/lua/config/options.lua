@@ -34,12 +34,13 @@ vim.opt.swapfile = false                -- 스왑 파일 생성하지 않음
 --
 -- whitespace 표시
 vim.opt.listchars = {
-  eol = "¬",
-  tab = ">·",
-  trail = "~",
-  extends = ">",
-  precedes = "<",
+  eol = "↵",
   space = "·",
+  tab = "▸ ",
+  trail = "·",
+  extends = "❯",
+  precedes = "❮",
+  nbsp = "+",
 }
 vim.opt.list = true
 
@@ -94,4 +95,21 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
+
+-- init.lua 예시
+local uname = vim.loop.os_uname().sysname
+if uname =="Linux" then
+  vim.g.clipboard = {
+    name = "win32yank",
+    copy = {
+      ["+"] = "win32yank -i --crlf",
+      ["*"] = "win32yank -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank -o --lf",
+      ["*"] = "win32yank -o --lf",
+    },
+    cache_enabled = true,
+  }
+end
 

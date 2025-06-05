@@ -163,7 +163,7 @@ alias cat=bat
 alias duhs="du -hs * | sort -h"
 alias cwrt="/Users/jakepark/Repos/.settings/change_wezterm_random_theme.sh"
 alias cwt="/Users/jakepark/Repos/.settings/change_wezterm_theme.sh"
-alias cwp="/Users/jakepark/Repos/.settings/change_wezterm_font.sh"
+alias cwf="/Users/jakepark/Repos/.settings/change_wezterm_font.sh"
 alias cart="/Users/jakepark/Repos/.settings/change_alacritty_random_theme.sh"
 alias ct="/Users/jakepark/Repos/.settings/change_alacritty_theme.sh"
 alias ctt="/Users/jakepark/d/Repos/.settings/change_tmux_powerline_theme.sh"
@@ -174,8 +174,6 @@ alias clt="/Users/jakepark/Repos/.settings/change_nvim_lualine_theme.sh"
 alias ctt="/Users/jakepark/Repos/.settings/change_tmux_powerline_theme.sh"
 alias ctrt="/Users/jakepark/Repos/.settings/change_tmux_powerline_random_theme.sh"
 
-alias j=z
-alias ji=zi
 alias zz='zjump'
 
 alias fk="fuck"

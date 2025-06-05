@@ -2,6 +2,11 @@ Import-Module posh-git
 # Import-Module oh-my-posh
 Import-Module -Name PSReadLine
 
+# Add Cargo bin to $PATH
+$env:Path += ";$HOME\.cargo\bin"
+# Cargo target dir
+$env:CARGO_TARGET_DIR = "$HOME\rust-target"
+
 # oh-my-posh init pwsh | Invoke-Expression
 # Set-PoshPrompt -Theme mt
 # oh-my-posh init pwsh --config ~/.oh-my-posh/themes/cert.omp.json | Invoke-Expression
@@ -50,12 +55,12 @@ if ( Test-Path Alias:cat ) { Remove-Item Alias:/cat }
 Set-Alias cat bat
 Set-Alias down CD_DOWNLOAD
 Set-Alias site CD_SITE
-Set-Alias j z
-Set-Alias ji zi
 Set-Alias rl FUNC_RAON_LOGIN
 Set-Alias raon_login FUNC_RAON_LOGIN
 Set-Alias du DIR_SUM
 Set-Alias brew scoop
+Set-Alias vi nvim
+Set-Alias y yazi
 
 Set-Alias dco docker-compose
 
@@ -65,14 +70,13 @@ Import-Module -Name Terminal-Icons
 
 # Set VI Edit Mode in prompt
 Set-PSReadLineOption -EditMode vi
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionViewStyle ListView
 # replace built-in scoop search to scoop-search
 Invoke-Expression (&scoop-search --hook)
 # set zoxide init
 Invoke-Expression ((&zoxide init powershell) -join "`n")
 # set starship init
 Invoke-Expression (& 'C:\Users\banseok\.cargo\bin\starship.exe' init powershell --print-full-init | Out-String)
+Invoke-Expression -Command $(mcfly init powershell | Out-String)
 
-# Add Cargo bin to $PATH
-$env:Path += ";$HOME\.cargo\bin"
-# Cargo target dir
-$env:CARGO_TARGET_DIR = "$HOME\rust-target"
