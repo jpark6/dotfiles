@@ -74,7 +74,7 @@ require("lazy").setup({
       require("bufferline").setup {
         options = {
           mode = "buffers",
-          separator_style = "padded_slant", -- "slant", "thick", "thin", "padded_slant", "slope"
+          separator_style = "slope", -- "slant", "thick", "thin", "padded_slant", "slope"
           show_buffer_close_icons = true,
           show_close_icon = true,
           diagnostics = "nvim_lsp",
