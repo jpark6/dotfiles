@@ -1,3 +1,11 @@
+case "$OSTYPE" in
+  darwin*)
+    OS="mac"
+    ;;
+  *)
+    OS="linux"
+    ;;
+esac
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -11,7 +19,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="ys"
-# ZSH_THEME="headline"
+ZSH_THEME="headline"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -115,8 +123,6 @@ dcul() {
   docker compose up -d "$@" && docker compose logs -f "$@"
 }
 
-# search web
-alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
 zrank() {
   zoxide query -l | grep "$(pwd)" | awk '{print $1}'
 }
@@ -140,10 +146,6 @@ alias vz='vi ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias vv='vi ~/.config/nvim/init.lua'
 alias vt='vi ~/.tmux.conf'
-alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
-alias vw='vi /mnt/c/Users/banseok/.wezterm.lua'
-alias vs='vi /mnt/c/Users/banseok/.config/starship.toml'
-
 alias ls='eza --icons --git'
 alias sl=ls
 alias ll='eza -lh --icons --git'
@@ -154,49 +156,78 @@ alias vi=nvim
 alias view="nvim -R"
 alias vim=nvim
 alias dc=cd
-alias down="cd /mnt/d/WinDirs/Downloads"
-alias doc="cd /mnt/d/WinDirs/Documents"
-alias desk="cd /mnt/d/WinDirs/Desktop"
-alias c:="cd /mnt/c"
-alias d:="cd /mnt/d"
-alias work="cd /mnt/d/Works"
-alias site="cd /mnt/d/Works/Site"
-alias money="cd /mnt/d/Works/money"
-alias open="explorer.exe"
-alias cmd=cmd.exe
-alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
-alias alacritty=alacritty.exe
-alias wezterm=wezterm.exe
-alias pandoc=pandoc.exe
-alias py=py.exe
-alias gitui=gitui.exe
-alias zed=zed.exe
-alias cat=bat
-alias brew=scoop
-alias duhs="du -hs * | sort -h"
-alias cwrt="/mnt/d/Repos/.settings/change_wezterm_random_theme.sh"
-alias cwt="/mnt/d/Repos/.settings/change_wezterm_theme.sh"
-alias cwf="/mnt/d/Repos/.settings/change_wezterm_font.sh"
-alias cart="/mnt/d/Repos/.settings/change_alacritty_random_theme.sh"
-alias ct="/mnt/d/Repos/.settings/change_alacritty_theme.sh"
-alias ctt="/mnt/d/Repos/.settings/change_tmux_powerline_theme.sh"
-alias ctrt="/mnt/d/Repos/.settings/change_tmux_powerline_random_theme.sh"
-alias cst="/mnt/d/Repos/.settings/change_starship_theme.sh"
-alias clrt="/mnt/d/Repos/.settings/change_nvim_lualine_random_theme.sh"
-alias clt="/mnt/d/Repos/.settings/change_nvim_lualine_theme.sh"
-alias ctt="/mnt/d/Repos/.settings/change_tmux_powerline_theme.sh"
-alias ctrt="/mnt/d/Repos/.settings/change_tmux_powerline_random_theme.sh"
-alias kts=/home/ubuntu/util/killTmuxSession.sh
 alias zz='zjump'
-
 alias fk="fuck"
 alias y=yazi
-
-alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
-
 alias dco="docker-compose"
 alias k="kubectl"
 alias mk="minikube"
+
+
+case "$OS" in
+  "mac")
+    alias va='vi /Users/jakepark/.config/alacritty/alacritty.toml'
+    alias vw='vi /Users/jakepark/.wezterm.lua'
+    alias vs='vi /Users/jakepark/.config/starship.toml'
+    alias cwrt="/Users/jakepark/Repos/ShellScripts/change_wezterm_random_theme.sh"
+    alias cwt="/Users/jakepark/Repos/ShellScripts/change_wezterm_theme.sh"
+    alias cwf="/Users/jakepark/Repos/ShellScripts/change_wezterm_font.sh"
+    alias cart="/Users/jakepark/Repos/ShellScripts/change_alacritty_random_theme.sh"
+    alias ct="/Users/jakepark/Repos/ShellScripts/change_alacritty_theme.sh"
+    alias ctt="/Users/jakepark/d/Repos/ShellScripts/change_tmux_powerline_theme.sh"
+    alias ctrt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
+    alias cst="/Users/jakepark/Repos/ShellScripts/change_starship_theme.sh"
+    alias clrt="/Users/jakepark/Repos/ShellScripts/change_nvim_lualine_random_theme.sh"
+    alias clt="/Users/jakepark/Repos/ShellScripts/change_nvim_lualine_theme.sh"
+    alias ctt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_theme.sh"
+    alias ctrt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
+    alias s="python3 /Users/jakepark/Repos/Utils/python/webSearch.py"
+    alias os="python3 /Users/jakepark/Repos/Utils/python/openSlackChannelDM.py"
+    alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
+    source ~/venv/bin/activate
+    ;;
+  "linux")
+    alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
+    alias vw='vi /mnt/c/Users/banseok/.wezterm.lua'
+    alias vs='vi /mnt/c/Users/banseok/.config/starship.toml'
+    alias down="cd /mnt/d/WinDirs/Downloads"
+    alias doc="cd /mnt/d/WinDirs/Documents"
+    alias desk="cd /mnt/d/WinDirs/Desktop"
+    alias c:="cd /mnt/c"
+    alias d:="cd /mnt/d"
+    alias work="cd /mnt/d/Works"
+    alias site="cd /mnt/d/Works/Site"
+    alias money="cd /mnt/d/Works/money"
+    alias open="explorer.exe"
+    alias cmd=cmd.exe
+    alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
+    alias alacritty=alacritty.exe
+    alias wezterm=wezterm.exe
+    alias pandoc=pandoc.exe
+    alias py=py.exe
+    alias gitui=gitui.exe
+    alias zed=zed.exe
+    alias cat=bat
+    alias duhs="du -hs * | sort -h"
+    alias brew=scoop
+    alias cwrt="/mnt/d/Repos/.settings/change_wezterm_random_theme.sh"
+    alias cwt="/mnt/d/Repos/.settings/change_wezterm_theme.sh"
+    alias cwf="/mnt/d/Repos/.settings/change_wezterm_font.sh"
+    alias cart="/mnt/d/Repos/.settings/change_alacritty_random_theme.sh"
+    alias ct="/mnt/d/Repos/.settings/change_alacritty_theme.sh"
+    alias ctt="/mnt/d/Repos/.settings/change_tmux_powerline_theme.sh"
+    alias ctrt="/mnt/d/Repos/.settings/change_tmux_powerline_random_theme.sh"
+    alias cst="/mnt/d/Repos/.settings/change_starship_theme.sh"
+    alias clrt="/mnt/d/Repos/.settings/change_nvim_lualine_random_theme.sh"
+    alias clt="/mnt/d/Repos/.settings/change_nvim_lualine_theme.sh"
+    alias ctt="/mnt/d/Repos/.settings/change_tmux_powerline_theme.sh"
+    alias ctrt="/mnt/d/Repos/.settings/change_tmux_powerline_random_theme.sh"
+    alias kts=/home/ubuntu/util/killTmuxSession.sh
+    alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
+    alias os="py.exe D:/Workspaces/python/web/openSlackChannelDM.py"
+    alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
+    ;;
+esac
 
 source <(kubectl completion zsh)
 
@@ -230,8 +261,8 @@ eval "$(mcfly init zsh)"
 eval "$(thefuck --alias)"
 
 # starship init
-export STARSHIP_CONFIG=~/.config/starship.toml
-eval "$(starship init zsh)"
-zle -N zle-keymap-select starship_zle-keymap-select
+# export STARSHIP_CONFIG=~/.config/starship.toml
+# eval "$(starship init zsh)"
+# zle -N zle-keymap-select starship_zle-keymap-select
 
 

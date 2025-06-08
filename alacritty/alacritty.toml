@@ -1,5 +1,3 @@
-[terminal]
-shell.program = "wsl.exe"
 
 [general]
 import = ["./themes/blood_moon.toml"]

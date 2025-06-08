@@ -7,6 +7,7 @@ c-ares
 ca-certificates
 cairo
 capstone
+cmake
 ctags
 docutils
 dtc
@@ -24,6 +25,7 @@ gmp
 gnutls
 graphite2
 harfbuzz
+helix
 icu4c@77
 iproute2mac
 jadx
@@ -49,7 +51,6 @@ libtiff
 libunistring
 libusb
 libuv
-libvterm
 libx11
 libxau
 libxcb
@@ -69,7 +70,6 @@ lzo
 m4
 minikube
 mpdecimal
-msgpack
 ncurses
 neovim
 nettle
