@@ -17,34 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-    },
-    config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup {
-        ensure_installed = {
-          "lua_ls",
-          "pyright",
-          "rust_analyzer",
-          "kotlin_language_server"
-        }, -- 원하는 언어 LSP
-        automatic_installation = true,
-      }
-
-      local lspconfig = require("lspconfig")
-      local servers = {
-        "lua_ls",
-        "pyright",
-        "rust_analyzer",
-        "kotlin_language_server"
-        }
-
-      for _, server in ipairs(servers) do
-        lspconfig[server].setup {}
-      end
-    end,
+    event = { "BufReadPre", "BufNewFile" },
   },
   -- 자동완성 관련
   {
@@ -83,7 +56,7 @@ require("lazy").setup({
   { "ellisonleao/gruvbox.nvim" },
   { "luisiacc/gruvbox-baby" },
   { "preservim/tagbar" },
-  -- { "neoclide/coc.nvim", branch = "release" },
+  { "neoclide/coc.nvim", branch = "release" },
   { "rust-lang/rust.vim" },
   { "OXY2DEV/markview.nvim", lazy = false, },
   { "nvim-lua/plenary.nvim" },
@@ -306,22 +279,22 @@ require("lazy").setup({
 
 
 -- coc.nvim 설정
--- vim.g.coc_global_extensions = {
---   "coc-pyright",       -- Python LSP 서버
---   "coc-tsserver",      -- TypeScript LSP 서버
---   "coc-json",          -- JSON LSP 서버
---   "coc-html",          -- HTML LSP 서버
---   "coc-css",           -- CSS LSP 서버
---   "coc-emmet",         -- emmet LSP 서버
---   "coc-java",          -- JAVA LSP 서버
---   "coc-yaml",          -- YAML LSP 서버
---   "coc-toml",          -- TOML LSP 서버
---   "coc-rust-analyzer", -- TOML LSP 서버
---   "coc-tsserver",      -- TSSERVER
---   "coc-lua",           -- LUA SERVER
--- }
+vim.g.coc_global_extensions = {
+  "coc-pyright",       -- Python LSP 서버
+  "coc-tsserver",      -- TypeScript LSP 서버
+  "coc-json",          -- JSON LSP 서버
+  "coc-html",          -- HTML LSP 서버
+  "coc-css",           -- CSS LSP 서버
+  "coc-emmet",         -- emmet LSP 서버
+  "coc-java",          -- JAVA LSP 서버
+  "coc-yaml",          -- YAML LSP 서버
+  "coc-toml",          -- TOML LSP 서버
+  "coc-rust-analyzer", -- TOML LSP 서버
+  "coc-tsserver",      -- TSSERVER
+  "coc-lua",           -- LUA SERVER
+}
 -- coc 설정
--- vim.g.coc_disable_startup_warning = 1
+vim.g.coc_disable_startup_warning = 1
 
 vim.g.tagbar_type_rust = {
   ctagstype = 'rust',

@@ -115,3 +115,15 @@ if uname =="Linux" then
   }
 end
 
+-- 일반 줄 번호 색상 변경
+vim.api.nvim_set_hl(0, 'LineNr', { fg = '#888888', bold = false }) -- 어두운 회색
+
+-- 현재 줄 번호 색상 변경
+vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#FFFFFF', bold = true }) -- 흰색, 볼드
+
+-- 상대 줄 번호 (relative number) 사용 시 위/아래 줄 번호 색상 변경
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#51B3EC' }) -- 하늘색
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FF6188' }) -- 분홍색
+
+-- 터미널 색상 모드 설정 (RGB 색상 사용 시 필요)
+vim.opt.termguicolors = true

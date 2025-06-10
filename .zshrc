@@ -182,7 +182,7 @@ case "$OS" in
     alias clt="/Users/jakepark/Repos/ShellScripts/change_nvim_lualine_theme.sh"
     alias ctt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_theme.sh"
     alias ctrt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
-    alias s="/Users/jakepark/Repos/Utils/exe/webSearch.exe"
+    alias s="py /Users/jakepark/Repos/Utils/python/webSearch.py"
     alias os="python3 /Users/jakepark/Repos/Utils/python/openSlackChannelDM.py"
     alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
     alias py=python3

@@ -19,13 +19,13 @@ config.initial_rows = 28
 config.window_padding = {
   left = 5,
   right = 5,
-  top = 5,
+  top = 10,
   bottom = 0,
 }
 
-config.window_background_opacity = 0.75
-config.win32_system_backdrop = 'Tabbed' -- "Acrylic", 'Mica', 'Tabbed'
-config.macos_window_background_blur = 20
+config.window_background_opacity = 0.5
+config.win32_system_backdrop = 'Acrylic' -- "Acrylic", 'Mica', 'Tabbed'
+config.macos_window_background_blur = 10
 
 config.text_background_opacity = 1.0
 
