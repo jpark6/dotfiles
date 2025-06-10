@@ -5,7 +5,7 @@ Import-Module -Name PSReadLine
 # Add Cargo bin to $PATH
 $env:Path += ";$HOME\.cargo\bin"
 # Cargo target dir
-$env:CARGO_TARGET_DIR = "$HOME\rust-target"
+# $env:CARGO_TARGET_DIR = "$HOME\rust-target"
 
 # oh-my-posh init pwsh | Invoke-Expression
 # Set-PoshPrompt -Theme mt
@@ -26,7 +26,7 @@ Function CD..... { Set-Location ../../../.. }
 Function CD...... { Set-Location ../../../../.. }
 Function CD_DOWNLOAD { Set-Location d:\WinDirs\Downloads }
 Function CD_SITE { Set-Location d:\Works\Site }
-Function s { py "D:\Workspaces\python\web\webSearchChrome.py" @args }
+# Function s { py "D:\Repos\Utils\python\webSearch.py" @args }
 Function FUNC_RAON_LOGIN { D:\Util\raon_login.ps1 }
 Function DIR_SUM($dir = ".") {
   Get-ChildItem . | 
@@ -60,6 +60,7 @@ Set-Alias raon_login FUNC_RAON_LOGIN
 Set-Alias du DIR_SUM
 Set-Alias brew scoop
 Set-Alias vi nvim
+Set-Alias s D:\Repos\Utils\exe\webSearch.exe
 Set-Alias y yazi
 
 Set-Alias dco docker-compose

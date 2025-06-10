@@ -24,8 +24,9 @@ require("lazy").setup({
   { "ellisonleao/gruvbox.nvim" },
   { "luisiacc/gruvbox-baby" },
   { "preservim/tagbar" },
-  { "neoclide/coc.nvim", branch = "release" },
+  -- { "neoclide/coc.nvim", branch = "release" },
   { "rust-lang/rust.vim" },
+  { "OXY2DEV/markview.nvim", lazy = false, },
   { "nvim-lua/plenary.nvim" },
   {
     "mattn/emmet-vim",
@@ -236,22 +237,22 @@ require("lazy").setup({
 
 
 -- coc.nvim 설정
-vim.g.coc_global_extensions = {
-  "coc-pyright",       -- Python LSP 서버
-  "coc-tsserver",      -- TypeScript LSP 서버
-  "coc-json",          -- JSON LSP 서버
-  "coc-html",          -- HTML LSP 서버
-  "coc-css",           -- CSS LSP 서버
-  "coc-emmet",         -- emmet LSP 서버
-  "coc-java",          -- JAVA LSP 서버
-  "coc-yaml",          -- YAML LSP 서버
-  "coc-toml",          -- TOML LSP 서버
-  "coc-rust-analyzer", -- TOML LSP 서버
-  "coc-tsserver",      -- TSSERVER
-  "coc-lua",           -- LUA SERVER
-}
+-- vim.g.coc_global_extensions = {
+--   "coc-pyright",       -- Python LSP 서버
+--   "coc-tsserver",      -- TypeScript LSP 서버
+--   "coc-json",          -- JSON LSP 서버
+--   "coc-html",          -- HTML LSP 서버
+--   "coc-css",           -- CSS LSP 서버
+--   "coc-emmet",         -- emmet LSP 서버
+--   "coc-java",          -- JAVA LSP 서버
+--   "coc-yaml",          -- YAML LSP 서버
+--   "coc-toml",          -- TOML LSP 서버
+--   "coc-rust-analyzer", -- TOML LSP 서버
+--   "coc-tsserver",      -- TSSERVER
+--   "coc-lua",           -- LUA SERVER
+-- }
 -- coc 설정
-vim.g.coc_disable_startup_warning = 1
+-- vim.g.coc_disable_startup_warning = 1
 
 vim.g.tagbar_type_rust = {
   ctagstype = 'rust',
