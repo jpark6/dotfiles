@@ -17,7 +17,66 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
+    config = function()
+      require("mason").setup()
+      require("mason-lspconfig").setup {
+        ensure_installed = {
+          "lua_ls",
+          "pyright",
+          "rust_analyzer",
+          "kotlin_language_server"
+        }, -- 원하는 언어 LSP
+        automatic_installation = true,
+      }
+
+      local lspconfig = require("lspconfig")
+      local servers = {
+        "lua_ls",
+        "pyright",
+        "rust_analyzer",
+        "kotlin_language_server"
+        }
+
+      for _, server in ipairs(servers) do
+        lspconfig[server].setup {}
+      end
+    end,
+  },
+  -- 자동완성 관련
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+    },
+    config = function()
+      local cmp = require'cmp'
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+        }, {
+          { name = 'buffer' },
+        })
+      })
+    end,
   },
   { "folke/tokyonight.nvim" },
   { "navarasu/onedark.nvim" },
@@ -36,7 +95,17 @@ require("lazy").setup({
     end,
   },
   { "akinsho/toggleterm.nvim", version = "*", config = true},
-  { "nvim-treesitter/nvim-treesitter"  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = { "lua", "python", "rust", "java", "kotlin", "json", "html", "css", "javascript", "tsx" }, -- 원하는 언어
+        highlight = { enable = true },
+        indent = { enable = true },
+      }
+    end,
+  },
   { "lewis6991/gitsigns.nvim"  },
   -- 📁 파일 탐색기 + 아이콘
   {
@@ -54,7 +123,7 @@ require("lazy").setup({
     config = function()
       require("lualine").setup {
         options = {
-          theme = "everforest",
+          theme = "powerline_dark",
           icons_enabled = true,
           section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },

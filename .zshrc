@@ -20,6 +20,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="ys"
 ZSH_THEME="headline"
+# ZSH_THEME="random"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -183,7 +184,8 @@ case "$OS" in
     alias ctrt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
     alias s="python3 /Users/jakepark/Repos/Utils/python/webSearch.py"
     alias os="python3 /Users/jakepark/Repos/Utils/python/openSlackChannelDM.py"
-    alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
+    alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
+    alias py=python3
     source ~/venv/bin/activate
     ;;
   "linux")
@@ -225,7 +227,7 @@ case "$OS" in
     alias kts=/home/ubuntu/util/killTmuxSession.sh
     alias s="py.exe D:/Workspaces/python/web/webSearchChrome.py"
     alias os="py.exe D:/Workspaces/python/web/openSlackChannelDM.py"
-    alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
+    alias dcup="cd /home/ubuntu/docker/wa14-ent && dco up -d && dco logs -f"
     ;;
 esac
 

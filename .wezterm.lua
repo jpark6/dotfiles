@@ -24,9 +24,9 @@ config.window_padding = {
 }
 
 -- or, changing the font size and color scheme.
-config.font = wezterm.font("Hack Nerd Font", {italic = false})
+config.font = wezterm.font("FantasqueSansM Nerd Font", {italic = false})
 config.font_size = 15
-config.color_scheme = "zenburned"
+config.color_scheme = "Zenburn"
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
