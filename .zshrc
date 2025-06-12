@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 case "$OSTYPE" in
   darwin*)
     OS="mac"
@@ -19,9 +26,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="ys"
-ZSH_THEME="headline"
+# ZSH_THEME="headline"
 # ZSH_THEME="random"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -92,6 +99,7 @@ plugins=(
   fzf-tab
   alias-tips
   colored-man-pages
+  # starship
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -262,9 +270,10 @@ eval "$(mcfly init zsh)"
 # fuck
 eval "$(thefuck --alias)"
 
-# starship init
+# starship init zsh
 # export STARSHIP_CONFIG=~/.config/starship.toml
 # eval "$(starship init zsh)"
 # zle -N zle-keymap-select starship_zle-keymap-select
 
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

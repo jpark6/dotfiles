@@ -46,15 +46,15 @@ require("lazy").setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
         }, {
-          { name = 'buffer' },
-        })
+            { name = 'buffer' },
+          })
       })
     end,
   },
-  { "folke/tokyonight.nvim" },
-  { "navarasu/onedark.nvim" },
-  { "ellisonleao/gruvbox.nvim" },
-  { "luisiacc/gruvbox-baby" },
+  -- { "folke/tokyonight.nvim" },
+  -- { "navarasu/onedark.nvim" },
+  -- { "ellisonleao/gruvbox.nvim" },
+  -- { "luisiacc/gruvbox-baby" },
   { "preservim/tagbar" },
   { "neoclide/coc.nvim", branch = "release" },
   { "rust-lang/rust.vim" },
@@ -69,12 +69,14 @@ require("lazy").setup({
     end,
   },
   { "akinsho/toggleterm.nvim", version = "*", config = true},
+  -- 🌈 Treesitter 문법 하이라이팅
   {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
     config = function()
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = { "lua", "python", "rust", "java", "kotlin", "json", "html", "css", "javascript", "tsx" }, -- 원하는 언어
+      require("nvim-treesitter.configs").setup {
+        -- ensure_installed = { "lua", "python", "rust", "java", "kotlin", "json", "html", "css", "javascript", "tsx" }, -- 원하는 언어
+        ensure_installed = all,
         highlight = { enable = true },
         indent = { enable = true },
       }
@@ -99,8 +101,8 @@ require("lazy").setup({
         options = {
           theme = "powerline_dark",
           icons_enabled = true,
-          section_separators = { left = "", right = "" },
-          component_separators = { left = "", right = "" },
+          section_separators = { left = " ", right = " " },
+          component_separators = { left = "", right = "" },
         },
         section = {
           lualine_a = {'mode'}
@@ -163,18 +165,6 @@ require("lazy").setup({
     end,
   },
 
-  -- 🌈 Treesitter 문법 하이라이팅
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup {
-        ensure_installed = "all",
-        highlight = { enable = true },
-        indent = { enable = true },
-      }
-    end,
-  },
   {
     "HiPhish/rainbow-delimiters.nvim",
     config = function()
@@ -275,6 +265,42 @@ require("lazy").setup({
       require("nvim-autopairs").setup {}
     end,
   },
+
+  {
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local alpha = require("alpha")
+      local dashboard = require("alpha.themes.dashboard")
+
+      dashboard.section.header.val = {
+        [[ ███╗   ██╗██╗   ██╗██╗███╗   ███╗]],
+        [[ ████╗  ██║██║   ██║██║████╗ ████║]],
+        [[ ██╔██╗ ██║██║   ██║██║██╔████╔██║]],
+        [[ ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
+        [[ ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║]],
+        [[ ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+      }
+
+      dashboard.section.buttons.val = {
+        dashboard.button("f", "🔍 Find file", ":Telescope find_files<CR>"),
+        dashboard.button("r", "🕘 Recent files", ":Telescope oldfiles<CR>"),
+        dashboard.button("s", "⚙️  Settings", ":e $MYVIMRC<CR>"),
+        dashboard.button("q", "❌ Quit NVIM", ":qa<CR>"),
+      }
+
+      dashboard.section.footer.val = "Ready to code 🚀"
+      alpha.setup(dashboard.opts)
+    end,
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- 최신 버전 사용
+    event = "VeryLazy", -- 느긋하게 로딩
+    config = function()
+      require("nvim-surround").setup({})
+    end
+  }
 })
 
 
