@@ -64,7 +64,7 @@ require("lazy").setup({
     "mattn/emmet-vim",
     ft = { 'html', 'css', 'javascript', 'javascriptreact', 'typescriptreact' }, -- 파일 타입 지정
     init = function()
-      vim.g.user_emmet_leader_key = ','  -- 단축키: Ctrl+y ,
+      vim.g.user_emmet_leader_key = '<C-Z>'  -- 단축키: Ctrl+y ,
       vim.g.user_emmet_mode = 'n'        -- Normal 모드에서만 사용 (필요시 'a'로)
     end,
   },
