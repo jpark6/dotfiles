@@ -7,7 +7,7 @@ map('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-w>t', ':belowright split | term<CR>:resize 10<CR>', { noremap = true, silent = true })
 
 -- Tagbar 설정
-vim.api.nvim_set_keymap('n', '<C-y>', ':TagbarToggle<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<C-y>', ':TagbarToggle<CR>', { noremap = true, silent = true })
 
 -- 기본 설정에서 Emmet 키맵 비활성화
 vim.g.user_emmet_mode = 'inv'  -- Normal, Insert, Visual 모두 비활성화
