@@ -16,7 +16,6 @@ $env:Path += ";$HOME\.cargo\bin"
 # oh-my-posh init pwsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/atomic.omp.json | Invoke-Expression
 # oh-my-posh init pwsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/night-owl.omp.json | Invoke-Expression
 
-
 # Custom Function
 Function EZA_AL { eza -al --icons --git }
 Function CD.. { Set-Location .. }
@@ -42,7 +41,7 @@ Function DIR_SUM($dir = ".") {
 
 # Custom Alias
 if ( Test-Path Alias:ls ) { Remove-Item Alias:/ls }
-Set-Alias ls lsd
+Set-Alias ls eza
 Set-Alias l EZA_AL
 Set-Alias ll EZA_AL
 Set-Alias .. CD..
@@ -72,12 +71,12 @@ Import-Module -Name Terminal-Icons
 # Set VI Edit Mode in prompt
 Set-PSReadLineOption -EditMode vi
 Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineOption -PredictionViewStyle InlineView
 # replace built-in scoop search to scoop-search
 Invoke-Expression (&scoop-search --hook)
 # set zoxide init
 Invoke-Expression ((&zoxide init powershell) -join "`n")
 # set starship init
-Invoke-Expression (& 'C:\Users\banseok\.cargo\bin\starship.exe' init powershell --print-full-init | Out-String)
+Invoke-Expression (&starship init powershell --print-full-init | Out-String)
 Invoke-Expression -Command $(mcfly init powershell | Out-String)
 
