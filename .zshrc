@@ -264,7 +264,7 @@ export LD_LIBRARY_PATH=$JAVA_HOME/lib/server:$LD_LIBRARY_PATH
 eval "$(zoxide init zsh)"
 # mcfly settings
 export MCFLY_KEY_SCHEME=vim
-export MCFLY_INTERFACE_VIEW=BOTTOM   # TOP | BOTTOM
+export MCFLY_INTERFACE_VIEW=TOP   # TOP | BOTTOM
 # export MCFLY_RESULTS=30
 eval "$(mcfly init zsh)"
 # fuck
