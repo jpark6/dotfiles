@@ -23,16 +23,16 @@ config.window_padding = {
   bottom = 0,
 }
 
-config.window_background_opacity = 0.1
+config.window_background_opacity = 1.68
 config.win32_system_backdrop = 'Acrylic' -- "Acrylic", 'Mica', 'Tabbed'
-config.macos_window_background_blur = 28
+config.macos_window_background_blur = 8
 
 config.text_background_opacity = 1.0
 
 -- or, changing the font size and color scheme.
-config.font = wezterm.font("CaskaydiaCove Nerd Font", {italic = false})
+config.font = wezterm.font("Mononoki Nerd Font", {italic = false})
 config.font_size = 14
-config.color_scheme = "ChallengerDeep"
+config.color_scheme = "zenburned"
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
