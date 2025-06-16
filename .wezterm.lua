@@ -24,7 +24,7 @@ config.window_padding = {
 }
 
 config.window_background_opacity = 1.68
-config.win32_system_backdrop = 'Acrylic' -- "Acrylic", 'Mica', 'Tabbed'
+-- config.win32_system_backdrop = 'Acrylic' -- "Acrylic", 'Mica', 'Tabbed'
 config.macos_window_background_blur = 8
 
 config.text_background_opacity = 1.0
