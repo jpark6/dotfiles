@@ -138,25 +138,25 @@ require("lazy").setup({
           -- 현재 선택된 버퍼 (활성 버퍼)
           buffer_selected = {
             fg = '#ffffff',        -- 텍스트 색상 (흰색)
-            bg = '#0087af',        -- 배경 색상 (파란색)
+            bg = '#88C0D0',        -- 배경 색상 (파란색)
             bold = true,
             italic = false,
           },
           -- 현재 버퍼가 수정된 경우
           modified_selected = {
             fg = '#ff9e64',        -- 주황색
-            bg = '#0087af',
+            bg = '#88C0D0',
             bold = true,
           },
           -- 현재 버퍼의 구분자
           separator_selected = {
-            fg = '#0087af',
+            fg = '#88C0D0',
             bg = '#1a1b26',        -- 배경과 맞춤
           },
           -- 현재 버퍼의 닫기 버튼
           close_button_selected = {
             fg = '#f7768e',        -- 빨간색
-            bg = '#0087af',
+            bg = '#88C0D0',
           },
         }
       }
