@@ -5,13 +5,22 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-case "$OSTYPE" in
-  darwin*)
-    OS="mac"
-    ;;
-  *)
-    OS="linux"
-    ;;
+uname_out="$(uname -s)"
+
+case "${uname_out}" in
+    Linux*)
+        if grep -qi microsoft /proc/version 2>/dev/null; then
+            OS="WSL"
+        else
+            OS="Linux"
+        fi
+        ;;
+    Darwin*)
+        OS="macOS"
+        ;;
+    *)
+        OS="Unknown"
+        ;;
 esac
 
 # If you come from bash you might have to change your $PATH.
@@ -174,7 +183,29 @@ alias mk="minikube"
 
 
 case "$OS" in
-  "mac")
+  "Linux")
+    alias va='vi /home/jakepark/.config/alacritty/alacritty.toml'
+    alias vw='vi /home/jakepark/.wezterm.lua'
+    alias vs='vi /home/jakepark/.config/starship.toml'
+    alias cwrt="/home/jakepark/Repos/ShellScripts/change_wezterm_random_theme.sh"
+    alias cwt="/home/jakepark/Repos/ShellScripts/change_wezterm_theme.sh"
+    alias cwf="/home/jakepark/Repos/ShellScripts/change_wezterm_font.sh"
+    alias cart="/home/jakepark/Repos/ShellScripts/change_alacritty_random_theme.sh"
+    alias ct="/home/jakepark/Repos/ShellScripts/change_alacritty_theme.sh"
+    alias ctt="/home/jakepark/d/Repos/ShellScripts/change_tmux_powerline_theme.sh"
+    alias ctrt="/home/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
+    alias cst="/home/jakepark/Repos/ShellScripts/change_starship_theme.sh"
+    alias clrt="/home/jakepark/Repos/ShellScripts/change_nvim_lualine_random_theme.sh"
+    alias clt="/home/jakepark/Repos/ShellScripts/change_nvim_lualine_theme.sh"
+    alias ctt="/home/jakepark/Repos/ShellScripts/change_tmux_powerline_theme.sh"
+    alias ctrt="/home/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
+    alias s="py /home/jakepark/Repos/Utils/python/webSearch.py"
+    alias os="python3 /home/jakepark/Repos/Utils/python/openSlackChannelDM.py"
+    alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
+    alias py=python3
+    # source ~/venv/bin/activate
+    ;;
+  "macOS")
     alias va='vi /Users/jakepark/.config/alacritty/alacritty.toml'
     alias vw='vi /Users/jakepark/.wezterm.lua'
     alias vs='vi /Users/jakepark/.config/starship.toml'
@@ -196,7 +227,7 @@ case "$OS" in
     alias py=python3
     source ~/venv/bin/activate
     ;;
-  "linux")
+  "WSL")
     alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
     alias vw='vi /mnt/c/Users/banseok/.wezterm.lua'
     alias vs='vi /mnt/c/Users/banseok/.config/starship.toml'
