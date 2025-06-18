@@ -135,6 +135,9 @@ require("lazy").setup({
           },
         },
         highlights = {
+          fill = {
+            bg = 'none',
+          },
           -- 현재 선택된 버퍼 (활성 버퍼)
           buffer_selected = {
             fg = '#ffffff',        -- 텍스트 색상 (흰색)
