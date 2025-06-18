@@ -75,7 +75,7 @@ Set-PSReadLineOption -PredictionViewStyle InlineView
 # replace built-in scoop search to scoop-search
 Invoke-Expression (&scoop-search --hook)
 # set zoxide init
-Invoke-Expression ((&zoxide init powershell) -join "`n")
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # set starship init
 Invoke-Expression (&starship init powershell --print-full-init | Out-String)
 Invoke-Expression -Command $(mcfly init powershell | Out-String)
