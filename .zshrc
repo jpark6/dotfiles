@@ -204,6 +204,23 @@ alias s="py $REPO_DIR/Utils/python/webSearch.py"
 alias os="python3 $REPO_DIR/Utils/python/openSlackChannelDM.py"
 alias py=python3
 
+alias va="vi $HOME_DIR/.config/alacritty/alacritty.toml"
+alias vs="vi $HOME_DIR/.config/starship.toml"
+alias vw="vi $HOME_DIR/.wezterm.lua"
+alias cwrt="$REPO_DIR/ShellScripts/change_wezterm_random_theme.sh"
+alias cwt="$REPO_DIR/ShellScripts/change_wezterm_theme.sh"
+alias cwf="$REPO_DIR/ShellScripts/change_wezterm_font.sh"
+alias cart="$REPO_DIR/ShellScripts/change_alacritty_random_theme.sh"
+alias ct="$REPO_DIR/ShellScripts/change_alacritty_theme.sh"
+alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
+alias cst="$REPO_DIR/ShellScripts/change_starship_theme.sh"
+alias clrt="$REPO_DIR/ShellScripts/change_nvim_lualine_random_theme.sh"
+alias clt="$REPO_DIR/ShellScripts/change_nvim_lualine_theme.sh"
+alias ctt="$REPO_DIR/ShellScripts/change_tmux_powerline_theme.sh"
+alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
+alias s="py $REPO_DIR/Utils/python/webSearch.py"
+alias os="py $REPO_DIR/Utils/python/openSlackChannelDM.py"
+alias py=python3
 
 case "$OS" in
   "Linux")
