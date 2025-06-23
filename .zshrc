@@ -210,6 +210,7 @@ case "$OS" in
     alias py=python3
     ;;
   "macOS")
+    alias s="$REPO_DIR/Utils/rust/web_search/target/release/web_search"
     source ~/venv/bin/activate
     ;;
   "WSL")
