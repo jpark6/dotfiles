@@ -11,15 +11,23 @@ case "${uname_out}" in
     Linux*)
         if grep -qi microsoft /proc/version 2>/dev/null; then
             OS="WSL"
+            HOME_DIR="/home/ubuntu"
+            REPO_DIR="/mnt/d/Repos"
         else
             OS="Linux"
+            HOME_DIR="/home/jakepark"
+            REPO_DIR="$HOME_DIR/Repos"
         fi
         ;;
     Darwin*)
         OS="macOS"
+        HOME_DIR="/Users/jakepark"
+        REPO_DIR="$HOME_DIR/Repos"
         ;;
     *)
         OS="Unknown"
+        HOME_DIR="/home/jakepark"
+        REPO_DIR="$HOME_DIR/Repos"
         ;;
 esac
 
@@ -181,56 +189,35 @@ alias dco="docker-compose"
 alias k="kubectl"
 alias mk="minikube"
 
+alias va="vi $HOME_DIR/.config/alacritty/alacritty.toml"
+alias vs="vi $HOME_DIR/.config/starship.toml"
+alias vw="vi $HOME_DIR/.wezterm.lua"
+alias cwrt="$REPO_DIR/ShellScripts/change_wezterm_random_theme.sh"
+alias cwt="$REPO_DIR/ShellScripts/change_wezterm_theme.sh"
+alias cwf="$REPO_DIR/ShellScripts/change_wezterm_font.sh"
+alias cart="$REPO_DIR/ShellScripts/change_alacritty_random_theme.sh"
+alias ct="$REPO_DIR/ShellScripts/change_alacritty_theme.sh"
+alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
+alias cst="$REPO_DIR/ShellScripts/change_starship_theme.sh"
+alias clrt="$REPO_DIR/ShellScripts/change_nvim_lualine_random_theme.sh"
+alias clt="$REPO_DIR/ShellScripts/change_nvim_lualine_theme.sh"
+alias ctt="$REPO_DIR/ShellScripts/change_tmux_powerline_theme.sh"
+alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
+alias s="py $REPO_DIR/Utils/python/webSearch.py"
+alias os="py $REPO_DIR/Utils/python/openSlackChannelDM.py"
+alias py=python3
 
 case "$OS" in
   "Linux")
-    alias va='vi /home/jakepark/.config/alacritty/alacritty.toml'
-    alias vw='vi /home/jakepark/.wezterm.lua'
-    alias vs='vi /home/jakepark/.config/starship.toml'
-    alias cwrt="/home/jakepark/Repos/ShellScripts/change_wezterm_random_theme.sh"
-    alias cwt="/home/jakepark/Repos/ShellScripts/change_wezterm_theme.sh"
-    alias cwf="/home/jakepark/Repos/ShellScripts/change_wezterm_font.sh"
-    alias cart="/home/jakepark/Repos/ShellScripts/change_alacritty_random_theme.sh"
-    alias ct="/home/jakepark/Repos/ShellScripts/change_alacritty_theme.sh"
-    alias ctt="/home/jakepark/d/Repos/ShellScripts/change_tmux_powerline_theme.sh"
-    alias ctrt="/home/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
-    alias cst="/home/jakepark/Repos/ShellScripts/change_starship_theme.sh"
-    alias clrt="/home/jakepark/Repos/ShellScripts/change_nvim_lualine_random_theme.sh"
-    alias clt="/home/jakepark/Repos/ShellScripts/change_nvim_lualine_theme.sh"
-    alias ctt="/home/jakepark/Repos/ShellScripts/change_tmux_powerline_theme.sh"
-    alias ctrt="/home/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
-    alias s="py /home/jakepark/Repos/Utils/python/webSearch.py"
-    alias os="python3 /home/jakepark/Repos/Utils/python/openSlackChannelDM.py"
     alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
     alias py=python3
     # source ~/venv/bin/activate
     ;;
   "macOS")
-    alias va='vi /Users/jakepark/.config/alacritty/alacritty.toml'
-    alias vw='vi /Users/jakepark/.wezterm.lua'
-    alias vs='vi /Users/jakepark/.config/starship.toml'
-    alias cwrt="/Users/jakepark/Repos/ShellScripts/change_wezterm_random_theme.sh"
-    alias cwt="/Users/jakepark/Repos/ShellScripts/change_wezterm_theme.sh"
-    alias cwf="/Users/jakepark/Repos/ShellScripts/change_wezterm_font.sh"
-    alias cart="/Users/jakepark/Repos/ShellScripts/change_alacritty_random_theme.sh"
-    alias ct="/Users/jakepark/Repos/ShellScripts/change_alacritty_theme.sh"
-    alias ctt="/Users/jakepark/d/Repos/ShellScripts/change_tmux_powerline_theme.sh"
-    alias ctrt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
-    alias cst="/Users/jakepark/Repos/ShellScripts/change_starship_theme.sh"
-    alias clrt="/Users/jakepark/Repos/ShellScripts/change_nvim_lualine_random_theme.sh"
-    alias clt="/Users/jakepark/Repos/ShellScripts/change_nvim_lualine_theme.sh"
-    alias ctt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_theme.sh"
-    alias ctrt="/Users/jakepark/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
-    alias s="py /Users/jakepark/Repos/Utils/python/webSearch.py"
-    alias os="python3 /Users/jakepark/Repos/Utils/python/openSlackChannelDM.py"
     alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
-    alias py=python3
     source ~/venv/bin/activate
     ;;
   "WSL")
-    alias va='vi /mnt/c/Users/banseok/AppData/Roaming/alacritty/alacritty.toml'
-    alias vw='vi /mnt/c/Users/banseok/.wezterm.lua'
-    alias vs='vi /mnt/c/Users/banseok/.config/starship.toml'
     alias down="cd /mnt/d/WinDirs/Downloads"
     alias doc="cd /mnt/d/WinDirs/Documents"
     alias desk="cd /mnt/d/WinDirs/Desktop"
@@ -251,19 +238,6 @@ case "$OS" in
     alias cat=bat
     alias duhs="du -hs * | sort -h"
     alias brew=scoop
-    alias cwrt="/mnt/d/Repos/ShellScripts/change_wezterm_random_theme.sh"
-    alias cwt="/mnt/d/Repos/ShellScripts/change_wezterm_theme.sh"
-    alias cwf="/mnt/d/Repos/ShellScripts/change_wezterm_font.sh"
-    alias cart="/mnt/d/Repos/ShellScripts/change_alacritty_random_theme.sh"
-    alias ct="/mnt/d/Repos/ShellScripts/change_alacritty_theme.sh"
-    alias ctt="/mnt/d/Repos/ShellScripts/change_tmux_powerline_theme.sh"
-    alias ctrt="/mnt/d/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
-    alias cst="/mnt/d/Repos/ShellScripts/change_starship_theme.sh"
-    alias clrt="/mnt/d/Repos/ShellScripts/change_nvim_lualine_random_theme.sh"
-    alias clt="/mnt/d/Repos/ShellScripts/change_nvim_lualine_theme.sh"
-    alias ctt="/mnt/d/Repos/ShellScripts/change_tmux_powerline_theme.sh"
-    alias ctrt="/mnt/d/Repos/ShellScripts/change_tmux_powerline_random_theme.sh"
-    alias kts=/home/ubuntu/util/killTmuxSession.sh
     alias s="/mnt/d/Repos/Utils/exe/webSearch.exe"
     alias os="py.exe D:/Repos/Utils/python/openSlackChannelDM.py"
     alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
