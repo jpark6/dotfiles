@@ -41,7 +41,10 @@ libb2
 libevent
 libgit2
 libidn2
+libimobiledevice
+libimobiledevice-glue
 libnghttp2
+libplist
 libpng
 libslirp
 libssh
@@ -50,6 +53,7 @@ libtasn1
 libtiff
 libunistring
 libusb
+libusbmuxd
 libuv
 libx11
 libxau
@@ -86,6 +90,7 @@ pcre2
 pipx
 pixman
 pkgconf
+pnpm
 python@3.11
 python@3.12
 python@3.13
@@ -110,6 +115,7 @@ vde
 webp
 wget
 wimlib
+xcodegen
 xorgproto
 xz
 zsh-autosuggestions

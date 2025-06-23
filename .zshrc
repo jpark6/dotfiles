@@ -5,30 +5,28 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-uname_out="$(uname -s)"
-
-case "${uname_out}" in
-    Linux*)
-        if grep -qi microsoft /proc/version 2>/dev/null; then
-            OS="WSL"
-            HOME_DIR="/home/ubuntu"
-            REPO_DIR="/mnt/d/Repos"
-        else
-            OS="Linux"
-            HOME_DIR="/home/jakepark"
-            REPO_DIR="$HOME_DIR/Repos"
-        fi
-        ;;
-    Darwin*)
-        OS="macOS"
-        HOME_DIR="/Users/jakepark"
-        REPO_DIR="$HOME_DIR/Repos"
-        ;;
-    *)
-        OS="Unknown"
-        HOME_DIR="/home/jakepark"
-        REPO_DIR="$HOME_DIR/Repos"
-        ;;
+case "$(uname -s)" in
+  Linux*)
+    if grep -qi microsoft /proc/version 2>/dev/null; then
+      OS="WSL"
+      HOME_DIR="/mnt/c/Users/banseok"
+      REPO_DIR="/mnt/d/Repos"
+    else
+      OS="Linux"
+      HOME_DIR="/home/jakepark"
+      REPO_DIR="/home/jakepark/Repos"
+    fi
+    ;;
+  Darwin*)
+    OS="macOS"
+    HOME_DIR="/Users/jakepark"
+    REPO_DIR="/Users/jakepark/Repos"
+    ;;
+  *)
+    OS="Unknown"
+    HOME_DIR="/home/jakepark"
+    REPO_DIR="/home/jakepark/Repos"
+    ;;
 esac
 
 # If you come from bash you might have to change your $PATH.
@@ -152,8 +150,8 @@ dcul() {
 zrank() {
   zoxide query -l | grep "$(pwd)" | awk '{print $1}'
 }
-zjump() {
 
+zjump() {
   local dir
   dir=$(zoxide query -l | fzf --tac) && cd "$dir"
 }
@@ -188,6 +186,23 @@ alias y=yazi
 alias dco="docker-compose"
 alias k="kubectl"
 alias mk="minikube"
+alias va="vi $HOME_DIR/.config/alacritty/alacritty.toml"
+alias vw="vi $HOME_DIR/.wezterm.lua"
+alias vs="vi $HOME_DIR/.config/starship.toml"
+alias cwrt="$REPO_DIR/ShellScripts/change_wezterm_random_theme.sh"
+alias cwt="$REPO_DIR/ShellScripts/change_wezterm_theme.sh"
+alias cwf="$REPO_DIR/ShellScripts/change_wezterm_font.sh"
+alias cart="$REPO_DIR/ShellScripts/change_alacritty_random_theme.sh"
+alias ct="$REPO_DIR/ShellScripts/change_alacritty_theme.sh"
+alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
+alias cst="$REPO_DIR/ShellScripts/change_starship_theme.sh"
+alias clrt="$REPO_DIR/ShellScripts/change_nvim_lualine_random_theme.sh"
+alias clt="$REPO_DIR/ShellScripts/change_nvim_lualine_theme.sh"
+alias ctt="$REPO_DIR/ShellScripts/change_tmux_powerline_theme.sh"
+alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
+alias s="py $REPO_DIR/Utils/python/webSearch.py"
+alias os="python3 $REPO_DIR/Utils/python/openSlackChannelDM.py"
+alias py=python3
 
 alias va="vi $HOME_DIR/.config/alacritty/alacritty.toml"
 alias vs="vi $HOME_DIR/.config/starship.toml"
@@ -209,12 +224,9 @@ alias py=python3
 
 case "$OS" in
   "Linux")
-    alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
     alias py=python3
-    # source ~/venv/bin/activate
     ;;
   "macOS")
-    alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
     source ~/venv/bin/activate
     ;;
   "WSL")
@@ -240,7 +252,6 @@ case "$OS" in
     alias brew=scoop
     alias s="/mnt/d/Repos/Utils/exe/webSearch.exe"
     alias os="py.exe D:/Repos/Utils/python/openSlackChannelDM.py"
-    alias dcup="cd ~/Workspaces/docker/wa14-ent && dco up -d && dco logs -f"
     ;;
 esac
 

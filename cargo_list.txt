@@ -11,6 +11,8 @@ cargo-tree v0.29.0:
     cargo-tree
 cargo-watch v8.5.3:
     cargo-watch
+create-tauri-app v4.6.0:
+    cargo-create-tauri-app
 du-dust v1.2.0:
     dust
 eza v0.21.3:

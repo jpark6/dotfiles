@@ -23,44 +23,191 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
   },
+  {
+    "williamboman/mason.nvim",
+    lazy = false, -- Neovim 시작 시 바로 로드되도록 설정 (LSP 서버 설치에 필요)
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "jdtls",
+          "pyright",
+          "ts_ls",
+          "jsonls",
+          "html",
+          "cssls",
+          "rust_analyzer",
+          "yamlls",
+          "lua_ls",
+          "bashls",
+          "emmet_ls"
+        },
+
+        -- `handlers`는 LSP 서버가 설치된 후 `lspconfig`에 어떻게 연결될지 정의합니다.
+        -- 기존에 설정한 lspconfig는 여기에 포함시키지 않도록 주의합니다.
+        -- 아래 handler는 JDTLS에 필요한 on_attach를 호출합니다.
+        handlers = {
+            function(server_name)
+                require("lspconfig")[server_name].setup({})
+            end,
+            -- ["jdtls"] = function()
+            --     -- JDTLS는 특별한 설정이 필요하므로, 별도로 setup을 호출합니다.
+            --     -- 아래 JDTLS 설정 섹션을 참고하세요.
+            --     require("lspconfig").jdtls.setup(require("your_config_file_name.jdtls_config").opts)
+            -- end,
+        },
+        automatic_enable = ture,
+      })
+    end,
+  },
   -- 자동완성 관련
   {
     'hrsh7th/nvim-cmp',
+    event = "InsertEnter",
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind.nvim',
     },
     config = function()
       local cmp = require'cmp'
+      local luasnip = require('luasnip')
+      local lspkind = require('lspkind')
       cmp.setup({
         snippet = {
           expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ['<Tab>'] = cmp.mapping.select_next_item(),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            local luasnip = require('luasnip') -- 함수 내에서 다시 require
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            local luasnip = require('luasnip') -- 함수 내에서 다시 require
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-        }, {
-            { name = 'buffer' },
-          })
+          { name = 'buffer' },
+          { name = 'path' },
+        }),
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        formatting = {
+          format = lspkind.cmp_format({
+            with_text = true, -- 텍스트와 아이콘 모두 표시
+            maxwidth = 50,    -- 최대 폭
+            ellipsis_char = '...', -- 말줄임표
+            menu = {
+              buffer = "[buffer]",
+              nvim_lsp = "[LSP]",
+              luasnip = "[Snip]",
+              path = "[path]",
+            },
+          }),
+        },
       })
-    end,
-  },
-  -- { "folke/tokyonight.nvim" },
-  -- { "navarasu/onedark.nvim" },
-  -- { "ellisonleao/gruvbox.nvim" },
-  -- { "luisiacc/gruvbox-baby" },
+      -- 각 언어 서버 설정을 여기에 추가
+      local lspconfig = require('lspconfig')
+
+      lspconfig.pyright.setup({})
+      lspconfig.ts_ls.setup({})
+      lspconfig.jsonls.setup({})
+      lspconfig.html.setup({})
+      lspconfig.cssls.setup({})
+      lspconfig.emmet_ls.setup({
+        filetypes = { 'html', 'css', 'javascriptreact', 'typescriptreact'},
+        init_options = {
+          html = {
+            options = {
+              ['bem.enabled'] = true,
+            }
+          }
+        }
+      })
+      lspconfig.rust_analyzer.setup({})
+      lspconfig.yamlls.setup({})
+      lspconfig.lua_ls.setup({
+          settings = {
+              Lua = {
+                  runtime = {
+                      version = 'LuaJIT',
+                  },
+                  diagnostics = {
+                      globals = {'vim'},
+                  },
+                  workspace = {
+                      library = vim.api.nvim_get_runtime_file("", true),
+                      checkThirdParty = false,
+                  },
+                  telemetry = {
+                      enable = false,
+                  },
+              },
+          },
+        })
+        -- LSP 진단 메시지 하이라이트 설정
+        vim.diagnostic.config({
+          virtual_text = true, -- 줄 끝에 가상 텍스트로 메시지 표시
+          signs = true,        -- sign column에 아이콘 표시
+          update_in_insert = false, -- 삽입 모드 중에는 업데이트 안함
+          severity_sort = true,     -- 심각도에 따라 정렬
+          float = {                 -- 플로팅 창 설정
+            source = true,      -- 항상 소스 표시
+            border = "single",      -- 테두리 스타일
+            focusable = false,      -- 포커스 불가능 (커서 이동 방해 안함)
+          },
+        })
+
+       -- LSP 키 바인딩: 'K'는 문서 hover (에러 메시지 포함)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'Show references' })
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show documentation (including errors)' }) -- 이 부분이 중요!
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
+        vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = 'Format code' })
+        end,
+      },
+  { "folke/tokyonight.nvim" },
+  { "navarasu/onedark.nvim" },
+  { "ellisonleao/gruvbox.nvim" },
+  { "luisiacc/gruvbox-baby" },
   { "preservim/tagbar" },
-  { "neoclide/coc.nvim", branch = "release" },
   { "rust-lang/rust.vim" },
   { "OXY2DEV/markview.nvim", lazy = false, },
   { "nvim-lua/plenary.nvim" },
@@ -79,8 +226,7 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup {
-        -- ensure_installed = { "lua", "python", "rust", "java", "kotlin", "json", "html", "css", "javascript", "tsx" }, -- 원하는 언어
-        ensure_installed = all,
+        ensure_installed = "all",
         highlight = { enable = true },
         indent = { enable = true },
       }
@@ -103,10 +249,10 @@ require("lazy").setup({
     config = function()
       require("lualine").setup {
         options = {
-          theme = "nord",
+          theme = "gruvbox_dark",
           icons_enabled = true,
-          section_separators = { left = "", right = ""},
-          component_separators = { left = "  ", right = "  " },
+          section_separators = { left = "", right = ""},
+          component_separators = { left = "｜", right = "｜" },
         },
       }
     end,
@@ -120,6 +266,7 @@ require("lazy").setup({
       require("bufferline").setup {
         options = {
           mode = "buffers",
+          always_show_bufferline = false,
           separator_style = "thick", -- "slant", "thick", "thin", "padded_slant", "slope"
           show_buffer_close_icons = true,
           show_close_icon = true,
@@ -134,56 +281,56 @@ require("lazy").setup({
             }
           },
         },
-        highlights = {
-          fill = {
-            bg = 'none',
-          },
-          -- 현재 선택된 버퍼 (활성 버퍼)
-          buffer_selected = {
-            fg = '#ffffff',        -- 텍스트 색상 (흰색)
-            bg = '#88C0D0',        -- 배경 색상 (파란색)
-            bold = true,
-            italic = false,
-          },
-          -- 현재 버퍼가 수정된 경우
-          modified_selected = {
-            fg = '#ff9e64',        -- 주황색
-            bg = '#88C0D0',
-            bold = true,
-          },
-          -- 현재 버퍼의 구분자
-          separator_selected = {
-            fg = '#88C0D0',
-            bg = '#1a1b26',        -- 배경과 맞춤
-          },
-          -- 현재 버퍼의 닫기 버튼
-          close_button_selected = {
-            fg = '#f7768e',        -- 빨간색
-            bg = '#88C0D0',
-          },
-        }
+        -- highlights = {
+          -- fill = {
+          --   bg = 'none',
+          -- },
+          -- -- 현재 선택된 버퍼 (활성 버퍼)
+          -- buffer_selected = {
+          --   fg = '#ffffff',        -- 텍스트 색상 (흰색)
+          --   bg = '#88C0D0',        -- 배경 색상 (파란색)
+          --   bold = true,
+          --   italic = false,
+          -- },
+          -- -- 현재 버퍼가 수정된 경우
+          -- modified_selected = {
+          --   fg = '#ff9e64',        -- 주황색
+          --   bg = '#88C0D0',
+          --   bold = true,
+          -- },
+          -- -- 현재 버퍼의 구분자
+          -- separator_selected = {
+          --   fg = '#88C0D0',
+          --   bg = '#1a1b26',        -- 배경과 맞춤
+          -- },
+          -- -- 현재 버퍼의 닫기 버튼
+          -- close_button_selected = {
+          --   fg = '#f7768e',        -- 빨간색
+          --   bg = '#88C0D0',
+          -- },
+        -- }
       }
     end,
   },
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   config = function()
-  --     require("catppuccin").setup {
-  --       flavour = "mocha", -- latte, frappe, macchiato, mocha
-  --       integrations = {
-  --         bufferline = true,
-  --         treesitter = true,
-  --         telescope = true,
-  --         which_key = true,
-  --         gitsigns = true,
-  --         noice = true,
-  --         cmp = true,
-  --       },
-  --     }
-  --   end,
-  -- },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup {
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        integrations = {
+          bufferline = true,
+          treesitter = true,
+          telescope = true,
+          which_key = true,
+          gitsigns = true,
+          noice = true,
+          cmp = true,
+        },
+      }
+    end,
+  },
 
   -- 🔍 검색 기능
   {
@@ -339,25 +486,18 @@ require("lazy").setup({
     end
   }
 })
+-- autocmd
+vim.api.nvim_create_autocmd('CursorHold', {
+  buffer = 0, -- 현재 버퍼에만 적용 (0은 현재 버퍼)
+  callback = function()
+    vim.diagnostic.open_float(nil, { focusable = false })
+  end
+})
 
+-- CursorHoldTime 설정 (디폴트는 4000ms = 4초이므로 너무 길 수 있습니다)
+-- 커서가 멈춰있는 시간을 조절하여 팝업이 뜨는 속도를 조절합니다.
+vim.opt.updatetime = 300
 
--- coc.nvim 설정
-vim.g.coc_global_extensions = {
-  "coc-pyright",       -- Python LSP 서버
-  "coc-tsserver",      -- TypeScript LSP 서버
-  "coc-json",          -- JSON LSP 서버
-  "coc-html",          -- HTML LSP 서버
-  "coc-css",           -- CSS LSP 서버
-  "coc-emmet",         -- emmet LSP 서버
-  "coc-java",          -- JAVA LSP 서버
-  "coc-yaml",          -- YAML LSP 서버
-  "coc-toml",          -- TOML LSP 서버
-  "coc-rust-analyzer", -- TOML LSP 서버
-  "coc-tsserver",      -- TSSERVER
-  "coc-lua",           -- LUA SERVER
-}
--- coc 설정
-vim.g.coc_disable_startup_warning = 1
 
 vim.g.tagbar_type_rust = {
   ctagstype = 'rust',
@@ -455,9 +595,6 @@ vim.opt.fillchars:append({ eob = " " })
 -- clipboard
 vim.opt.clipboard:append("unnamedplus")
 
--- true color와 배경 투명 설정
-vim.cmd [[highlight Normal ctermbg=NONE guibg=NONE]]
-
 -- 파일 타입
 vim.cmd [[
   filetype on
@@ -476,16 +613,6 @@ vim.o.shada = "'100,<50,s10,h"
 -- 커서 스타일 escape 시퀀스를 Vim에 넘김
 vim.opt.guicursor = ""
 
-if vim.fn.has("termguicolors") == 1 then
-  vim.api.nvim_set_option("termguicolors", true)
-end
-
-vim.api.nvim_exec([[
-    let &t_SI = "\e[6 q"  " Insert: bar
-    let &t_EI = "\e[2 q"  " Normal: block
-    let &t_SR = "\e[4 q"  " Replace: underline
-]], false)
-
 vim.api.nvim_set_keymap('n', '<leader>sv', ':luafile $MYVIMRC<CR>', { noremap = true, silent = true })
 
 -- lazyvim 설정 재로딩 함수
@@ -498,13 +625,11 @@ end
 vim.api.nvim_create_user_command("ReloadConfig", reload_lazy_config, {})
 vim.keymap.set("n", "<leader>rl", "<cmd>ReloadConfig<cr>", { noremap = true, silent = true })
 
--- init.lua
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 
--- init.lua 예시
 local uname = vim.loop.os_uname().sysname
 if uname =="Linux" then
   vim.g.clipboard = {
@@ -534,11 +659,51 @@ vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FF6188' }) -- 분홍색
 -- 터미널 색상 모드 설정 (RGB 색상 사용 시 필요)
 vim.opt.termguicolors = true
 
+-- WezTerm 설정 파일의 경로 (환경에 맞게 수정 필요)
+local wezterm_config_path = os.getenv("HOME") .. "/.wezterm.lua"
+-- WezTerm 설정 파일을 읽기 위한 함수
+local function get_wezterm_color_scheme()
+    local file = io.open(wezterm_config_path, "r")
+    if not file then
+        return nil
+    end
+    local content = file:read("*all")
+    io.close(file)
+    local color_scheme = content:match('config%.color_scheme = "([^"]*)"')
+    return color_scheme
+end
+
+-- WezTerm 컬러 스킴 값을 가져오기
+local wezterm_scheme = get_wezterm_color_scheme()
+
+-- Vim 컬러 스킴 설정
+if wezterm_scheme then
+    local lower_scheme = string.lower(wezterm_scheme) -- 소문자로 변환하여 비교
+
+    if lower_scheme:find("light") or lower_scheme:find("day") or lower_scheme:find("latte") then
+        -- 'light','day', 'latte'가 포함되어 있으면 catppuccin-latte로 설정
+        vim.cmd("colorscheme catppuccin-latte")
+        vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#777777', bold = true }) -- 흰색, 볼드
+        print("WezTerm color scheme contains 'light' or 'day'. Vim colorscheme set to catppuccin-latte.")
+    else
+        -- vim.cmd("colorscheme catppuccin-mocha")
+        print("WezTerm color scheme does not contain 'light' or 'day'. Vim colorscheme not changed to catppuccin-latte.")
+    end
+else
+    print("Could not read WezTerm config file or color scheme not found.")
+end
+
+-- true color와 배경 투명 설정
+vim.cmd [[
+  highlight Normal ctermbg=NONE guibg=NONE
+  highlight NormalNC ctermbg=NONE guibg=NONE
+]]
+
+
 --[[
 KeyMaps
 --]]
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
 map('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
@@ -549,8 +714,8 @@ vim.api.nvim_set_keymap('n', '<C-w>t', ':belowright split | term<CR>:resize 10<C
 -- vim.api.nvim_set_keymap('n', '<C-y>', ':TagbarToggle<CR>', { noremap = true, silent = true })
 
 -- 기본 설정에서 Emmet 키맵 비활성화
-vim.g.user_emmet_mode = 'inv'  -- Normal, Insert, Visual 모두 비활성화
-vim.g.user_emmet_leader_key = '<Nop>' -- 기본 키맵 완전히 끔
+-- vim.g.user_emmet_mode = 'inv'  -- Normal, Insert, Visual 모두 비활성화
+-- vim.g.user_emmet_leader_key = '<Nop>' -- 기본 키맵 완전히 끔
 
 
 -- 다음 이전 버퍼
@@ -563,5 +728,5 @@ vim.keymap.set('n', '<C-h>', ':bprev<CR>', { noremap = true, silent = true })
 
 -- 다음 버퍼로 이동
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', { noremap = true, silent = true })
--- 이전 버퍼로 이동 (선택 사항)
+-- 이전 버퍼로 이동
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { noremap = true, silent = true })
