@@ -62,7 +62,7 @@ require("lazy").setup({
             --     require("lspconfig").jdtls.setup(require("your_config_file_name.jdtls_config").opts)
             -- end,
         },
-        automatic_enable = ture,
+        automatic_enable = true,
       })
     end,
   },
@@ -96,7 +96,6 @@ require("lazy").setup({
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
           ['<Tab>'] = cmp.mapping(function(fallback)
-            local luasnip = require('luasnip') -- 함수 내에서 다시 require
             if cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
@@ -249,10 +248,10 @@ require("lazy").setup({
     config = function()
       require("lualine").setup {
         options = {
-          theme = "gruvbox_dark",
+          theme = "onelight",
           icons_enabled = true,
-          section_separators = { left = "", right = ""},
-          component_separators = { left = "｜", right = "｜" },
+          section_separators = { left = "", right = ""},
+          component_separators = { left = "", right = "" },
         },
       }
     end,
@@ -266,8 +265,8 @@ require("lazy").setup({
       require("bufferline").setup {
         options = {
           mode = "buffers",
-          always_show_bufferline = false,
-          separator_style = "thick", -- "slant", "thick", "thin", "padded_slant", "slope"
+          always_show_bufferline = true,
+          separator_style = "thin", -- "slant", "thick", "thin", "padded_slant", "slope"
           show_buffer_close_icons = true,
           show_close_icon = true,
           diagnostics = "nvim_lsp",
@@ -281,34 +280,34 @@ require("lazy").setup({
             }
           },
         },
-        -- highlights = {
-          -- fill = {
-          --   bg = 'none',
-          -- },
-          -- -- 현재 선택된 버퍼 (활성 버퍼)
-          -- buffer_selected = {
-          --   fg = '#ffffff',        -- 텍스트 색상 (흰색)
-          --   bg = '#88C0D0',        -- 배경 색상 (파란색)
-          --   bold = true,
-          --   italic = false,
-          -- },
-          -- -- 현재 버퍼가 수정된 경우
-          -- modified_selected = {
-          --   fg = '#ff9e64',        -- 주황색
-          --   bg = '#88C0D0',
-          --   bold = true,
-          -- },
-          -- -- 현재 버퍼의 구분자
-          -- separator_selected = {
-          --   fg = '#88C0D0',
-          --   bg = '#1a1b26',        -- 배경과 맞춤
-          -- },
-          -- -- 현재 버퍼의 닫기 버튼
-          -- close_button_selected = {
-          --   fg = '#f7768e',        -- 빨간색
-          --   bg = '#88C0D0',
-          -- },
-        -- }
+        highlights = {
+          fill = {
+            bg = 'none',
+          },
+          -- 현재 선택된 버퍼 (활성 버퍼)
+          buffer_selected = {
+            fg = '#ffffff',        -- 텍스트 색상 (흰색)
+            bg = '#88C0D0',        -- 배경 색상 (파란색)
+            bold = true,
+            italic = false,
+          },
+          -- 현재 버퍼가 수정된 경우
+          modified_selected = {
+            fg = '#ff9e64',        -- 주황색
+            bg = '#88C0D0',
+            bold = true,
+          },
+          -- 현재 버퍼의 구분자
+          separator_selected = {
+            fg = '#88C0D0',
+            bg = '#1a1b26',        -- 배경과 맞춤
+          },
+          -- 현재 버퍼의 닫기 버튼
+          close_button_selected = {
+            fg = '#f7768e',        -- 빨간색
+            bg = '#88C0D0',
+          },
+        }
       }
     end,
   },

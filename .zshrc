@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 case "$(uname -s)" in
   Linux*)
@@ -43,7 +43,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="ys"
 # ZSH_THEME="headline"
 # ZSH_THEME="random"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -209,6 +209,7 @@ alias vs="vi $HOME_DIR/.config/starship.toml"
 alias vw="vi $HOME_DIR/.wezterm.lua"
 alias cwrt="$REPO_DIR/ShellScripts/change_wezterm_random_theme.sh"
 alias cwt="$REPO_DIR/ShellScripts/change_wezterm_theme.sh"
+alias cwrf="$REPO_DIR/ShellScripts/change_wezterm_random_font.sh"
 alias cwf="$REPO_DIR/ShellScripts/change_wezterm_font.sh"
 alias cart="$REPO_DIR/ShellScripts/change_alacritty_random_theme.sh"
 alias ct="$REPO_DIR/ShellScripts/change_alacritty_theme.sh"
@@ -228,7 +229,7 @@ case "$OS" in
     ;;
   "macOS")
     alias s="$REPO_DIR/Utils/rust/web_search/target/release/web_search"
-    source ~/venv/bin/activate
+    # source ~/venv/bin/activate
     ;;
   "WSL")
     alias down="cd /mnt/d/WinDirs/Downloads"
@@ -289,8 +290,8 @@ eval "$(thefuck --alias)"
 
 # starship init zsh
 # export STARSHIP_CONFIG=~/.config/starship.toml
-# eval "$(starship init zsh)"
-# zle -N zle-keymap-select starship_zle-keymap-select
+eval "$(starship init zsh)"
+zle -N zle-keymap-select starship_zle-keymap-select
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
