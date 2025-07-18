@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 case "$(uname -s)" in
   Linux*)
@@ -13,19 +13,19 @@ case "$(uname -s)" in
       REPO_DIR="/mnt/d/Repos"
     else
       OS="Linux"
-      HOME_DIR="/home/jakepark"
-      REPO_DIR="/home/jakepark/Repos"
+      HOME_DIR="$HOME"
+      REPO_DIR="$HOME/Repos"
     fi
     ;;
   Darwin*)
     OS="macOS"
-    HOME_DIR="/Users/jakepark"
-    REPO_DIR="/Users/jakepark/Repos"
+    HOME_DIR="$HOME"
+    REPO_DIR="$HOME/Repos"
     ;;
   *)
     OS="Unknown"
-    HOME_DIR="/home/jakepark"
-    REPO_DIR="/home/jakepark/Repos"
+    HOME_DIR="$HOME"
+    REPO_DIR="$HOME/Repos"
     ;;
 esac
 
@@ -43,7 +43,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="ys"
 # ZSH_THEME="headline"
 # ZSH_THEME="random"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -229,7 +229,9 @@ case "$OS" in
     ;;
   "macOS")
     alias s="$REPO_DIR/Utils/rust/web_search/target/release/web_search"
+    alias os="$REPO_DIR/Utils/rust/open_slack_channel/target/release/open_slack_channel"
     # source ~/venv/bin/activate
+    neofetch
     ;;
   "WSL")
     alias down="cd /mnt/d/WinDirs/Downloads"
@@ -290,8 +292,8 @@ eval "$(thefuck --alias)"
 
 # starship init zsh
 # export STARSHIP_CONFIG=~/.config/starship.toml
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 zle -N zle-keymap-select starship_zle-keymap-select
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

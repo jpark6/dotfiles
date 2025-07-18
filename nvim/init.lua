@@ -208,7 +208,7 @@ require("lazy").setup({
   { "luisiacc/gruvbox-baby" },
   { "preservim/tagbar" },
   { "rust-lang/rust.vim" },
-  { "OXY2DEV/markview.nvim", lazy = false, },
+  -- { "OXY2DEV/markview.nvim", lazy = false, },
   { "nvim-lua/plenary.nvim" },
   {
     "mattn/emmet-vim",
@@ -250,8 +250,8 @@ require("lazy").setup({
         options = {
           theme = "onelight",
           icons_enabled = true,
-          section_separators = { left = "", right = ""},
-          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = ""},
+          component_separators = { left = "", right = "" },
         },
       }
     end,
