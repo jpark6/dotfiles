@@ -171,22 +171,22 @@ RUN_APP(exeName, pathName) {
   return
 }
 
-^!]:: Run "C:\Users\banseok\AppData\Local\Microsoft\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\WsaClient.exe /launch wsa://io.fooding.customerapp"
-^!a:: ACTIVE_OR_OPEN_APP("alacritty.exe", "C:\Users\banseok\scoop\apps\alacritty\current")
+^!]:: Run "C:\Users\qkstj\AppData\Local\Microsoft\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\WsaClient.exe /launch wsa://io.fooding.customerapp"
+^!a:: ACTIVE_OR_OPEN_APP("alacritty.exe", "C:\Users\qkstj\scoop\apps\alacritty\current")
 ^!c:: ACTIVE_OR_OPEN_APP("chrome.exe", "C:\Program Files\Google\Chrome\Application")
-^!d:: ACTIVE_OR_OPEN_APP("dbeaver.exe", "C:\Users\banseok\scoop\apps\dbeaver\current")
-^!f:: ACTIVE_OR_OPEN_APP("firefox.exe", "C:\Users\banseok\scoop\apps\firefox\current")
-^!j:: RUN_APP("idea64.exe", "C:\Users\banseok\scoop\apps\idea\current\IDE\bin")
-^!k:: ACTIVE_OR_OPEN_APP("KakaoTalk.exe", "C:\Users\banseok\scoop\apps\kakaotalk\current")
-^!m:: ACTIVE_OR_OPEN_APP("thunderbird.exe", "C:\Program Files\Mozilla Thunderbird")
-^!n:: ACTIVE_OR_OPEN_APP("Notion.exe", "C:\Users\banseok\scoop\apps\notion\current")
-^!o:: ACTIVE_OR_OPEN_APP("Obsidian.exe", "C:\Users\banseok\scoop\apps\obsidian\current")
-^!p:: RUN_APP("sumatrapdf.exe", "C:\Users\banseok\scoop\apps\sumatrapdf\current")
+^!d:: ACTIVE_OR_OPEN_APP("dbeaver.exe", "C:\Users\qkstj\scoop\apps\dbeaver\current")
+^!f:: ACTIVE_OR_OPEN_APP("firefox.exe", "C:\Users\qkstj\scoop\apps\firefox\current")
+^!j:: RUN_APP("idea64.exe", "C:\Users\qkstj\scoop\apps\idea\current\IDE\bin")
+^!k:: ACTIVE_OR_OPEN_APP("KakaoTalk.exe", "C:\Users\qkstj\scoop\apps\kakaotalk\current")
+^!m:: ACTIVE_OR_OPEN_APP("thunderbird.exe", "C:\Users\qkstj\scoop\apps\thunderbird\current\")
+^!n:: ACTIVE_OR_OPEN_APP("Notion.exe", "C:\Users\qkstj\scoop\apps\notion\current")
+^!o:: ACTIVE_OR_OPEN_APP("Obsidian.exe", "C:\Users\qkstj\scoop\apps\obsidian\current")
+^!p:: RUN_APP("sumatrapdf.exe", "C:\Users\qkstj\scoop\apps\sumatrapdf\current")
 ^!r:: RUN_APP("raonMessenger.exe", "D:\Program Files\RaonsecureMessenger")
-^!s:: ACTIVE_OR_OPEN_APP("slack.exe", "C:\Users\banseok\AppData\Local\slack")
-^!t:: ACTIVE_OR_OPEN_APP("wezterm-gui.exe", "C:\Users\banseok\scoop\apps\wezterm\current")
-^!v:: ACTIVE_OR_OPEN_APP("Code.exe", "C:\Users\banseok\AppData\Local\Programs\Microsoft VS Code")
-^!w:: ACTIVE_OR_OPEN_APP("warp.exe", "C:\Users\banseok\AppData\Local\Programs\Warp")
-; ^!w:: RUN_APP("launcher.exe", "C:\Users\banseok\scoop\apps\opera-gx\current")
+^!s:: ACTIVE_OR_OPEN_APP("slack.exe", "C:\Users\qkstj\AppData\Local\slack")
+^!t:: ACTIVE_OR_OPEN_APP("wezterm-gui.exe", "C:\Users\qkstj\scoop\apps\wezterm\current")
+^!v:: ACTIVE_OR_OPEN_APP("Code.exe", "C:\Users\qkstj\AppData\Local\Programs\Microsoft VS Code")
+^!w:: ACTIVE_OR_OPEN_APP("warp.exe", "C:\Users\qkstj\AppData\Local\Programs\Warp")
+; ^!w:: RUN_APP("launcher.exe", "C:\Users\qkstj\scoop\apps\opera-gx\current")
 ; ^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")
-#e:: ACTIVE_OR_OPEN_APP("XYplorerFree.exe","C:\Users\banseok\scoop\apps\xyplorer\current") ; Win + E 입력 시, xyplorer 실행 
+#e:: ACTIVE_OR_OPEN_APP("XYplorerFree.exe","C:\Users\qkstj\scoop\apps\xyplorer\current") ; Win + E 입력 시, xyplorer 실행 

@@ -9,7 +9,7 @@ case "$(uname -s)" in
   Linux*)
     if grep -qi microsoft /proc/version 2>/dev/null; then
       OS="WSL"
-      HOME_DIR="/mnt/c/Users/banseok"
+      HOME_DIR="/mnt/c/Users/qkstj"
       REPO_DIR="/mnt/d/Repos"
     else
       OS="Linux"
@@ -192,6 +192,7 @@ alias vs="vi $HOME_DIR/.config/starship.toml"
 alias cwrt="$REPO_DIR/ShellScripts/change_wezterm_random_theme.sh"
 alias cwt="$REPO_DIR/ShellScripts/change_wezterm_theme.sh"
 alias cwf="$REPO_DIR/ShellScripts/change_wezterm_font.sh"
+alias cwrf="$REPO_DIR/ShellScripts/change_wezterm_random_font.sh"
 alias cart="$REPO_DIR/ShellScripts/change_alacritty_random_theme.sh"
 alias ct="$REPO_DIR/ShellScripts/change_alacritty_theme.sh"
 alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
@@ -225,12 +226,15 @@ alias py=python3
 case "$OS" in
   "Linux")
     alias py=python3
+    fastfetch
     ;;
   "macOS")
     alias s="$REPO_DIR/Utils/rust/web_search/target/release/web_search"
     source ~/venv/bin/activate
+    neofetch
     ;;
   "WSL")
+    fastfetch
     alias down="cd /mnt/d/WinDirs/Downloads"
     alias doc="cd /mnt/d/WinDirs/Documents"
     alias desk="cd /mnt/d/WinDirs/Desktop"

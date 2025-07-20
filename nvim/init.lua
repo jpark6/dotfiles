@@ -36,7 +36,6 @@ require("lazy").setup({
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "jdtls",
           "pyright",
           "ts_ls",
           "jsonls",
@@ -46,7 +45,7 @@ require("lazy").setup({
           "yamlls",
           "lua_ls",
           "bashls",
-          "emmet_ls"
+          "emmet_ls",
         },
 
         -- `handlers`는 LSP 서버가 설치된 후 `lspconfig`에 어떻게 연결될지 정의합니다.
@@ -149,7 +148,7 @@ require("lazy").setup({
       lspconfig.html.setup({})
       lspconfig.cssls.setup({})
       lspconfig.emmet_ls.setup({
-        filetypes = { 'html', 'css', 'javascriptreact', 'typescriptreact'},
+        filetypes = { 'html', 'css', 'javascriptreact', 'typescriptreact', 'jsp'},
         init_options = {
           html = {
             options = {
@@ -229,6 +228,24 @@ require("lazy").setup({
         ensure_installed = "all",
         highlight = { enable = true },
         indent = { enable = true },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+          },
+        },
+        textobjects = {
+          move = {
+            enable = true,
+            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
+            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
+            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
+            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+          },
+        },
       }
     end,
   },
@@ -249,10 +266,10 @@ require("lazy").setup({
     config = function()
       require("lualine").setup {
         options = {
-          theme = "gruvbox_dark",
+          theme = "onelight",
           icons_enabled = true,
           section_separators = { left = "", right = ""},
-          component_separators = { left = "｜", right = "｜" },
+          component_separators = { left = "", right = "" },
         },
       }
     end,
@@ -660,7 +677,8 @@ vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FF6188' }) -- 분홍색
 vim.opt.termguicolors = true
 
 -- WezTerm 설정 파일의 경로 (환경에 맞게 수정 필요)
-local wezterm_config_path = os.getenv("HOME") .. "/.wezterm.lua"
+-- local wezterm_config_path = os.getenv("HOME") .. "/.wezterm.lua"
+local wezterm_config_path = "/mnt/c/Users/banseok/.wezterm.lua"
 -- WezTerm 설정 파일을 읽기 위한 함수
 local function get_wezterm_color_scheme()
     local file = io.open(wezterm_config_path, "r")
