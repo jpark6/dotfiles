@@ -25,12 +25,12 @@ config.window_padding = {
 
 config.window_background_opacity = 1.80
 -- config.win32_system_backdrop = 'Acrylic' -- "Acrylic", 'Mica', 'Tabbed'
-config.macos_window_background_blur = 40
+config.macos_window_background_blur = 0
 
 config.text_background_opacity = 1.0
 
 -- or, changing the font size and color scheme.
-config.font = wezterm.font("BitstromWera Nerd Font", {italic = false})
+config.font = wezterm.font("MesloLGSDZ Nerd Font", {italic = false})
 config.font_size = 14
 config.color_scheme = "onedark"
 
