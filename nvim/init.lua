@@ -208,7 +208,7 @@ require("lazy").setup({
   { "luisiacc/gruvbox-baby" },
   { "preservim/tagbar" },
   { "rust-lang/rust.vim" },
-  { "OXY2DEV/markview.nvim", lazy = false, },
+  -- { "OXY2DEV/markview.nvim", lazy = false, },
   { "nvim-lua/plenary.nvim" },
   {
     "mattn/emmet-vim",
@@ -629,8 +629,20 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 
-local uname = vim.loop.os_uname().sysname
-if uname =="Linux" then
+local function is_wsl()
+    -- Check /proc/version for "Microsoft"
+    local f = io.open("/proc/version", "r")
+    if f then
+        local version = f:read("*all")
+        f:close()
+        if version:match("Microsoft") then
+            return true
+        end
+    end
+    return false
+end
+
+if is_wsl() then
   vim.g.clipboard = {
     name = "win32yank",
     copy = {
@@ -644,6 +656,7 @@ if uname =="Linux" then
     cache_enabled = true,
   }
 end
+
 
 -- 일반 줄 번호 색상 변경
 vim.api.nvim_set_hl(0, 'LineNr', { fg = '#888888', bold = false }) -- 어두운 회색
@@ -683,10 +696,6 @@ if wezterm_scheme then
         -- 'light','day', 'latte'가 포함되어 있으면 catppuccin-latte로 설정
         vim.cmd("colorscheme catppuccin-latte")
         vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#777777', bold = true }) -- 흰색, 볼드
-        print("WezTerm color scheme contains 'light' or 'day'. Vim colorscheme set to catppuccin-latte.")
-    else
-        -- vim.cmd("colorscheme catppuccin-mocha")
-        print("WezTerm color scheme does not contain 'light' or 'day'. Vim colorscheme not changed to catppuccin-latte.")
     end
 else
     print("Could not read WezTerm config file or color scheme not found.")

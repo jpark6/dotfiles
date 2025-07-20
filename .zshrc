@@ -226,6 +226,8 @@ alias py=python3
 case "$OS" in
   "Linux")
     alias py=python3
+    alias s="$REPO_DIR/Utils/rust/web_search/target/release/web_search"
+    fastfetch
     ;;
   "macOS")
     alias s="$REPO_DIR/Utils/rust/web_search/target/release/web_search"
