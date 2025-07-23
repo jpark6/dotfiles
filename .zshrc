@@ -205,39 +205,17 @@ alias s="py $REPO_DIR/Utils/python/webSearch.py"
 alias os="python3 $REPO_DIR/Utils/python/openSlackChannelDM.py"
 alias py=python3
 
-alias va="vi $HOME_DIR/.config/alacritty/alacritty.toml"
-alias vs="vi $HOME_DIR/.config/starship.toml"
-alias vw="vi $HOME_DIR/.wezterm.lua"
-alias cwrt="$REPO_DIR/ShellScripts/change_wezterm_random_theme.sh"
-alias cwt="$REPO_DIR/ShellScripts/change_wezterm_theme.sh"
-alias cwrf="$REPO_DIR/ShellScripts/change_wezterm_random_font.sh"
-alias cwf="$REPO_DIR/ShellScripts/change_wezterm_font.sh"
-alias cart="$REPO_DIR/ShellScripts/change_alacritty_random_theme.sh"
-alias ct="$REPO_DIR/ShellScripts/change_alacritty_theme.sh"
-alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
-alias cst="$REPO_DIR/ShellScripts/change_starship_theme.sh"
-alias clrt="$REPO_DIR/ShellScripts/change_nvim_lualine_random_theme.sh"
-alias clt="$REPO_DIR/ShellScripts/change_nvim_lualine_theme.sh"
-alias ctt="$REPO_DIR/ShellScripts/change_tmux_powerline_theme.sh"
-alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
-alias s="py $REPO_DIR/Utils/python/webSearch.py"
-alias os="py $REPO_DIR/Utils/python/openSlackChannelDM.py"
-alias py=python3
-
 case "$OS" in
   "Linux")
     alias py=python3
     alias s="$REPO_DIR/Utils/rust/web_search/target/release/web_search"
-    fastfetch
     ;;
   "macOS")
     alias s="$REPO_DIR/Utils/rust/web_search/target/release/web_search"
     # source ~/venv/bin/activate
     alias os="$REPO_DIR/Utils/rust/open_slack_channel/target/release/open_slack_channel"
-    neofetch
     ;;
   "WSL")
-    fastfetch
     alias down="cd /mnt/d/WinDirs/Downloads"
     alias doc="cd /mnt/d/WinDirs/Documents"
     alias desk="cd /mnt/d/WinDirs/Desktop"
@@ -246,7 +224,7 @@ case "$OS" in
     alias work="cd /mnt/d/Works"
     alias site="cd /mnt/d/Works/Site"
     alias money="cd /mnt/d/Works/money"
-    alias open="explorer.exe"
+    alias open="xdg-open"
     alias cmd=cmd.exe
     alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
     alias alacritty=alacritty.exe
@@ -258,8 +236,9 @@ case "$OS" in
     alias cat=bat
     alias duhs="du -hs * | sort -h"
     alias brew=scoop
-    alias s="/mnt/d/Repos/Utils/exe/webSearch.exe"
-    alias os="py.exe D:/Repos/Utils/python/openSlackChannelDM.py"
+    alias scoop-search=scoop-search.exe
+    alias s="/mnt/d/Repos/Utils/rust/web_search/target/release/web_search"
+    alias os="/mnt/d/Repos/Utils/rust/open_slack_channel/target/release/open_slack_channel"
     ;;
 esac
 
@@ -301,3 +280,6 @@ zle -N zle-keymap-select starship_zle-keymap-select
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+fastfetch
