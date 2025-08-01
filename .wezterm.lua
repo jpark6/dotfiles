@@ -6,6 +6,7 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices.
 
+config.enable_wayland = false
 -- Set default program to WSL If OS is Windows 
 if wezterm.target_triple:find("windows") then
   config.default_prog = { "wsl.exe" }
@@ -17,22 +18,22 @@ config.initial_rows = 28
 
 -- Set padding in pixels
 config.window_padding = {
-  left = 5,
-  right = 5,
-  top = 10,
+  left = 0,
+  right = 0,
+  top = 0,
   bottom = 0,
 }
 
-config.window_background_opacity = 1.80
--- config.win32_system_backdrop = 'Acrylic' -- "Acrylic", 'Mica', 'Tabbed'
+config.window_background_opacity = 0.80
+-- config.win32_system_backdrop = 'Mica' -- "Acrylic", 'Mica', 'Tabbed'
 config.macos_window_background_blur = 0
 
 config.text_background_opacity = 1.0
 
 -- or, changing the font size and color scheme.
-config.font = wezterm.font("MesloLGSDZ Nerd Font", {italic = false})
-config.font_size = 14
-config.color_scheme = "onedark"
+config.font = wezterm.font("CaskaydiaCove Nerd Font", {italic = false})
+config.font_size = 12
+config.color_scheme = "Purpledream (base16)"
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false

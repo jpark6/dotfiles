@@ -781,7 +781,7 @@ require("lazy").setup({
         "████████████████████████████████████████████████████████████",
         "██ ███ █       █        ████       █ ████ ██",
         "██   ██  █  ████████  █████  █ ██ ████  ████   ██   ██",
-        "██  █ █  █      ███  █████  ██  █████  ████      ██",
+        "██  █ █  █     ████  █████  ██  █████  ████      ██",
         "██  ██   █  ████████  █████  ███  ██████  ████  █  █  ██",
         "██ ███ █       █       ████████      █ ████ ██",
         "████████████████████████████████████████████████████████████",
@@ -798,7 +798,6 @@ require("lazy").setup({
       local nvim_version = string.format(" v%d.%d.%d", version.major, version.minor, version.patch)
 
       dashboard.section.footer.val ={
-        "Ready to code 🚀",
         nvim_version
       }
 
@@ -811,8 +810,31 @@ require("lazy").setup({
     event = "VeryLazy", -- 느긋하게 로딩
     config = function()
       require("nvim-surround").setup({})
-    end
-  }
+    end,
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+      -- opts = {                                -- Default  Range
+      --   stiffness = 0.8,                      -- 0.6      [0, 1]
+      --   trailing_stiffness = 0.5,             -- 0.4      [0, 1]
+      --   stiffness_insert_mode = 0.7,          -- 0.5      [0, 1]
+      --   trailing_stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
+      --   damping = 0.8,                        -- 0.65     [0, 1]
+      --   damping_insert_mode = 0.8,            -- 0.7      [0, 1]
+      --   distance_stop_animating = 0.5,        -- 0.1      > 0
+      -- },
+    opts = {
+      cursor_color = "#ff8800",
+      stiffness = 0.3,
+      trailing_stiffness = 0.1,
+      damping = 0.5,
+      trailing_exponent = 5,
+      never_draw_over_target = true,
+      hide_target_hack = true,
+      gamma = 1,
+    }
+  },
+
 })
 -- autocmd
 vim.api.nvim_create_autocmd('CursorHold', {
@@ -1001,8 +1023,8 @@ vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FF6188' }) -- 분홍색
 vim.opt.termguicolors = true
 
 -- WezTerm 설정 파일의 경로 (환경에 맞게 수정 필요)
--- local wezterm_config_path = os.getenv("HOME") .. "/.wezterm.lua"
-local wezterm_config_path = "/mnt/c/Users/banseok/.wezterm.lua"
+local wezterm_config_path = os.getenv("HOME") .. "/.wezterm.lua"
+-- local wezterm_config_path = "/mnt/c/Users/banseok/.wezterm.lua"
 -- WezTerm 설정 파일을 읽기 위한 함수
 local function get_wezterm_color_scheme()
     local file = io.open(wezterm_config_path, "r")
