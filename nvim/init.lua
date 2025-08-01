@@ -810,19 +810,10 @@ require("lazy").setup({
     event = "VeryLazy", -- 느긋하게 로딩
     config = function()
       require("nvim-surround").setup({})
-    end,
+    end
   },
   {
     "sphamba/smear-cursor.nvim",
-      -- opts = {                                -- Default  Range
-      --   stiffness = 0.8,                      -- 0.6      [0, 1]
-      --   trailing_stiffness = 0.5,             -- 0.4      [0, 1]
-      --   stiffness_insert_mode = 0.7,          -- 0.5      [0, 1]
-      --   trailing_stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
-      --   damping = 0.8,                        -- 0.65     [0, 1]
-      --   damping_insert_mode = 0.8,            -- 0.7      [0, 1]
-      --   distance_stop_animating = 0.5,        -- 0.1      > 0
-      -- },
     opts = {
       cursor_color = "#ff8800",
       stiffness = 0.3,
@@ -833,8 +824,7 @@ require("lazy").setup({
       hide_target_hack = true,
       gamma = 1,
     }
-  },
-
+  }
 })
 -- autocmd
 vim.api.nvim_create_autocmd('CursorHold', {
