@@ -185,7 +185,7 @@ RUN_APP(exeName, pathName) {
 ^!r:: RUN_APP("raonMessenger.exe", "D:\Program Files\RaonsecureMessenger")
 ^!s:: ACTIVE_OR_OPEN_APP("slack.exe", "C:\Users\qkstj\scoop\apps\slack\current")
 ^!t:: ACTIVE_OR_OPEN_APP("wezterm-gui.exe", "C:\Users\qkstj\scoop\apps\wezterm\current")
-^!v:: ACTIVE_OR_OPEN_APP("Code.exe", "C:\Users\qkstj\scoop\apps\vscode\current")
+^!v:: ACTIVE_OR_OPEN_APP("VSCodium.exe", "C:\Users\qkstj\scoop\apps\vscodium\current")
 ^!w:: ACTIVE_OR_OPEN_APP("warp.exe", "C:\Users\qkstj\AppData\Local\Programs\Warp")
 ; ^!w:: RUN_APP("launcher.exe", "C:\Users\qkstj\scoop\apps\opera-gx\current")
 ; ^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")

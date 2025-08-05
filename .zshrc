@@ -15,7 +15,6 @@ case "$(uname -s)" in
       OS="WSL"
       HOME_DIR="/mnt/c/Users/qkstj"
       REPO_DIR="/mnt/d/Repos"
-      source ~/.profile
     else
       OS="Linux"
       HOME_DIR="$HOME"
