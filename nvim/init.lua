@@ -594,7 +594,7 @@ require("lazy").setup({
       require("bufferline").setup {
         options = {
           mode = "buffers",
-          always_show_bufferline = true,
+          always_show_bufferline = false,
           separator_style = "thin", -- "slant", "thick", "thin", "padded_slant", "slope"
           show_buffer_close_icons = true,
           show_close_icon = true,
