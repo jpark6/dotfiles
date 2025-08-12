@@ -18,22 +18,22 @@ config.initial_rows = 28
 
 -- Set padding in pixels
 config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
-  bottom = 0,
+  left = 10,
+  right = 10,
+  top = 10,
+  bottom = 10,
 }
 
-config.window_background_opacity = 0.80
--- config.win32_system_backdrop = 'Mica' -- "Acrylic", 'Mica', 'Tabbed'
+config.window_background_opacity = 0.70
+-- config.win32_system_backdrop = 'Acrylic' -- "Acrylic", 'Mica', 'Tabbed'
 config.macos_window_background_blur = 0
 
 config.text_background_opacity = 1.0
 
 -- or, changing the font size and color scheme.
-config.font = wezterm.font("CaskaydiaCove Nerd Font", {italic = false})
-config.font_size = 12
-config.color_scheme = "Purpledream (base16)"
+config.font = wezterm.font("CaskaydiaCove Nerd Font Mono", {italic = false})
+config.font_size = 13
+config.color_scheme = "Dehydration (Gogh)"
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false

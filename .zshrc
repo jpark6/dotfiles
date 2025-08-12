@@ -107,7 +107,7 @@ plugins=(
   fzf-tab
   alias-tips
   colored-man-pages
-  # starship
+  starship
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -186,6 +186,7 @@ alias cwrt="$REPO_DIR/ShellScripts/change_wezterm_random_theme.sh"
 alias cwt="$REPO_DIR/ShellScripts/change_wezterm_theme.sh"
 alias cwf="$REPO_DIR/ShellScripts/change_wezterm_font.sh"
 alias cwrf="$REPO_DIR/ShellScripts/change_wezterm_random_font.sh"
+alias ckf="$REPO_DIR/ShellScripts/change_kitty_font.sh"
 alias cart="$REPO_DIR/ShellScripts/change_alacritty_random_theme.sh"
 alias ct="$REPO_DIR/ShellScripts/change_alacritty_theme.sh"
 alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
@@ -197,6 +198,7 @@ alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
 alias s="py $REPO_DIR/Utils/python/webSearch.py"
 alias os="python3 $REPO_DIR/Utils/python/openSlackChannelDM.py"
 alias py=python3
+alias clear="clear && fastfetch"
 
 case "$OS" in
   "Linux")
@@ -278,6 +280,6 @@ if [[ $- == *i* ]]; then
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
