@@ -6,12 +6,15 @@
     // "type": "iterm",
     "source": "/home/jakepark/.config/fastfetch/logo/arch_2d_white_border.png",
     // "source": "/home/jakepark/.config/fastfetch/logo/arch_2d.png",
+    // "source": "/home/jakepark/.config/fastfetch/logo/arch_4d.png",
     // "source": "/home/jakepark/.config/fastfetch/logo/ubuntu.png",
     // "source": "/home/jakepark/.config/fastfetch/logo/nixos.png",
+    // "source": "/home/jakepark/.config/fastfetch/logo/apple.png",
     "width": 22,
     "padding": {
       "top": 2,
-      "left": 1
+      "left": 0,
+      "right": 2
     }
   },
   "display": {
