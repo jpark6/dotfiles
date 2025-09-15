@@ -42,6 +42,7 @@ require("lazy").setup({
           "jsonls",
           "html",
           "cssls",
+          "hyprls",
           "rust_analyzer",
           "yamlls",
           "lua_ls",

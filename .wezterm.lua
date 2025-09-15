@@ -7,6 +7,7 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices.
 
 config.enable_wayland = false
+config.hide_mouse_cursor_when_typing = false
 -- Set default program to WSL If OS is Windows 
 if wezterm.target_triple:find("windows") then
   config.default_prog = { "wsl.exe" }
@@ -31,9 +32,9 @@ config.macos_window_background_blur = 0
 config.text_background_opacity = 1.0
 
 -- or, changing the font size and color scheme.
-config.font = wezterm.font("CaskaydiaCove Nerd Font Mono", {italic = false})
+config.font = wezterm.font("CaskaydiaCove Nerd Font", {italic = false})
 config.font_size = 13
-config.color_scheme = "Dehydration (Gogh)"
+config.color_scheme = "Jellybeans"
 
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
