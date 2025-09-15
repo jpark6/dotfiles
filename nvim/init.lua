@@ -38,6 +38,7 @@ require("lazy").setup({
         ensure_installed = {
           "pyright",
           "ts_ls",
+          "jdtls",
           "jsonls",
           "html",
           "cssls",
@@ -977,7 +978,7 @@ local function is_wsl()
     if f then
         local version = f:read("*all")
         f:close()
-        if version:match("Microsoft") then
+        if version:match("microsoft") then
             return true
         end
     end
@@ -988,12 +989,12 @@ if is_wsl() then
   vim.g.clipboard = {
     name = "win32yank",
     copy = {
-      ["+"] = "win32yank -i --crlf",
-      ["*"] = "win32yank -i --crlf",
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
     },
     paste = {
-      ["+"] = "win32yank -o --lf",
-      ["*"] = "win32yank -o --lf",
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
     },
     cache_enabled = true,
   }
@@ -1014,8 +1015,8 @@ vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FF6188' }) -- 분홍색
 vim.opt.termguicolors = true
 
 -- WezTerm 설정 파일의 경로 (환경에 맞게 수정 필요)
-local wezterm_config_path = os.getenv("HOME") .. "/.wezterm.lua"
--- local wezterm_config_path = "/mnt/c/Users/banseok/.wezterm.lua"
+-- local wezterm_config_path = os.getenv("HOME") .. "/.wezterm.lua"
+local wezterm_config_path = "/mnt/c/Users/qkstj/.wezterm.lua"
 -- WezTerm 설정 파일을 읽기 위한 함수
 local function get_wezterm_color_scheme()
     local file = io.open(wezterm_config_path, "r")
