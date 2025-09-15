@@ -173,6 +173,7 @@ RUN_APP(exeName, pathName) {
 
 ^!]:: Run "C:\Users\qkstj\AppData\Local\Microsoft\WindowsApps\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\WsaClient.exe /launch wsa://io.fooding.customerapp"
 ^!a:: ACTIVE_OR_OPEN_APP("alacritty.exe", "C:\Users\qkstj\scoop\apps\alacritty\current")
+^!b:: ACTIVE_OR_OPEN_APP("brave.exe", "C:\Users\qkstj\scoop\apps\brave\current")
 ^!c:: ACTIVE_OR_OPEN_APP("chrome.exe", "C:\Program Files\Google\Chrome\Application")
 ^!d:: ACTIVE_OR_OPEN_APP("dbeaver.exe", "C:\Users\qkstj\scoop\apps\dbeaver\current")
 ^!f:: ACTIVE_OR_OPEN_APP("firefox.exe", "C:\Users\qkstj\scoop\apps\firefox\current")
@@ -184,9 +185,11 @@ RUN_APP(exeName, pathName) {
 ^!p:: RUN_APP("sumatrapdf.exe", "C:\Users\qkstj\scoop\apps\sumatrapdf\current")
 ^!r:: RUN_APP("raonMessenger.exe", "D:\Program Files\RaonsecureMessenger")
 ^!s:: ACTIVE_OR_OPEN_APP("slack.exe", "C:\Users\qkstj\scoop\apps\slack\current")
-^!t:: ACTIVE_OR_OPEN_APP("wezterm-gui.exe", "C:\Users\qkstj\scoop\apps\wezterm\current")
+^!t:: ACTIVE_OR_OPEN_APP("wezterm-gui.exe", "C:\Users\qkstj\scoop\apps\wezterm-nightly\current")
 ^!v:: ACTIVE_OR_OPEN_APP("VSCodium.exe", "C:\Users\qkstj\scoop\apps\vscodium\current")
 ^!w:: ACTIVE_OR_OPEN_APP("warp.exe", "C:\Users\qkstj\AppData\Local\Programs\Warp")
+
+^!z:: ACTIVE_OR_OPEN_APP("zen.exe", "/mnt/c/Users/qkstj/scoop/apps/zen-browser/current")
 ; ^!w:: RUN_APP("launcher.exe", "C:\Users\qkstj\scoop\apps\opera-gx\current")
 ; ^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")
 #e:: ACTIVE_OR_OPEN_APP("XYplorerFree.exe","C:\Users\qkstj\scoop\apps\xyplorer\current") ; Win + E 입력 시, xyplorer 실행 
