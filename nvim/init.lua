@@ -142,45 +142,6 @@ require("lazy").setup({
           }),
         },
       })
-      -- 각 언어 서버 설정을 여기에 추가
-      local lspconfig = require('lspconfig')
-
-      lspconfig.pyright.setup({})
-      lspconfig.ts_ls.setup({})
-      lspconfig.jsonls.setup({})
-      lspconfig.html.setup({})
-      lspconfig.cssls.setup({})
-      lspconfig.emmet_ls.setup({
-        filetypes = { 'html', 'css', 'javascriptreact', 'typescriptreact', 'jsp'},
-        init_options = {
-          html = {
-            options = {
-              ['bem.enabled'] = true,
-            }
-          }
-        }
-      })
-      lspconfig.rust_analyzer.setup({})
-      lspconfig.yamlls.setup({})
-      lspconfig.lua_ls.setup({
-          settings = {
-              Lua = {
-                  runtime = {
-                      version = 'LuaJIT',
-                  },
-                  diagnostics = {
-                      globals = {'vim'},
-                  },
-                  workspace = {
-                      library = vim.api.nvim_get_runtime_file("", true),
-                      checkThirdParty = false,
-                  },
-                  telemetry = {
-                      enable = false,
-                  },
-              },
-          },
-        })
         -- LSP 진단 메시지 하이라이트 설정
         vim.diagnostic.config({
           virtual_text = true, -- 줄 끝에 가상 텍스트로 메시지 표시
