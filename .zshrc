@@ -199,6 +199,7 @@ alias s="py $REPO_DIR/Utils/python/webSearch.py"
 alias os="python3 $REPO_DIR/Utils/python/openSlackChannelDM.py"
 alias py=python3
 alias clear="clear && fastfetch"
+alias ff=fastfetch
 
 case "$OS" in
   "Linux")
