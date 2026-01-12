@@ -197,9 +197,9 @@ alias ctt="$REPO_DIR/ShellScripts/change_tmux_powerline_theme.sh"
 alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
 alias s="py $REPO_DIR/Utils/python/webSearch.py"
 alias os="python3 $REPO_DIR/Utils/python/openSlackChannelDM.py"
-alias py=python3
-alias clear="clear && fastfetch"
 alias ff=fastfetch
+alias py=python3
+# alias clear="clear && fastfetch"
 
 case "$OS" in
   "Linux")
@@ -223,7 +223,7 @@ case "$OS" in
     alias money="cd /mnt/d/Works/money"
     alias open="xdg-open"
     alias cmd=cmd.exe
-    alias pwsh="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
+    alias pwsh="/mnt/d/scoop/apps/pwsh/current/pwsh.exe"
     alias alacritty=alacritty.exe
     alias wezterm=wezterm.exe
     alias pandoc=pandoc.exe
@@ -282,5 +282,4 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 

@@ -72,7 +72,7 @@ require("lazy").setup({
     'hrsh7th/nvim-cmp',
     event = "InsertEnter",
     dependencies = {
-      "zbirenbaum/copilot-cmp",
+      -- "zbirenbaum/copilot-cmp",
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -118,7 +118,7 @@ require("lazy").setup({
           end, { 'i', 's' }),
         }),
         sources = cmp.config.sources({
-          { name = 'copilot'},
+          -- { name = 'copilot'},
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'buffer' },
@@ -544,7 +544,9 @@ require("lazy").setup({
         options = {
           theme = "onelight",
           icons_enabled = true,
-          section_separators = { left = "", right = ""},
+          -- section_separators = { left = "", right = ""},
+          -- component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = ""},
           component_separators = { left = "", right = "" },
         },
       }
@@ -778,48 +780,52 @@ require("lazy").setup({
     end
   },
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    event = "BufReadPost",
-    opts = {
-      suggestion = {
-        enabled = not vim.g.ai_cmp,
-        auto_trigger = true,
-        hide_during_completion = vim.g.ai_cmp,
-        keymap = {
-          accept = false, -- handled by nvim-cmp / blink.cmp
-          next = "<M-]>",
-          prev = "<M-[>",
-        },
-      },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
-      },
-    },
+    "qvalentin/helm-ls.nvim",
+    ft = "helm",
   },
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = "copilot.lua",
-    opts = {},
-    config = function(_, opts)
-      local copilot_cmp = require("copilot_cmp")
-      copilot_cmp.setup(opts)
-      -- nvim-cmp에서 copilot source 추가 필요
-    end,
-  },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "nvim-lua/plenary.nvim", branch = "master" },
-    },
-    build = "make tiktoken",
-    opts = {
-      -- See Configuration section for options
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   build = ":Copilot auth",
+  --   event = "BufReadPost",
+  --   opts = {
+  --     suggestion = {
+  --       enabled = not vim.g.ai_cmp,
+  --       auto_trigger = true,
+  --       hide_during_completion = vim.g.ai_cmp,
+  --       keymap = {
+  --         accept = false, -- handled by nvim-cmp / blink.cmp
+  --         next = "<M-]>",
+  --         prev = "<M-[>",
+  --       },
+  --     },
+  --     panel = { enabled = false },
+  --     filetypes = {
+  --       markdown = true,
+  --       help = true,
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   dependencies = "copilot.lua",
+  --   opts = {},
+  --   config = function(_, opts)
+  --     local copilot_cmp = require("copilot_cmp")
+  --     copilot_cmp.setup(opts)
+  --     -- nvim-cmp에서 copilot source 추가 필요
+  --   end,
+  -- },
+  -- {
+  --   "CopilotC-Nvim/CopilotChat.nvim",
+  --   dependencies = {
+  --     { "nvim-lua/plenary.nvim", branch = "master" },
+  --   },
+  --   build = "make tiktoken",
+  --   opts = {
+  --     -- See Configuration section for options
+  --   },
+  -- },
   -- {
   --   "sphamba/smear-cursor.nvim",
   --   opts = {

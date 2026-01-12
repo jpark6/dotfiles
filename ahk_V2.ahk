@@ -188,7 +188,7 @@ RUN_APP(exeName, pathName) {
 ^!v:: ACTIVE_OR_OPEN_APP("code.exe", "D:\scoop\apps\vscode\current")
 ^!w:: ACTIVE_OR_OPEN_APP("warp.exe", "C:\Users\qkstj\AppData\Local\Programs\Warp")
 
-^!z:: ACTIVE_OR_OPEN_APP("zen.exe", "/mnt/c/Users/qkstj/scoop/apps/zen-browser/current")
+^!z:: ACTIVE_OR_OPEN_APP("zen.exe", "D:\scoop\apps\zen-browser\current")
 ; ^!w:: RUN_APP("launcher.exe", "C:\Users\qkstj\scoop\apps\opera-gx\current")
 ; ^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")
 #e:: ACTIVE_OR_OPEN_APP("XYplorerFree.exe","C:\Users\qkstj\scoop\apps\xyplorer\current") ; Win + E 입력 시, xyplorer 실행 
