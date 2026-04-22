@@ -165,9 +165,9 @@ alias vv='vi ~/.config/nvim/init.lua'
 alias vt='vi ~/.tmux.conf'
 alias ls='eza --icons --git'
 alias sl=ls
-alias ll='eza -lh --icons --git'
-alias la='eza -a --icons --git'
-alias lstr="eza -la --icons --git --sort=modified"
+alias ll='eza -lgh --icons --git'
+alias la='eza -ahg --icons --git'
+alias lstr="eza -lgha --icons --git --sort=modified"
 alias tree='ls --tree'
 alias vi=nvim
 alias view="nvim -R"
@@ -280,6 +280,27 @@ if [[ $- == *i* ]]; then
   fastfetch
 fi
 
+# Auto-start tmux if not already inside one
+if [ -z "$TMUX" ]; then
+  tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# PATH 중복 제거
+if [ -n "$PATH" ]; then
+    old_PATH=$PATH
+    PATH=""
+    IFS=:
+    for d in $old_PATH; do
+        case ":$PATH:" in
+            *":$d:"*) : ;;
+            *) PATH=$PATH:$d ;;
+        esac
+    done
+    PATH=${PATH#:}
+    unset old_PATH IFS
+fi
+export PATH
 

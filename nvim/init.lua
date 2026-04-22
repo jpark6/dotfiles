@@ -935,6 +935,7 @@ vim.opt.swapfile = false                -- 스왑 파일 생성하지 않음
 --
 -- whitespace 표시
 vim.opt.listchars = {
+
   eol = "↵",
   space = "·",
   tab = "▸ ",
@@ -943,7 +944,8 @@ vim.opt.listchars = {
   precedes = "❮",
   nbsp = "+",
 }
-vim.opt.list = true
+-- vim.opt.list = true
+vim.opt.list = false
 
 vim.opt.fillchars:append({ eob = " " })
 

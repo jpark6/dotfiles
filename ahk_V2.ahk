@@ -52,7 +52,7 @@ CapsLock::
 
 
 +^!d::Send "안녕하세요 라온시큐어 박반석입니다.{Enter}{Enter}{Enter}{Enter}감사합니다.{Up}{Up}"
-+^!r::Send "안녕하세요 보안기술1팀 박반석입니다.{Enter}{Enter}{Enter}{Enter}감사합니다.{Up}{Up}"
++^!r::Send "안녕하세요 플랫폼기술1팀 박반석입니다.{Enter}{Enter}{Enter}{Enter}감사합니다.{Up}{Up}"
 
 ^!Space::Send "{Media_Play_Pause}" ; ctrl + alt + space : 재생/정지
 ^!Left::Send "{Media_Prev}" ; ctrl + alt + <- : 이전
@@ -85,13 +85,26 @@ resizeWindow(xpos, ypos, width, height) {
 }
 ; window resize
 ; +!8::MsgBox("The active window is '" WinGetTitle("A") "'.") ; WinMove(0, 0, A_ScreenWidth/2, A_ScreenHeight, WinGetTitle("A"), WinGetText("A"),"","")
-+!j::resizeWindow(-7, 0, A_ScreenWidth/2, A_ScreenHeight)
++!j::resizeWindow(0, 0, A_ScreenWidth/2, A_ScreenHeight)
 +!k::resizeWindow(0, 0, A_ScreenWidth, A_ScreenHeight)
 +!l::resizeWindow(A_ScreenWidth/2, 0, A_ScreenWidth/2, A_ScreenHeight)
 +!8::resizeWindow(0, 0, A_ScreenWidth/3, A_ScreenHeight)
 +!9::resizeWindow(A_ScreenWidth/3, 0, A_ScreenWidth/3, A_ScreenHeight)
 +!0::resizeWindow(A_ScreenWidth*2/3, 0, A_ScreenWidth/3, A_ScreenHeight)
 +!7:: WinGetPos(&X,&Y,&W,&H,"A"), MsgBox("x: " X ", y: " Y ", w: " W ", h:" H)
+
+; Maximize/Minimize Window
+#PgUp::{
+    state := WinGetMinMax("A")
+    if (state = 1)
+        WinRestore "A"
+    else
+        WinMaximize "A"
+}
+
+#PgDn::{
+    WinMinimize "A"
+}
 
 ; set Mouse Position Center in Moniter 1,2,3
 ^!1::MouseMove(A_ScreenWidth/2, A_ScreenHeight/2, 0)
@@ -191,4 +204,24 @@ RUN_APP(exeName, pathName) {
 ^!z:: ACTIVE_OR_OPEN_APP("zen.exe", "D:\scoop\apps\zen-browser\current")
 ; ^!w:: RUN_APP("launcher.exe", "C:\Users\qkstj\scoop\apps\opera-gx\current")
 ; ^!y:: ACTIVE_OR_OPEN_APP("youtube-music.exe", "C:\Program Files\youtube-music")
-#e:: ACTIVE_OR_OPEN_APP("XYplorerFree.exe","C:\Users\qkstj\scoop\apps\xyplorer\current") ; Win + E 입력 시, xyplorer 실행 
+
+/*
+  라이트 테마로 저장해도 윈도우 재시작하면 다크테마 됨
+  강제로 라이트로 변경
+*/
++^!t::toggletheme()
+
+toggletheme()
+{
+    try {
+        if (RegRead("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme") = 0) {
+            RegWrite(1, "REG_DWORD", "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme")
+            RegWrite(1, "REG_DWORD", "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "SystemUsesLightTheme")
+        } else {
+            RegWrite(0, "REG_DWORD", "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme")
+            RegWrite(0, "REG_DWORD", "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "SystemUsesLightTheme")
+        }
+
+  ;  Reload() ; if necessary for a different icon for different themes
+    }
+}
