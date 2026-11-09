@@ -2,7 +2,7 @@ case "$(uname -s)" in
   Linux*)
     if grep -qi microsoft /proc/version 2>/dev/null; then
       OS="WSL"
-      HOME_DIR="/mnt/c/Users/qkstj"
+      HOME_DIR="$(wslpath "$(cmd.exe /c 'echo %USERPROFILE%' 2>/dev/null | tr -d '\r')")"
       REPO_DIR="/mnt/d/Repos"
     else
       OS="Linux"
@@ -22,10 +22,66 @@ case "$(uname -s)" in
     ;;
 esac
 
+# ---------------------------------------------------------------------------
+# PATH & environment variables
+# ---------------------------------------------------------------------------
+# Keep PATH entries unique (also applies to later `export PATH=...`)
+typeset -U PATH
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 
+if [[ "$OS" == "macOS" ]]; then
+  export PATH="/opt/homebrew/opt/python@3.14/bin:$PATH"
+fi
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/bspark/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+export NVM_DIR="$HOME/.nvm"
+
+case "$OS" in
+  "macOS")
+    export JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
+    ;;
+  "Linux"|"WSL")
+    export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+    export LD_LIBRARY_PATH="$JAVA_HOME/lib/server:$LD_LIBRARY_PATH"
+    ;;
+esac
+
+# Add Ollama Base URL
+export OLLAMA_API_BASE=http://127.0.0.1:11434
+
+# mcfly settings
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_INTERFACE_VIEW=TOP   # TOP | BOTTOM
+# export MCFLY_RESULTS=30
+
+# ---------------------------------------------------------------------------
+# oh-my-zsh
+# ---------------------------------------------------------------------------
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -100,7 +156,6 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-syntax-highlighting
   fast-syntax-highlighting
   zsh-autosuggestions
   zsh-interactive-cd
@@ -113,27 +168,13 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 set -o vi
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-# personal function
+# ---------------------------------------------------------------------------
+# Functions
+# ---------------------------------------------------------------------------
 # docker compose up && logs -f [Service1 ...]
 dcul() {
   if [ $# -eq 0 ]; then
-    echo "🛠️ Usage: dcup Service1 [Service2 ...]"
+    echo "🛠️ Usage: dcul Service1 [Service2 ...]"
     return 1
   fi
 
@@ -141,7 +182,7 @@ dcul() {
 }
 
 zrank() {
-  zoxide query -l | grep "$(pwd)" | awk '{print $1}'
+  zoxide query -l | grep -F "$(pwd)"
 }
 
 zjump() {
@@ -149,6 +190,35 @@ zjump() {
   dir=$(zoxide query -l | fzf --tac) && cd "$dir"
 }
 
+btail() {
+  tail -f "$@" | bat --style=numbers --paging=never -l log
+}
+
+docker_remote_tag() {
+  curl -s -S "https://registry.hub.docker.com/v2/repositories/library/$@/tags/" | jq '."results"[]["name"]' | sort
+}
+
+# nvm lazy-load: nvm.sh is sourced on the first call of nvm/node/npm/npx
+_nvm_lazy_load() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+for cmd in nvm node npm npx; do
+  eval "$cmd() { _nvm_lazy_load; $cmd \"\$@\"; }"
+done
+unset cmd
+
+# kubectl completion lazy-load: sourced on the first call of kubectl
+kubectl() {
+  unfunction kubectl
+  source <(command kubectl completion zsh)
+  kubectl "$@"
+}
+
+# ---------------------------------------------------------------------------
+# Aliases
+# ---------------------------------------------------------------------------
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -183,6 +253,8 @@ alias va="vi $HOME_DIR/.config/alacritty/alacritty.toml"
 alias vw="vi $HOME_DIR/.wezterm.lua"
 alias vs="vi $HOME_DIR/.config/starship.toml"
 alias cwrt="$REPO_DIR/ShellScripts/change_wezterm_random_theme.sh"
+alias cgt="$REPO_DIR/ShellScripts/change_ghostty_theme.sh"
+alias cgf="$REPO_DIR/ShellScripts/change_ghostty_font.sh"
 alias cwt="$REPO_DIR/ShellScripts/change_wezterm_theme.sh"
 alias cwf="$REPO_DIR/ShellScripts/change_wezterm_font.sh"
 alias cwrf="$REPO_DIR/ShellScripts/change_wezterm_random_font.sh"
@@ -194,12 +266,18 @@ alias cst="$REPO_DIR/ShellScripts/change_starship_theme.sh"
 alias clrt="$REPO_DIR/ShellScripts/change_nvim_lualine_random_theme.sh"
 alias clt="$REPO_DIR/ShellScripts/change_nvim_lualine_theme.sh"
 alias ctt="$REPO_DIR/ShellScripts/change_tmux_powerline_theme.sh"
-alias ctrt="$REPO_DIR/ShellScripts/change_tmux_powerline_random_theme.sh"
 alias s="py $REPO_DIR/Utils/python/webSearch.py"
 alias os="python3 $REPO_DIR/Utils/python/openSlackChannelDM.py"
-alias ff=fastfetch
+# alias ff=fastfetch
+alias ff="fastfetch"
 alias py=python3
 # alias clear="clear && fastfetch"
+alias claude-local='CLAUDE_CONFIG_DIR="$HOME/.claude-ollama" claude'
+
+alias tmb='tmux new-session -d && tmux split-window -h && tmux split-window -v && tmux select-pane -L && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
+alias tms='tmux new-session -d && tmux split-window -v && tmux split-window -v && tmux select-pane -U && tmux select-pane -U && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
+alias tm='tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d'
+alias tmh='tmux new-session -d && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
 
 case "$OS" in
   "Linux")
@@ -239,33 +317,14 @@ case "$OS" in
     ;;
 esac
 
-source <(kubectl completion zsh)
-
-alias tmb='tmux new-session -d && tmux split-window -h && tmux split-window -v && tmux select-pane -L && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
-alias tms='tmux new-session -d && tmux split-window -v && tmux split-window -v && tmux select-pane -U && tmux select-pane -U && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
-alias tm='tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d'
-alias tmh='tmux new-session -d && tmux split-window -v && tmux select-pane -U && tmux attach-session -d'
-
-function btail {
-  tail -f "$@" | bat --style=numbers --paging=never -l log
-}
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
-export LD_LIBRARY_PATH=$JAVA_HOME/lib/server:$LD_LIBRARY_PATH
-
- function docker_remote_tag() {
-   curl -s -S "https://registry.hub.docker.com/v2/repositories/library/$@/tags/" | jq '."results"[]["name"]' | sort
- }
-
+# ---------------------------------------------------------------------------
+# Tool initialization
+# ---------------------------------------------------------------------------
+# direnv
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 # zoxide init
 eval "$(zoxide init zsh)"
-# mcfly settings
-export MCFLY_KEY_SCHEME=vim
-export MCFLY_INTERFACE_VIEW=TOP   # TOP | BOTTOM
-# export MCFLY_RESULTS=30
+# mcfly
 eval "$(mcfly init zsh)"
 # fuck
 eval "$(thefuck --alias)"
@@ -277,30 +336,13 @@ zle -N zle-keymap-select starship_zle-keymap-select
 
 if [[ $- == *i* ]]; then
   # fastfetch --config examples/13
-  fastfetch
+  fastfetch --logo none
 fi
 
 # Auto-start tmux if not already inside one
-if [ -z "$TMUX" ]; then
-  tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d
-fi
+# if [ -z "$TMUX" ]; then
+#   tmux new-session -d && tmux split-window -h && tmux select-pane -L && tmux attach-session -d
+# fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# PATH 중복 제거
-if [ -n "$PATH" ]; then
-    old_PATH=$PATH
-    PATH=""
-    IFS=:
-    for d in $old_PATH; do
-        case ":$PATH:" in
-            *":$d:"*) : ;;
-            *) PATH=$PATH:$d ;;
-        esac
-    done
-    PATH=${PATH#:}
-    unset old_PATH IFS
-fi
-export PATH
-

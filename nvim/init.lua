@@ -5,7 +5,7 @@
 -- Plugin Manager
 -- 1. lazy.nvim bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -24,15 +24,15 @@ require("lazy").setup({
     event = { "BufReadPre", "BufNewFile" },
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     lazy = false, -- Neovim 시작 시 바로 로드되도록 설정 (LSP 서버 설치에 필요)
     config = function()
       require("mason").setup()
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -107,7 +107,6 @@ require("lazy").setup({
             end
           end, { 'i', 's' }),
           ['<S-Tab>'] = cmp.mapping(function(fallback)
-            local luasnip = require('luasnip') -- 함수 내에서 다시 require
             if cmp.visible() then
               cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
@@ -142,28 +141,6 @@ require("lazy").setup({
           }),
         },
       })
-        -- LSP 진단 메시지 하이라이트 설정
-        vim.diagnostic.config({
-          virtual_text = true, -- 줄 끝에 가상 텍스트로 메시지 표시
-          signs = true,        -- sign column에 아이콘 표시
-          update_in_insert = false, -- 삽입 모드 중에는 업데이트 안함
-          severity_sort = true,     -- 심각도에 따라 정렬
-          float = {                 -- 플로팅 창 설정
-            source = true,      -- 항상 소스 표시
-            border = "single",      -- 테두리 스타일
-            focusable = false,      -- 포커스 불가능 (커서 이동 방해 안함)
-          },
-        })
-
-       -- LSP 키 바인딩: 'K'는 문서 hover (에러 메시지 포함)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'Show references' })
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show documentation (including errors)' }) -- 이 부분이 중요!
-        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action' })
-        vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, { desc = 'Format code' })
         end,
       },
   { "folke/tokyonight.nvim" },
@@ -186,9 +163,11 @@ require("lazy").setup({
   -- 🌈 Treesitter 문법 하이라이팅
   {
     "nvim-treesitter/nvim-treesitter",
+    -- branch = "master",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup {
+      require("nvim-treesitter").setup {
         ensure_installed = {
           "ada",
           "agda",
@@ -544,10 +523,10 @@ require("lazy").setup({
         options = {
           theme = "onelight",
           icons_enabled = true,
-          -- section_separators = { left = "", right = ""},
-          -- component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = ""},
+          section_separators = { left = "", right = ""},
           component_separators = { left = "", right = "" },
+          -- section_separators = { left = "", right = ""},
+          -- component_separators = { left = "", right = "" },
         },
       }
     end,
@@ -558,53 +537,44 @@ require("lazy").setup({
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("bufferline").setup {
-        options = {
-          mode = "buffers",
-          always_show_bufferline = false,
-          separator_style = "thin", -- "slant", "thick", "thin", "padded_slant", "slope"
-          show_buffer_close_icons = true,
-          show_close_icon = true,
-          diagnostics = "nvim_lsp",
-          offsets = {
-            {
-              filetype = "NvimTree",
-              text = "📁 File Explorer",
-              highlight = "Dictionary",
-              text_align = "left",
-              separator = true,
-            }
+      local sel_bg = '#88C0D0'
+
+      local hl = {
+        fill = { bg = 'none' },
+        buffer_selected = { fg = '#ffffff', bg = sel_bg, bold = true, italic = false },
+        modified_selected = { fg = '#ff9e64', bg = sel_bg, bold = true },
+        close_button_selected = { fg = '#f7768e', bg = sel_bg },
+        separator_selected = { fg = '#88C0D0', bg = '#1a1b26' },
+      }
+
+      -- 진단/숫자/중복 등 선택 버퍼에 쓰이는 나머지 그룹도 bg 통일
+      for _, k in ipairs({
+        'diagnostic', 'hint', 'hint_diagnostic', 'info', 'info_diagnostic',
+        'warning', 'warning_diagnostic', 'error', 'error_diagnostic',
+        'numbers', 'duplicate', 'pick', 'indicator',
+      }) do
+      hl[k .. '_selected'] = { bg = sel_bg, bold = true, italic = false }
+    end
+    require("bufferline").setup {
+      options = {
+        mode = "buffers",
+        always_show_bufferline = false,
+        separator_style = "thin",
+        show_buffer_close_icons = true,
+        show_close_icon = true,
+        diagnostics = "nvim_lsp",
+        offsets = {
+          {
+            filetype = "NvimTree",
+            text = "📁 File Explorer",
+            highlight = "Dictionary",
+            text_align = "left",
+            separator = true,
           },
         },
-        highlights = {
-          fill = {
-            bg = 'none',
-          },
-          -- 현재 선택된 버퍼 (활성 버퍼)
-          buffer_selected = {
-            fg = '#ffffff',        -- 텍스트 색상 (흰색)
-            bg = '#88C0D0',        -- 배경 색상 (파란색)
-            bold = true,
-            italic = false,
-          },
-          -- 현재 버퍼가 수정된 경우
-          modified_selected = {
-            fg = '#ff9e64',        -- 주황색
-            bg = '#88C0D0',
-            bold = true,
-          },
-          -- 현재 버퍼의 구분자
-          separator_selected = {
-            fg = '#88C0D0',
-            bg = '#1a1b26',        -- 배경과 맞춤
-          },
-          -- 현재 버퍼의 닫기 버튼
-          close_button_selected = {
-            fg = '#f7768e',        -- 빨간색
-            bg = '#88C0D0',
-          },
-        }
-      }
+      },
+      highlights = hl,
+    }
     end,
   },
   {
@@ -723,12 +693,11 @@ require("lazy").setup({
 
   -- 💬 주석 토글
   {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
-
   -- 🪄 자동 괄호 닫기
   {
     "windwp/nvim-autopairs",
@@ -841,6 +810,37 @@ require("lazy").setup({
   --   }
   -- }
 })
+
+-- LSP 진단 메시지 설정
+vim.diagnostic.config({
+  virtual_text = true, -- 줄 끝에 가상 텍스트로 메시지 표시
+  signs = true,        -- sign column에 아이콘 표시
+  update_in_insert = false, -- 삽입 모드 중에는 업데이트 안함
+  severity_sort = true,     -- 심각도에 따라 정렬
+  float = {                 -- 플로팅 창 설정
+    source = true,      -- 항상 소스 표시
+    border = "single",      -- 테두리 스타일
+    focusable = false,      -- 포커스 불가능 (커서 이동 방해 안함)
+  },
+})
+
+-- LSP 키 바인딩: LSP가 붙은 버퍼에서만 등록 ('K'는 문서 hover)
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local function opts(desc)
+      return { buffer = ev.buf, desc = desc }
+    end
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts('Go to definition'))
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts('Go to declaration'))
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts('Show references'))
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts('Go to implementation'))
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts('Show documentation (including errors)'))
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts('Rename symbol'))
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts('Code action'))
+    vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts('Format code'))
+  end,
+})
+
 -- autocmd
 vim.api.nvim_create_autocmd('CursorHold', {
   buffer = 0, -- 현재 버퍼에만 적용 (0은 현재 버퍼)

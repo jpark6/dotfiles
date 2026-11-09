@@ -13,9 +13,9 @@ if wezterm.target_triple:find("windows") then
   config.default_prog = { "wsl.exe", "~" }
   -- config.default_prog = { "pwsh.exe" }
   config.launch_menu = {
-  {
-  label = "PowerShell 7",
-  args = { "pwsh.exe", "-NoLogo" },
+    {
+      label = "PowerShell 7",
+      args = { "pwsh.exe", "-NoLogo" },
     },
     {
       label = "Windows PowerShell",
@@ -60,13 +60,13 @@ config.color_scheme = "Snazzy (base16)"
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
 config.keys = {
-  -- Ctrl-Tab -> send to tmux as Ctrl-b n (next-window)
+  -- Ctrl-Tab -> send to tmux as Ctrl-a n (next-window)
   {
     key = "Tab",
     mods = "CTRL",
     action = wezterm.action.SendString("\x01n"), -- Ctrl-a (0x01) + n
   },
-  -- Ctrl-Shift-Tab -> send to tmux as Ctrl-b p (previous-window)
+  -- Ctrl-Shift-Tab -> send to tmux as Ctrl-a p (previous-window)
   {
     key = "Tab",
     mods = "CTRL|SHIFT",

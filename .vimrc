@@ -1,19 +1,17 @@
-" Syntax Hightlighting
+" Syntax Highlighting
 if has("syntax")
   syntax on
 endif
 
-set hls " hlsearch : hightlighting search keyword
-set ai " autoindent
-set ci " cindent
-set si " smartindent
-set ts=2 " tabspace
-set sw=2 " shiftwidth
-set et " expandtab : insert spaces replace tab
+set hlsearch " highlighting search keyword
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set expandtab " insert spaces replace tab
 set autowrite " auto save when move another file
 set autoread " read file when file changed 
-set bs=eol,start,indent
-set showmatch " hightlighting matched brakets, braces, parentheses
+set backspace=eol,start,indent
+set showmatch " highlighting matched brackets, braces, parentheses
 set matchpairs+=<:>
 set ruler " statusbar
 set showcmd
@@ -21,15 +19,15 @@ set wildmenu
 set wildmode=longest:full,full
 set cursorline 
 set incsearch
-set hlsearch
-set ls=2 " laststatus " show statusbar always
-" set rnu
-set nu "number: show line number
+set laststatus=2 " show statusbar always
+" set relativenumber
+set number " show line number
 set termguicolors " set vim true colors
-set ic " ignore case
+set ignorecase
+set smartcase " case sensitive if search has uppercase
 set encoding=utf-8
 set mouse=a
-set ff=unix
+set fileformat=unix
 set scrolloff=5
 set noswapfile
 
